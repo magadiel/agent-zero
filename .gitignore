@@ -40,3 +40,28 @@ instruments/**
 # Global rule to include .gitkeep files anywhere
 !**/.gitkeep
 agent_history.gif
+
+# Agile AI Company Framework directories
+# Allow structure but ignore generated/runtime files
+control/config/*.local.yaml
+control/storage/*.db
+control/storage/*.log
+coordination/workflows/*.tmp
+coordination/state/*
+agile/sprints/*
+agile/backlogs/*.cache
+metrics/data/*
+metrics/reports/*.html
+metrics/reports/*.pdf
+
+# Ignore test databases and logs
+control/tests/*.db
+coordination/tests/*.log
+agile/tests/*.json
+metrics/tests/*.csv
+
+# Ignore local development configurations
+control/config/dev.*.yaml
+coordination/config/local.*.yaml
+agile/config/override.*.yaml
+metrics/config/custom.*.yaml
