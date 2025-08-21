@@ -1,0 +1,653 @@
+version: '3.8'
+
+# Unified Docker Compose for Agile AI Company
+# This integrates all layers: Control, Coordination, and Execution
+
+services:
+  # ============================================================================
+  # CONTROL LAYER - Ethics, Safety, Governance
+  # ============================================================================
+  control-layer:
+    build:
+      context: ../control
+      dockerfile: Dockerfile
+    container_name: agile-ai-control
+    image: agile-ai/control:latest
+    
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    
+    environment:
+      - CONTROL_ENV=${CONTROL_ENV:-production}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - MAX_WORKERS=4
+      - API_KEY=${CONTROL_API_KEY:-default-dev-key}
+      - JWT_SECRET=${JWT_SECRET:-change-me-in-production}
+      - DATABASE_URL=${DATABASE_URL:-sqlite:///app/control/storage/audit.db}
+      - REDIS_URL=redis://redis:6379/0
+      - ETHICS_CONFIG_PATH=/app/control/config/ethical_constraints.yaml
+      - SAFETY_CONFIG_PATH=/app/control/config/safety_thresholds.yaml
+      - RESOURCE_CONFIG_PATH=/app/control/config/resource_limits.yaml
+      - TZ=UTC
+    
+    ports:
+      - "8000:8000"  # Control API
+    
+    volumes:
+      - ../control/config:/app/control/config:ro
+      - control-storage:/app/control/storage
+      - control-logs:/app/control/logs
+      - shared-data:/app/shared
+    
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    
+    restart: unless-stopped
+    
+    networks:
+      - control-network
+      - coordination-network
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    
+    security_opt:
+      - no-new-privileges:true
+    
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+
+  # ============================================================================
+  # COORDINATION LAYER - Team Orchestration, Workflow Management
+  # ============================================================================
+  coordinator:
+    build:
+      context: ..
+      dockerfile: docker/run/Dockerfile
+    container_name: agile-ai-coordinator
+    image: agile-ai/coordinator:latest
+    
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 3G
+        reservations:
+          cpus: '1.0'
+          memory: 1G
+    
+    environment:
+      - ROLE=coordinator
+      - AGENT_PROFILE=coordinator
+      - CONTROL_API_URL=http://control-layer:8000
+      - REDIS_URL=redis://redis:6379/1
+      - WORKFLOW_ENGINE_ENABLED=true
+      - TEAM_ORCHESTRATION_ENABLED=true
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - PYTHONPATH=/app:/app/python
+      - A2A_ENABLED=true
+      - MCP_ENABLED=true
+      - WEBUI_ENABLED=true
+    
+    ports:
+      - "8001:80"    # Coordinator WebUI
+      - "8002:8002"  # Orchestration API
+      - "9001:9000"  # A2A Communication
+    
+    volumes:
+      - ../:/app
+      - ../workflows:/app/workflows
+      - ../coordination:/app/coordination
+      - ../agile:/app/agile
+      - ../metrics:/app/metrics
+      - coordinator-storage:/app/storage
+      - shared-data:/app/shared
+    
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    
+    restart: unless-stopped
+    
+    networks:
+      - coordination-network
+      - execution-network
+    
+    depends_on:
+      - control-layer
+      - redis
+
+  # ============================================================================
+  # EXECUTION LAYER - Agent Teams
+  # ============================================================================
+  
+  # Customer Value Team (5 agents)
+  team-customer-1:
+    build:
+      context: ..
+      dockerfile: docker/run/Dockerfile
+    container_name: team-customer-agent-1
+    image: agile-ai/agent:latest
+    
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 2G
+        reservations:
+          cpus: '0.25'
+          memory: 512M
+    
+    environment:
+      - ROLE=execution
+      - TEAM=customer-value
+      - AGENT_ID=customer-1
+      - AGENT_PROFILE=product_manager
+      - COORDINATOR_URL=http://coordinator:8002
+      - CONTROL_API_URL=http://control-layer:8000
+      - REDIS_URL=redis://redis:6379/2
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - PYTHONPATH=/app:/app/python
+    
+    volumes:
+      - ../:/app
+      - ../agents:/app/agents
+      - agent-customer-1-storage:/app/storage
+      - shared-data:/app/shared:ro
+    
+    networks:
+      - execution-network
+    
+    restart: unless-stopped
+    
+    depends_on:
+      - coordinator
+
+  team-customer-2:
+    extends:
+      service: team-customer-1
+    container_name: team-customer-agent-2
+    environment:
+      - ROLE=execution
+      - TEAM=customer-value
+      - AGENT_ID=customer-2
+      - AGENT_PROFILE=developer
+      - COORDINATOR_URL=http://coordinator:8002
+      - CONTROL_API_URL=http://control-layer:8000
+      - REDIS_URL=redis://redis:6379/2
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - PYTHONPATH=/app:/app/python
+    volumes:
+      - ../:/app
+      - ../agents:/app/agents
+      - agent-customer-2-storage:/app/storage
+      - shared-data:/app/shared:ro
+
+  team-customer-3:
+    extends:
+      service: team-customer-1
+    container_name: team-customer-agent-3
+    environment:
+      - ROLE=execution
+      - TEAM=customer-value
+      - AGENT_ID=customer-3
+      - AGENT_PROFILE=qa_engineer
+      - COORDINATOR_URL=http://coordinator:8002
+      - CONTROL_API_URL=http://control-layer:8000
+      - REDIS_URL=redis://redis:6379/2
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - PYTHONPATH=/app:/app/python
+    volumes:
+      - ../:/app
+      - ../agents:/app/agents
+      - agent-customer-3-storage:/app/storage
+      - shared-data:/app/shared:ro
+
+  team-customer-4:
+    extends:
+      service: team-customer-1
+    container_name: team-customer-agent-4
+    environment:
+      - ROLE=execution
+      - TEAM=customer-value
+      - AGENT_ID=customer-4
+      - AGENT_PROFILE=architect
+      - COORDINATOR_URL=http://coordinator:8002
+      - CONTROL_API_URL=http://control-layer:8000
+      - REDIS_URL=redis://redis:6379/2
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - PYTHONPATH=/app:/app/python
+    volumes:
+      - ../:/app
+      - ../agents:/app/agents
+      - agent-customer-4-storage:/app/storage
+      - shared-data:/app/shared:ro
+
+  team-customer-5:
+    extends:
+      service: team-customer-1
+    container_name: team-customer-agent-5
+    environment:
+      - ROLE=execution
+      - TEAM=customer-value
+      - AGENT_ID=customer-5
+      - AGENT_PROFILE=scrum_master
+      - COORDINATOR_URL=http://coordinator:8002
+      - CONTROL_API_URL=http://control-layer:8000
+      - REDIS_URL=redis://redis:6379/2
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - PYTHONPATH=/app:/app/python
+    volumes:
+      - ../:/app
+      - ../agents:/app/agents
+      - agent-customer-5-storage:/app/storage
+      - shared-data:/app/shared:ro
+
+  # Operations Team (3 agents)
+  team-operations-1:
+    build:
+      context: ..
+      dockerfile: docker/run/Dockerfile
+    container_name: team-operations-agent-1
+    image: agile-ai/agent:latest
+    
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 2G
+        reservations:
+          cpus: '0.25'
+          memory: 512M
+    
+    environment:
+      - ROLE=execution
+      - TEAM=operations
+      - AGENT_ID=operations-1
+      - AGENT_PROFILE=scrum_master
+      - COORDINATOR_URL=http://coordinator:8002
+      - CONTROL_API_URL=http://control-layer:8000
+      - REDIS_URL=redis://redis:6379/3
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - PYTHONPATH=/app:/app/python
+    
+    volumes:
+      - ../:/app
+      - ../agents:/app/agents
+      - agent-operations-1-storage:/app/storage
+      - shared-data:/app/shared:ro
+    
+    networks:
+      - execution-network
+    
+    restart: unless-stopped
+    
+    depends_on:
+      - coordinator
+
+  team-operations-2:
+    extends:
+      service: team-operations-1
+    container_name: team-operations-agent-2
+    environment:
+      - ROLE=execution
+      - TEAM=operations
+      - AGENT_ID=operations-2
+      - AGENT_PROFILE=developer
+      - COORDINATOR_URL=http://coordinator:8002
+      - CONTROL_API_URL=http://control-layer:8000
+      - REDIS_URL=redis://redis:6379/3
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - PYTHONPATH=/app:/app/python
+    volumes:
+      - ../:/app
+      - ../agents:/app/agents
+      - agent-operations-2-storage:/app/storage
+      - shared-data:/app/shared:ro
+
+  team-operations-3:
+    extends:
+      service: team-operations-1
+    container_name: team-operations-agent-3
+    environment:
+      - ROLE=execution
+      - TEAM=operations
+      - AGENT_ID=operations-3
+      - AGENT_PROFILE=qa_engineer
+      - COORDINATOR_URL=http://coordinator:8002
+      - CONTROL_API_URL=http://control-layer:8000
+      - REDIS_URL=redis://redis:6379/3
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - PYTHONPATH=/app:/app/python
+    volumes:
+      - ../:/app
+      - ../agents:/app/agents
+      - agent-operations-3-storage:/app/storage
+      - shared-data:/app/shared:ro
+
+  # Innovation Lab Team (7 agents) - Can be scaled up/down as needed
+  team-innovation:
+    build:
+      context: ..
+      dockerfile: docker/run/Dockerfile
+    image: agile-ai/agent:latest
+    
+    deploy:
+      mode: replicated
+      replicas: 7
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1G
+        reservations:
+          cpus: '0.25'
+          memory: 512M
+    
+    environment:
+      - ROLE=execution
+      - TEAM=innovation-lab
+      - AGENT_PROFILE=researcher
+      - COORDINATOR_URL=http://coordinator:8002
+      - CONTROL_API_URL=http://control-layer:8000
+      - REDIS_URL=redis://redis:6379/4
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - PYTHONPATH=/app:/app/python
+    
+    volumes:
+      - ../:/app
+      - ../agents:/app/agents
+      - shared-data:/app/shared:ro
+    
+    networks:
+      - execution-network
+    
+    restart: unless-stopped
+    
+    depends_on:
+      - coordinator
+
+  # ============================================================================
+  # SUPPORTING SERVICES
+  # ============================================================================
+  
+  # Redis for caching, pub/sub, and inter-service communication
+  redis:
+    image: redis:7-alpine
+    container_name: agile-ai-redis
+    command: redis-server --appendonly yes --maxmemory 1gb --maxmemory-policy allkeys-lru
+    
+    volumes:
+      - redis-data:/data
+    
+    ports:
+      - "6379:6379"
+    
+    networks:
+      - control-network
+      - coordination-network
+      - execution-network
+    
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    
+    restart: unless-stopped
+    
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+
+  # PostgreSQL for audit storage and persistent data
+  postgres:
+    image: postgres:15-alpine
+    container_name: agile-ai-postgres
+    
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-agile_ai_db}
+      POSTGRES_USER: ${POSTGRES_USER:-agile_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-secure_password}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ../control/storage/audit_schema.sql:/docker-entrypoint-initdb.d/01-audit-schema.sql:ro
+    
+    ports:
+      - "5432:5432"
+    
+    networks:
+      - control-network
+    
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-agile_user}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    
+    restart: unless-stopped
+    
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2G
+
+  # Nginx reverse proxy for production
+  nginx:
+    image: nginx:alpine
+    container_name: agile-ai-nginx
+    
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - nginx-cache:/var/cache/nginx
+      - nginx-logs:/var/log/nginx
+    
+    ports:
+      - "80:80"
+      - "443:443"
+    
+    networks:
+      - control-network
+      - coordination-network
+    
+    depends_on:
+      - control-layer
+      - coordinator
+    
+    restart: unless-stopped
+    
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+
+  # Monitoring and Metrics (Prometheus)
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: agile-ai-prometheus
+    
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+      - '--web.enable-lifecycle'
+    
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    
+    ports:
+      - "9090:9090"
+    
+    networks:
+      - monitoring-network
+      - control-network
+      - coordination-network
+      - execution-network
+    
+    restart: unless-stopped
+    
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+
+  # Grafana for visualization
+  grafana:
+    image: grafana/grafana:latest
+    container_name: agile-ai-grafana
+    
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_USER:-admin}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin}
+      - GF_INSTALL_PLUGINS=
+    
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources:ro
+    
+    ports:
+      - "3000:3000"
+    
+    networks:
+      - monitoring-network
+      - control-network
+    
+    depends_on:
+      - prometheus
+    
+    restart: unless-stopped
+    
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+
+# ============================================================================
+# NETWORKS
+# ============================================================================
+networks:
+  # Control network - for control layer and supporting services
+  control-network:
+    driver: bridge
+    name: control-network
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
+  
+  # Coordination network - for coordination layer
+  coordination-network:
+    driver: bridge
+    name: coordination-network
+    ipam:
+      config:
+        - subnet: 172.21.0.0/24
+  
+  # Execution network - for agent teams
+  execution-network:
+    driver: bridge
+    name: execution-network
+    ipam:
+      config:
+        - subnet: 172.22.0.0/24
+  
+  # Monitoring network - for metrics and observability
+  monitoring-network:
+    driver: bridge
+    name: monitoring-network
+    ipam:
+      config:
+        - subnet: 172.23.0.0/24
+
+# ============================================================================
+# VOLUMES
+# ============================================================================
+volumes:
+  # Control layer volumes
+  control-storage:
+    driver: local
+    name: control-storage
+  control-logs:
+    driver: local
+    name: control-logs
+  
+  # Coordinator volumes
+  coordinator-storage:
+    driver: local
+    name: coordinator-storage
+  
+  # Agent storage volumes
+  agent-customer-1-storage:
+    driver: local
+  agent-customer-2-storage:
+    driver: local
+  agent-customer-3-storage:
+    driver: local
+  agent-customer-4-storage:
+    driver: local
+  agent-customer-5-storage:
+    driver: local
+  agent-operations-1-storage:
+    driver: local
+  agent-operations-2-storage:
+    driver: local
+  agent-operations-3-storage:
+    driver: local
+  
+  # Shared data volume
+  shared-data:
+    driver: local
+    name: shared-data
+  
+  # Database volumes
+  redis-data:
+    driver: local
+    name: redis-data
+  postgres-data:
+    driver: local
+    name: postgres-data
+  
+  # Proxy volumes
+  nginx-cache:
+    driver: local
+    name: nginx-cache
+  nginx-logs:
+    driver: local
+    name: nginx-logs
+  
+  # Monitoring volumes
+  prometheus-data:
+    driver: local
+    name: prometheus-data
+  grafana-data:
+    driver: local
+    name: grafana-data

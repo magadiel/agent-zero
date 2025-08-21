@@ -1,0 +1,86 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    monitor: 'agile-ai-monitor'
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: []
+
+# Load rules once and periodically evaluate them
+rule_files:
+  - "alerts/*.yml"
+
+# Scrape configurations
+scrape_configs:
+  # Prometheus itself
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # Control Layer metrics
+  - job_name: 'control-layer'
+    static_configs:
+      - targets: ['control-layer:8000']
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+
+  # Coordinator metrics
+  - job_name: 'coordinator'
+    static_configs:
+      - targets: ['coordinator:8002']
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+
+  # Customer Team agents
+  - job_name: 'team-customer'
+    static_configs:
+      - targets:
+          - 'team-customer-agent-1:9100'
+          - 'team-customer-agent-2:9100'
+          - 'team-customer-agent-3:9100'
+          - 'team-customer-agent-4:9100'
+          - 'team-customer-agent-5:9100'
+    metrics_path: '/metrics'
+    scrape_interval: 15s
+
+  # Operations Team agents
+  - job_name: 'team-operations'
+    static_configs:
+      - targets:
+          - 'team-operations-agent-1:9100'
+          - 'team-operations-agent-2:9100'
+          - 'team-operations-agent-3:9100'
+    metrics_path: '/metrics'
+    scrape_interval: 15s
+
+  # Innovation Lab agents (dynamic discovery would be better for scaled services)
+  - job_name: 'team-innovation'
+    dns_sd_configs:
+      - names:
+          - 'tasks.team-innovation'
+        type: 'A'
+        port: 9100
+    metrics_path: '/metrics'
+    scrape_interval: 15s
+
+  # Redis metrics
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['redis:6379']
+    metrics_path: '/metrics'
+
+  # PostgreSQL metrics (using postgres_exporter if deployed)
+  - job_name: 'postgres'
+    static_configs:
+      - targets: ['postgres:9187']
+    metrics_path: '/metrics'
+
+  # Docker daemon metrics
+  - job_name: 'docker'
+    static_configs:
+      - targets: ['host.docker.internal:9323']
+    metrics_path: '/metrics'
