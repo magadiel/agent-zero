@@ -154,13 +154,80 @@ print(f"Team usage: {usage}")
 await allocator.release_resources(f"alloc_{request_id}")
 ```
 
-## 🚧 Upcoming Components
+### Audit Logger (`audit_logger.py`) - COMPLETED
+The immutable audit trail system that records all agent decisions, actions, and system events with cryptographic verification.
 
-### Audit Logger (`audit_logger.py`) - PARTIALLY COMPLETE
-- ✅ Basic logging to files implemented
-- ⏳ Cryptographic signatures for integrity (pending)
-- ⏳ Query interface for compliance (pending)
-- ⏳ Retention policies and archival (pending)
+**Key Features:**
+- ✅ Append-only logging with SQLite backend
+- ✅ Cryptographic signatures (HMAC-SHA512) for integrity verification
+- ✅ Hash chain for tamper detection
+- ✅ Query interface with comprehensive filtering
+- ✅ Retention policies (PERMANENT, LONG_TERM, STANDARD, SHORT_TERM)
+- ✅ Automatic archival and cleanup
+- ✅ Export functionality (JSON, CSV)
+- ✅ Real-time statistics and monitoring
+- ✅ Integration mixins for Ethics, Safety, and Resource components
+- ✅ Full test coverage (25 tests passing)
+
+**Usage Example:**
+```python
+from control.audit_logger import (
+    AuditLogger, EventType, EventCategory, 
+    Severity, ActorType, DecisionResult
+)
+
+# Initialize logger
+logger = AuditLogger(db_path="control/storage/audit.db")
+
+# Log an event
+event_id = logger.log_event(
+    event_type=EventType.DECISION,
+    event_category=EventCategory.ETHICS,
+    severity=Severity.HIGH,
+    actor_type=ActorType.AGENT,
+    actor_id="agent-001",
+    event_description="Ethical decision validated"
+)
+
+# Log a decision
+logger.log_decision(
+    actor_id="agent-001",
+    decision_type="TASK_ALLOCATION",
+    decision_result=DecisionResult.APPROVED,
+    reasoning="Resources available, priority high"
+)
+
+# Query logs
+recent_logs = logger.query_logs(
+    event_category=EventCategory.ETHICS,
+    severity=Severity.HIGH,
+    limit=10
+)
+
+# Verify integrity
+is_valid, errors = logger.verify_integrity()
+print(f"Audit trail integrity: {'Valid' if is_valid else 'Invalid'}")
+
+# Get statistics
+stats = logger.get_statistics()
+print(f"Total audit records: {stats['total_records']}")
+
+# Export for compliance
+logger.export_logs("audit_export.json", format="json")
+```
+
+### Audit Storage (`storage/audit_schema.sql`) - COMPLETED
+Comprehensive SQL schema for audit trail storage with:
+- Main audit log table with 30+ fields
+- Cryptographic integrity fields (hashes, signatures)
+- Retention policy management
+- Query optimization indexes
+- Audit metadata tracking
+- Query log for compliance
+- Predefined views for common queries
+- Stored procedures for integrity verification
+
+## ✅ Completed Components
 
 ## Configuration
 
@@ -173,17 +240,19 @@ All control layer components are configured through YAML files in the `/control/
 
 Run the comprehensive test suite:
 ```bash
-cd /home/magadiel/Desktop/agent-zero/control
-python3 tests/test_ethics_engine.py
-python3 tests/test_safety_monitor.py
-python3 tests/test_resource_allocator.py
+cd /home/magadiel/Desktop/agent-zero
+python3 -m unittest control.tests.test_ethics_engine -v
+python3 -m unittest control.tests.test_safety_monitor -v
+python3 -m unittest control.tests.test_resource_allocator -v
+python3 -m unittest control.tests.test_audit_logger -v
 ```
 
 Current test coverage:
 - ✅ Ethics Engine: 16 unit tests + 2 integration tests passing
 - ✅ Safety Monitor: 20+ unit tests passing
 - ✅ Resource Allocator: 22 unit tests passing
-- Test scenarios include: harm prevention, privacy violations, fairness checks, transparency requirements, resource limits, emergency shutdown, resource allocation, priority queueing, team limits enforcement
+- ✅ Audit Logger: 25 unit tests passing
+- Test scenarios include: harm prevention, privacy violations, fairness checks, transparency requirements, resource limits, emergency shutdown, resource allocation, priority queueing, team limits enforcement, audit trail integrity, hash chain verification, retention policies
 
 ## API
 
@@ -225,10 +294,12 @@ The Control Layer integrates with:
 | Safety Thresholds | ✅ COMPLETED | `config/safety_thresholds.yaml` |
 | Resource Allocator | ✅ COMPLETED | `resource_allocator.py` |
 | Resource Limits Config | ✅ COMPLETED | `config/resource_limits.yaml` |
+| Audit Logger | ✅ COMPLETED | `audit_logger.py` |
+| Audit Schema | ✅ COMPLETED | `storage/audit_schema.sql` |
 | Unit Tests (Ethics) | ✅ COMPLETED | `tests/test_ethics_engine.py` |
 | Unit Tests (Safety) | ✅ COMPLETED | `tests/test_safety_monitor.py` |
 | Unit Tests (Resource) | ✅ COMPLETED | `tests/test_resource_allocator.py` |
+| Unit Tests (Audit) | ✅ COMPLETED | `tests/test_audit_logger.py` |
 | Documentation | ✅ COMPLETED | `README.md` |
 | Control API | ⏳ PENDING | `api.py` |
-| Audit Logger | ⏳ PENDING | `audit_logger.py` |
 | Docker Container | ⏳ PENDING | `Dockerfile` |
