@@ -10,17 +10,6 @@ Transform Agent-Zero into a framework for autonomous AI companies using agile me
 **Goal**: Establish project structure and foundational components
 
 ### 📋 BACKLOG
-- [ ] **TASK-002**: Design Control Layer Architecture
-  - **Description**: Create detailed technical design for ethics and safety systems
-  - **Acceptance Criteria**:
-    - Document ethics engine data structures
-    - Define safety threshold configurations
-    - Design audit trail schema
-    - Create API specifications for control layer
-  - **Dependencies**: None
-  - **Files to Create**: `/control/docs/architecture.md`
-  - **Priority**: HIGH
-
 - [ ] **TASK-003**: Design BMAD-Agent Integration
   - **Description**: Plan how to integrate BMAD agent definitions with Agent-Zero
   - **Acceptance Criteria**:
@@ -58,6 +47,16 @@ Transform Agent-Zero into a framework for autonomous AI companies using agile me
   - Updated `.gitignore` with appropriate patterns
   - Added subdirectories for config, storage, tests, etc.
   - Added `.gitkeep` files to preserve directory structure
+- [x] **TASK-002**: Design Control Layer Architecture (Completed: 2025-08-21)
+  - Created comprehensive `/control/docs/architecture.md`
+  - Documented ethics engine data structures and validation flow
+  - Defined safety threshold configurations and monitoring
+  - Designed PostgreSQL audit trail schema with immutability
+  - Created REST API specifications with OpenAPI format
+  - Defined WebSocket API for real-time monitoring
+  - Documented security architecture with RBAC
+  - Specified integration patterns with other layers
+  - Included deployment architecture for Docker and K8s
 
 ---
 
