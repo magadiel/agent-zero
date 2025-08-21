@@ -10,17 +10,6 @@ Transform Agent-Zero into a framework for autonomous AI companies using agile me
 **Goal**: Establish project structure and foundational components
 
 ### 📋 BACKLOG
-- [ ] **TASK-003**: Design BMAD-Agent Integration
-  - **Description**: Plan how to integrate BMAD agent definitions with Agent-Zero
-  - **Acceptance Criteria**:
-    - Map BMAD agent structure to Agent-Zero profiles
-    - Design activation instruction system
-    - Plan command system integration
-    - Define dependency loading mechanism
-  - **Dependencies**: None
-  - **Files to Create**: `/docs/bmad-integration-design.md`
-  - **Priority**: HIGH
-
 - [ ] **TASK-004**: Create Docker Architecture Plan
   - **Description**: Design multi-container orchestration setup
   - **Acceptance Criteria**:
@@ -57,6 +46,15 @@ Transform Agent-Zero into a framework for autonomous AI companies using agile me
   - Documented security architecture with RBAC
   - Specified integration patterns with other layers
   - Included deployment architecture for Docker and K8s
+- [x] **TASK-003**: Design BMAD-Agent Integration (Completed: 2025-08-21)
+  - Created comprehensive `/docs/bmad-integration-design.md`
+  - Mapped BMAD agent structure to Agent-Zero profiles
+  - Designed activation instruction system with phases
+  - Planned command system integration with Tool wrappers
+  - Defined lazy dependency loading mechanism
+  - Included migration strategy with backward compatibility
+  - Provided example agent definitions (PM, Architect, QA)
+  - Documented testing and security considerations
 
 ---
 
