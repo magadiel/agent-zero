@@ -1,0 +1,74 @@
+{
+  "team_id": "team_d59b6413",
+  "name": "Product Team",
+  "team_type": "cross_functional",
+  "mission": "Build awesome products",
+  "status": "dissolved",
+  "members": {
+    "agent_ba58d70c": {
+      "agent_id": "agent_ba58d70c",
+      "role": "leader",
+      "joined_at": "2025-08-21T12:49:54.951763",
+      "tasks_completed": 0,
+      "performance_score": 1.0
+    },
+    "agent_d0e05bdc": {
+      "agent_id": "agent_d0e05bdc",
+      "role": "coordinator",
+      "joined_at": "2025-08-21T12:49:54.951768",
+      "tasks_completed": 0,
+      "performance_score": 1.0
+    },
+    "agent_d621b31a": {
+      "agent_id": "agent_d621b31a",
+      "role": "reviewer",
+      "joined_at": "2025-08-21T12:49:54.951772",
+      "tasks_completed": 0,
+      "performance_score": 1.0
+    },
+    "agent_8a078587": {
+      "agent_id": "agent_8a078587",
+      "role": "member",
+      "joined_at": "2025-08-21T12:49:54.951775",
+      "tasks_completed": 0,
+      "performance_score": 1.0
+    },
+    "agent_d01625c1": {
+      "agent_id": "agent_d01625c1",
+      "role": "member",
+      "joined_at": "2025-08-21T12:49:54.951777",
+      "tasks_completed": 0,
+      "performance_score": 1.0
+    },
+    "agent_ca349863": {
+      "agent_id": "agent_ca349863",
+      "role": "member",
+      "joined_at": "2025-08-21T12:49:54.951779",
+      "tasks_completed": 0,
+      "performance_score": 1.0
+    },
+    "agent_d147bbd8": {
+      "agent_id": "agent_d147bbd8",
+      "role": "member",
+      "joined_at": "2025-08-21T12:49:54.951781",
+      "tasks_completed": 0,
+      "performance_score": 1.0
+    }
+  },
+  "created_at": "2025-08-21T12:49:54.951653",
+  "activated_at": "2025-08-21T12:49:54.951782",
+  "dissolved_at": "2025-08-21T12:49:54.951930",
+  "velocity": 1.0,
+  "quality_score": 0.95,
+  "efficiency_score": 0.925,
+  "collaboration_score": 1.0,
+  "resource_limits": {},
+  "resource_usage": {},
+  "current_workflow": null,
+  "completed_tasks": [
+    "task_001"
+  ],
+  "active_tasks": [
+    "task_002"
+  ]
+}

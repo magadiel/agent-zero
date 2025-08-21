@@ -1,0 +1,60 @@
+{
+  "team_id": "team_0e077b1d",
+  "name": "DevOps Team",
+  "team_type": "squad",
+  "mission": "Mission for DevOps Team",
+  "status": "dissolved",
+  "members": {
+    "agent_647c7702": {
+      "agent_id": "agent_647c7702",
+      "role": "leader",
+      "joined_at": "2025-08-21T12:49:54.954137",
+      "tasks_completed": 0,
+      "performance_score": 1.0
+    },
+    "agent_9d050f1c": {
+      "agent_id": "agent_9d050f1c",
+      "role": "reviewer",
+      "joined_at": "2025-08-21T12:49:54.954140",
+      "tasks_completed": 0,
+      "performance_score": 1.0
+    },
+    "agent_d5da34fe": {
+      "agent_id": "agent_d5da34fe",
+      "role": "member",
+      "joined_at": "2025-08-21T12:49:54.954142",
+      "tasks_completed": 0,
+      "performance_score": 1.0
+    },
+    "agent_e52bfc3c": {
+      "agent_id": "agent_e52bfc3c",
+      "role": "member",
+      "joined_at": "2025-08-21T12:49:54.954144",
+      "tasks_completed": 0,
+      "performance_score": 1.0
+    },
+    "agent_c57564d9": {
+      "agent_id": "agent_c57564d9",
+      "role": "specialist",
+      "joined_at": "2025-08-21T12:49:54.954145",
+      "tasks_completed": 0,
+      "performance_score": 1.0
+    }
+  },
+  "created_at": "2025-08-21T12:49:54.954073",
+  "activated_at": "2025-08-21T12:49:54.954146",
+  "dissolved_at": "2025-08-21T12:49:54.954845",
+  "velocity": 3.0,
+  "quality_score": 0.8875,
+  "efficiency_score": 0.84375,
+  "collaboration_score": 1.0,
+  "resource_limits": {},
+  "resource_usage": {},
+  "current_workflow": null,
+  "completed_tasks": [
+    "team_0e077b1d_task_000",
+    "team_0e077b1d_task_001",
+    "team_0e077b1d_task_002"
+  ],
+  "active_tasks": []
+}

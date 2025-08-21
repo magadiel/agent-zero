@@ -1,0 +1,661 @@
+{
+  "agents": [
+    {
+      "agent_id": "agent_2599126b",
+      "profile": "operations",
+      "skills": [
+        "operations",
+        "general"
+      ],
+      "status": "terminating",
+      "allocated_to": null,
+      "allocated_at": null,
+      "performance_score": 1.0,
+      "total_allocations": 1,
+      "total_task_completions": 0,
+      "last_health_check": "2025-08-21T12:49:54.953334",
+      "metadata": {
+        "created_at": "2025-08-21T12:49:54.953330",
+        "pool_index": 0
+      }
+    },
+    {
+      "agent_id": "agent_2fc9ec5e",
+      "profile": "devops",
+      "skills": [
+        "devops",
+        "general"
+      ],
+      "status": "terminating",
+      "allocated_to": null,
+      "allocated_at": null,
+      "performance_score": 1.0,
+      "total_allocations": 1,
+      "total_task_completions": 0,
+      "last_health_check": "2025-08-21T12:49:54.953351",
+      "metadata": {
+        "created_at": "2025-08-21T12:49:54.953349",
+        "pool_index": 1
+      }
+    },
+    {
+      "agent_id": "agent_7eb397f6",
+      "profile": "security",
+      "skills": [
+        "security",
+        "general"
+      ],
+      "status": "terminating",
+      "allocated_to": null,
+      "allocated_at": null,
+      "performance_score": 1.0,
+      "total_allocations": 1,
+      "total_task_completions": 0,
+      "last_health_check": "2025-08-21T12:49:54.953362",
+      "metadata": {
+        "created_at": "2025-08-21T12:49:54.953361",
+        "pool_index": 2
+      }
+    },
+    {
+      "agent_id": "agent_3691511f",
+      "profile": "architect",
+      "skills": [
+        "architecture",
+        "development",
+        "security",
+        "general"
+      ],
+      "status": "terminating",
+      "allocated_to": null,
+      "allocated_at": null,
+      "performance_score": 1.0,
+      "total_allocations": 1,
+      "total_task_completions": 0,
+      "last_health_check": "2025-08-21T12:49:54.953373",
+      "metadata": {
+        "created_at": "2025-08-21T12:49:54.953371",
+        "pool_index": 3
+      }
+    },
+    {
+      "agent_id": "agent_07f2c7ec",
+      "profile": "devops",
+      "skills": [
+        "devops",
+        "general"
+      ],
+      "status": "terminating",
+      "allocated_to": null,
+      "allocated_at": null,
+      "performance_score": 1.0,
+      "total_allocations": 1,
+      "total_task_completions": 0,
+      "last_health_check": "2025-08-21T12:49:54.953383",
+      "metadata": {
+        "created_at": "2025-08-21T12:49:54.953382",
+        "pool_index": 4
+      }
+    },
+    {
+      "agent_id": "agent_83ef2856",
+      "profile": "operations",
+      "skills": [
+        "operations",
+        "general"
+      ],
+      "status": "terminating",
+      "allocated_to": null,
+      "allocated_at": null,
+      "performance_score": 1.0,
+      "total_allocations": 1,
+      "total_task_completions": 0,
+      "last_health_check": "2025-08-21T12:49:54.953393",
+      "metadata": {
+        "created_at": "2025-08-21T12:49:54.953392",
+        "pool_index": 5
+      }
+    },
+    {
+      "agent_id": "agent_054dbd6e",
+      "profile": "qa_engineer",
+      "skills": [
+        "testing",
+        "development",
+        "general"
+      ],
+      "status": "terminating",
+      "allocated_to": null,
+      "allocated_at": null,
+      "performance_score": 1.0,
+      "total_allocations": 1,
+      "total_task_completions": 0,
+      "last_health_check": "2025-08-21T12:49:54.953404",
+      "metadata": {
+        "created_at": "2025-08-21T12:49:54.953402",
+        "pool_index": 6
+      }
+    },
+    {
+      "agent_id": "agent_5562cee9",
+      "profile": "data_analyst",
+      "skills": [
+        "data_analysis",
+        "general"
+      ],
+      "status": "terminating",
+      "allocated_to": null,
+      "allocated_at": null,
+      "performance_score": 1.0,
+      "total_allocations": 1,
+      "total_task_completions": 0,
+      "last_health_check": "2025-08-21T12:49:54.953414",
+      "metadata": {
+        "created_at": "2025-08-21T12:49:54.953413",
+        "pool_index": 7
+      }
+    },
+    {
+      "agent_id": "agent_93017dc7",
+      "profile": "product_manager",
+      "skills": [
+        "data_analysis",
+        "product_management",
+        "general"
+      ],
+      "status": "terminating",
+      "allocated_to": null,
+      "allocated_at": null,
+      "performance_score": 1.0,
+      "total_allocations": 1,
+      "total_task_completions": 0,
+      "last_health_check": "2025-08-21T12:49:54.953424",
+      "metadata": {
+        "created_at": "2025-08-21T12:49:54.953422",
+        "pool_index": 8
+      }
+    },
+    {
+      "agent_id": "agent_6f84de99",
+      "profile": "developer",
+      "skills": [
+        "development",
+        "devops",
+        "testing",
+        "general"
+      ],
+      "status": "terminating",
+      "allocated_to": null,
+      "allocated_at": null,
+      "performance_score": 1.0,
+      "total_allocations": 1,
+      "total_task_completions": 0,
+      "last_health_check": "2025-08-21T12:49:54.953433",
+      "metadata": {
+        "created_at": "2025-08-21T12:49:54.953432",
+        "pool_index": 9
+      }
+    },
+    {
+      "agent_id": "agent_8eae9f34",
+      "profile": "qa_engineer",
+      "skills": [
+        "testing",
+        "development",
+        "general"
+      ],
+      "status": "terminating",
+      "allocated_to": null,
+      "allocated_at": null,
+      "performance_score": 1.0,
+      "total_allocations": 1,
+      "total_task_completions": 0,
+      "last_health_check": "2025-08-21T12:49:54.953443",
+      "metadata": {
+        "created_at": "2025-08-21T12:49:54.953442",
+        "pool_index": 10
+      }
+    },
+    {
+      "agent_id": "agent_647c7702",
+      "profile": "data_analyst",
+      "skills": [
+        "data_analysis",
+        "general"
+      ],
+      "status": "terminating",
+      "allocated_to": null,
+      "allocated_at": null,
+      "performance_score": 1.0,
+      "total_allocations": 1,
+      "total_task_completions": 0,
+      "last_health_check": "2025-08-21T12:49:54.953453",
+      "metadata": {
+        "created_at": "2025-08-21T12:49:54.953451",
+        "pool_index": 11
+      }
+    },
+    {
+      "agent_id": "agent_9d050f1c",
+      "profile": "qa_engineer",
+      "skills": [
+        "testing",
+        "development",
+        "general"
+      ],
+      "status": "terminating",
+      "allocated_to": null,
+      "allocated_at": null,
+      "performance_score": 1.0,
+      "total_allocations": 1,
+      "total_task_completions": 0,
+      "last_health_check": "2025-08-21T12:49:54.953462",
+      "metadata": {
+        "created_at": "2025-08-21T12:49:54.953460",
+        "pool_index": 12
+      }
+    },
+    {
+      "agent_id": "agent_d5da34fe",
+      "profile": "security",
+      "skills": [
+        "security",
+        "general"
+      ],
+      "status": "terminating",
+      "allocated_to": null,
+      "allocated_at": null,
+      "performance_score": 1.0,
+      "total_allocations": 1,
+      "total_task_completions": 0,
+      "last_health_check": "2025-08-21T12:49:54.953471",
+      "metadata": {
+        "created_at": "2025-08-21T12:49:54.953469",
+        "pool_index": 13
+      }
+    },
+    {
+      "agent_id": "agent_e52bfc3c",
+      "profile": "developer",
+      "skills": [
+        "development",
+        "devops",
+        "testing",
+        "general"
+      ],
+      "status": "terminating",
+      "allocated_to": null,
+      "allocated_at": null,
+      "performance_score": 1.0,
+      "total_allocations": 1,
+      "total_task_completions": 0,
+      "last_health_check": "2025-08-21T12:49:54.953480",
+      "metadata": {
+        "created_at": "2025-08-21T12:49:54.953479",
+        "pool_index": 14
+      }
+    },
+    {
+      "agent_id": "agent_c57564d9",
+      "profile": "architect",
+      "skills": [
+        "architecture",
+        "development",
+        "security",
+        "general"
+      ],
+      "status": "terminating",
+      "allocated_to": null,
+      "allocated_at": null,
+      "performance_score": 1.0,
+      "total_allocations": 1,
+      "total_task_completions": 0,
+      "last_health_check": "2025-08-21T12:49:54.953490",
+      "metadata": {
+        "created_at": "2025-08-21T12:49:54.953488",
+        "pool_index": 15
+      }
+    },
+    {
+      "agent_id": "agent_3f274497",
+      "profile": "architect",
+      "skills": [
+        "architecture",
+        "development",
+        "security",
+        "general"
+      ],
+      "status": "terminating",
+      "allocated_to": null,
+      "allocated_at": null,
+      "performance_score": 1.0,
+      "total_allocations": 0,
+      "total_task_completions": 0,
+      "last_health_check": "2025-08-21T12:49:54.953499",
+      "metadata": {
+        "created_at": "2025-08-21T12:49:54.953498",
+        "pool_index": 16
+      }
+    },
+    {
+      "agent_id": "agent_9df795db",
+      "profile": "data_analyst",
+      "skills": [
+        "data_analysis",
+        "general"
+      ],
+      "status": "terminating",
+      "allocated_to": null,
+      "allocated_at": null,
+      "performance_score": 1.0,
+      "total_allocations": 0,
+      "total_task_completions": 0,
+      "last_health_check": "2025-08-21T12:49:54.953509",
+      "metadata": {
+        "created_at": "2025-08-21T12:49:54.953508",
+        "pool_index": 17
+      }
+    },
+    {
+      "agent_id": "agent_7cc92812",
+      "profile": "architect",
+      "skills": [
+        "architecture",
+        "development",
+        "security",
+        "general"
+      ],
+      "status": "terminating",
+      "allocated_to": null,
+      "allocated_at": null,
+      "performance_score": 1.0,
+      "total_allocations": 0,
+      "total_task_completions": 0,
+      "last_health_check": "2025-08-21T12:49:54.953518",
+      "metadata": {
+        "created_at": "2025-08-21T12:49:54.953517",
+        "pool_index": 18
+      }
+    },
+    {
+      "agent_id": "agent_5d0fe6b8",
+      "profile": "developer",
+      "skills": [
+        "development",
+        "testing",
+        "general"
+      ],
+      "status": "terminating",
+      "allocated_to": null,
+      "allocated_at": null,
+      "performance_score": 1.0,
+      "total_allocations": 0,
+      "total_task_completions": 0,
+      "last_health_check": "2025-08-21T12:49:54.953598",
+      "metadata": {
+        "created_at": "2025-08-21T12:49:54.953596",
+        "pool_index": 19
+      }
+    },
+    {
+      "agent_id": "agent_8fcfd0e1",
+      "profile": "customer_service",
+      "skills": [
+        "customer_service",
+        "general"
+      ],
+      "status": "terminating",
+      "allocated_to": null,
+      "allocated_at": null,
+      "performance_score": 1.0,
+      "total_allocations": 0,
+      "total_task_completions": 0,
+      "last_health_check": "2025-08-21T12:49:54.953613",
+      "metadata": {
+        "created_at": "2025-08-21T12:49:54.953611",
+        "pool_index": 20
+      }
+    },
+    {
+      "agent_id": "agent_bbbd745e",
+      "profile": "qa_engineer",
+      "skills": [
+        "testing",
+        "development",
+        "general"
+      ],
+      "status": "terminating",
+      "allocated_to": null,
+      "allocated_at": null,
+      "performance_score": 1.0,
+      "total_allocations": 0,
+      "total_task_completions": 0,
+      "last_health_check": "2025-08-21T12:49:54.953625",
+      "metadata": {
+        "created_at": "2025-08-21T12:49:54.953623",
+        "pool_index": 21
+      }
+    },
+    {
+      "agent_id": "agent_34494246",
+      "profile": "security",
+      "skills": [
+        "security",
+        "general"
+      ],
+      "status": "terminating",
+      "allocated_to": null,
+      "allocated_at": null,
+      "performance_score": 1.0,
+      "total_allocations": 0,
+      "total_task_completions": 0,
+      "last_health_check": "2025-08-21T12:49:54.953637",
+      "metadata": {
+        "created_at": "2025-08-21T12:49:54.953635",
+        "pool_index": 22
+      }
+    },
+    {
+      "agent_id": "agent_d9c0ba6c",
+      "profile": "architect",
+      "skills": [
+        "architecture",
+        "development",
+        "security",
+        "general"
+      ],
+      "status": "terminating",
+      "allocated_to": null,
+      "allocated_at": null,
+      "performance_score": 1.0,
+      "total_allocations": 0,
+      "total_task_completions": 0,
+      "last_health_check": "2025-08-21T12:49:54.953646",
+      "metadata": {
+        "created_at": "2025-08-21T12:49:54.953645",
+        "pool_index": 23
+      }
+    },
+    {
+      "agent_id": "agent_409aa5d7",
+      "profile": "data_analyst",
+      "skills": [
+        "data_analysis",
+        "general"
+      ],
+      "status": "terminating",
+      "allocated_to": null,
+      "allocated_at": null,
+      "performance_score": 1.0,
+      "total_allocations": 0,
+      "total_task_completions": 0,
+      "last_health_check": "2025-08-21T12:49:54.953656",
+      "metadata": {
+        "created_at": "2025-08-21T12:49:54.953654",
+        "pool_index": 24
+      }
+    },
+    {
+      "agent_id": "agent_f3da9566",
+      "profile": "architect",
+      "skills": [
+        "architecture",
+        "development",
+        "security",
+        "general"
+      ],
+      "status": "terminating",
+      "allocated_to": null,
+      "allocated_at": null,
+      "performance_score": 1.0,
+      "total_allocations": 0,
+      "total_task_completions": 0,
+      "last_health_check": "2025-08-21T12:49:54.953665",
+      "metadata": {
+        "created_at": "2025-08-21T12:49:54.953663",
+        "pool_index": 25
+      }
+    },
+    {
+      "agent_id": "agent_d7905092",
+      "profile": "customer_service",
+      "skills": [
+        "customer_service",
+        "general"
+      ],
+      "status": "terminating",
+      "allocated_to": null,
+      "allocated_at": null,
+      "performance_score": 1.0,
+      "total_allocations": 0,
+      "total_task_completions": 0,
+      "last_health_check": "2025-08-21T12:49:54.953675",
+      "metadata": {
+        "created_at": "2025-08-21T12:49:54.953673",
+        "pool_index": 26
+      }
+    },
+    {
+      "agent_id": "agent_1bcd9965",
+      "profile": "developer",
+      "skills": [
+        "development",
+        "testing",
+        "general"
+      ],
+      "status": "terminating",
+      "allocated_to": null,
+      "allocated_at": null,
+      "performance_score": 1.0,
+      "total_allocations": 0,
+      "total_task_completions": 0,
+      "last_health_check": "2025-08-21T12:49:54.953684",
+      "metadata": {
+        "created_at": "2025-08-21T12:49:54.953682",
+        "pool_index": 27
+      }
+    },
+    {
+      "agent_id": "agent_a1aded15",
+      "profile": "developer",
+      "skills": [
+        "development",
+        "devops",
+        "testing",
+        "general"
+      ],
+      "status": "terminating",
+      "allocated_to": null,
+      "allocated_at": null,
+      "performance_score": 1.0,
+      "total_allocations": 0,
+      "total_task_completions": 0,
+      "last_health_check": "2025-08-21T12:49:54.953693",
+      "metadata": {
+        "created_at": "2025-08-21T12:49:54.953692",
+        "pool_index": 28
+      }
+    },
+    {
+      "agent_id": "agent_76716268",
+      "profile": "product_manager",
+      "skills": [
+        "data_analysis",
+        "product_management",
+        "general"
+      ],
+      "status": "terminating",
+      "allocated_to": null,
+      "allocated_at": null,
+      "performance_score": 1.0,
+      "total_allocations": 0,
+      "total_task_completions": 0,
+      "last_health_check": "2025-08-21T12:49:54.953703",
+      "metadata": {
+        "created_at": "2025-08-21T12:49:54.953701",
+        "pool_index": 29
+      }
+    }
+  ],
+  "allocation_history": [
+    {
+      "request_id": "form_000",
+      "team_id": "team_555d286c",
+      "allocated_agents": [
+        "agent_2599126b",
+        "agent_2fc9ec5e",
+        "agent_7eb397f6",
+        "agent_3691511f",
+        "agent_07f2c7ec",
+        "agent_83ef2856",
+        "agent_054dbd6e"
+      ],
+      "timestamp": "2025-08-21T12:49:54.953848"
+    },
+    {
+      "request_id": "form_001",
+      "team_id": "team_4c7220f7",
+      "allocated_agents": [
+        "agent_5562cee9",
+        "agent_93017dc7",
+        "agent_6f84de99",
+        "agent_8eae9f34"
+      ],
+      "timestamp": "2025-08-21T12:49:54.953992"
+    },
+    {
+      "request_id": "form_002",
+      "team_id": "team_0e077b1d",
+      "allocated_agents": [
+        "agent_647c7702",
+        "agent_9d050f1c",
+        "agent_d5da34fe",
+        "agent_e52bfc3c",
+        "agent_c57564d9"
+      ],
+      "timestamp": "2025-08-21T12:49:54.954119"
+    }
+  ],
+  "config": {
+    "max_pool_size": 100,
+    "min_pool_size": 5,
+    "auto_scale": true,
+    "health_check_interval": 60,
+    "allocation_timeout": 30,
+    "performance_threshold": 0.3,
+    "skill_distribution": {
+      "development": 0.3,
+      "testing": 0.15,
+      "product_management": 0.1,
+      "architecture": 0.1,
+      "devops": 0.1,
+      "data_analysis": 0.05,
+      "customer_service": 0.05,
+      "operations": 0.05,
+      "security": 0.05,
+      "ui_ux": 0.03,
+      "scrum_master": 0.02
+    }
+  },
+  "timestamp": "2025-08-21T12:49:54.955048"
+}

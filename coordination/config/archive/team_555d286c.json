@@ -1,0 +1,74 @@
+{
+  "team_id": "team_555d286c",
+  "name": "Development Squad",
+  "team_type": "cross_functional",
+  "mission": "Mission for Development Squad",
+  "status": "dissolved",
+  "members": {
+    "agent_2599126b": {
+      "agent_id": "agent_2599126b",
+      "role": "leader",
+      "joined_at": "2025-08-21T12:49:54.953870",
+      "tasks_completed": 0,
+      "performance_score": 1.0
+    },
+    "agent_2fc9ec5e": {
+      "agent_id": "agent_2fc9ec5e",
+      "role": "coordinator",
+      "joined_at": "2025-08-21T12:49:54.953874",
+      "tasks_completed": 0,
+      "performance_score": 1.0
+    },
+    "agent_7eb397f6": {
+      "agent_id": "agent_7eb397f6",
+      "role": "member",
+      "joined_at": "2025-08-21T12:49:54.953875",
+      "tasks_completed": 0,
+      "performance_score": 1.0
+    },
+    "agent_3691511f": {
+      "agent_id": "agent_3691511f",
+      "role": "specialist",
+      "joined_at": "2025-08-21T12:49:54.953877",
+      "tasks_completed": 0,
+      "performance_score": 1.0
+    },
+    "agent_07f2c7ec": {
+      "agent_id": "agent_07f2c7ec",
+      "role": "member",
+      "joined_at": "2025-08-21T12:49:54.953880",
+      "tasks_completed": 0,
+      "performance_score": 1.0
+    },
+    "agent_83ef2856": {
+      "agent_id": "agent_83ef2856",
+      "role": "member",
+      "joined_at": "2025-08-21T12:49:54.953882",
+      "tasks_completed": 0,
+      "performance_score": 1.0
+    },
+    "agent_054dbd6e": {
+      "agent_id": "agent_054dbd6e",
+      "role": "member",
+      "joined_at": "2025-08-21T12:49:54.953884",
+      "tasks_completed": 0,
+      "performance_score": 1.0
+    }
+  },
+  "created_at": "2025-08-21T12:49:54.953785",
+  "activated_at": "2025-08-21T12:49:54.953886",
+  "dissolved_at": "2025-08-21T12:49:54.954493",
+  "velocity": 3.0,
+  "quality_score": 0.8875,
+  "efficiency_score": 0.84375,
+  "collaboration_score": 1.0,
+  "resource_limits": {},
+  "resource_usage": {},
+  "current_workflow": null,
+  "completed_tasks": [
+    "team_555d286c_task_000",
+    "team_555d286c_task_001",
+    "team_555d286c_task_002"
+  ],
+  "active_tasks": []
+}
