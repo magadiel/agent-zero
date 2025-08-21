@@ -1,0 +1,2179 @@
+{
+  "events": [
+    {
+      "event_id": "c4263afb-7fd3-4e43-835f-de25407ee06f",
+      "timestamp": "2025-08-22 00:33:52.476290",
+      "agent_id": "agent_7",
+      "team_id": "team_B",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_2",
+        "alignment_score": 0.7686663501505435
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "d77e394a-f8e2-45bd-863b-2e78f5cb8037",
+      "timestamp": "2025-08-22 00:33:52.487530",
+      "agent_id": "agent_8",
+      "team_id": "team_C",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_11",
+        "alignment_score": 0.7299935880207431
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "9664ed4f-245d-4cbb-89ff-837cbf7069e6",
+      "timestamp": "2025-08-22 00:33:52.498000",
+      "agent_id": "agent_14",
+      "team_id": "team_D",
+      "event_type": "communication",
+      "event_data": {
+        "receiver": "agent_3",
+        "alignment_score": 0.741283770669032
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "761b4d69-0d01-4f9e-8a03-5b746199355c",
+      "timestamp": "2025-08-22 00:33:52.508492",
+      "agent_id": "agent_8",
+      "team_id": "team_A",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_2",
+        "alignment_score": 0.9288084574338212
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "cfd27a1a-a45f-4676-889e-80a0fa3f3347",
+      "timestamp": "2025-08-22 00:33:52.518964",
+      "agent_id": "agent_12",
+      "team_id": "team_C",
+      "event_type": "communication",
+      "event_data": {
+        "receiver": "agent_7",
+        "alignment_score": 0.736210882496072
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "51d41b10-dd3a-47fb-a225-046053daca97",
+      "timestamp": "2025-08-22 00:33:52.529498",
+      "agent_id": "agent_7",
+      "team_id": "team_B",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_2",
+        "alignment_score": 0.9097432456418186
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "3ec4ada1-2641-4a6a-914a-689abd585c0b",
+      "timestamp": "2025-08-22 00:33:52.540053",
+      "agent_id": "agent_14",
+      "team_id": "team_C",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_0",
+        "alignment_score": 0.84986976773031
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "cf635656-4404-4cb0-a9e1-64c60dc019ca",
+      "timestamp": "2025-08-22 00:33:52.550472",
+      "agent_id": "agent_3",
+      "team_id": "team_D",
+      "event_type": "task_assignment",
+      "event_data": {
+        "receiver": "agent_7",
+        "alignment_score": 0.9918920403931829
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "14b802cd-5f18-406d-b433-08fd172a6469",
+      "timestamp": "2025-08-22 00:33:52.560760",
+      "agent_id": "agent_1",
+      "team_id": "team_D",
+      "event_type": "task_assignment",
+      "event_data": {
+        "receiver": "agent_5",
+        "alignment_score": 0.9542871453565924
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "1b50598e-ffab-4596-8112-58d9cfee516d",
+      "timestamp": "2025-08-22 00:33:52.571110",
+      "agent_id": "agent_9",
+      "team_id": "team_B",
+      "event_type": "communication",
+      "event_data": {
+        "receiver": "agent_3",
+        "alignment_score": 0.7972564761583874
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "91ac393d-f941-4210-98fa-43a4a347c0aa",
+      "timestamp": "2025-08-22 00:33:52.581456",
+      "agent_id": "agent_0",
+      "team_id": "team_B",
+      "event_type": "task_assignment",
+      "event_data": {
+        "receiver": "agent_12",
+        "alignment_score": 0.8041838227358274
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "a3581f9b-8d91-474b-8cc8-740f0c654279",
+      "timestamp": "2025-08-22 00:33:52.591813",
+      "agent_id": "agent_7",
+      "team_id": "team_C",
+      "event_type": "communication",
+      "event_data": {
+        "receiver": "agent_10",
+        "alignment_score": 0.8822155873637947
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "ba4258d5-03c3-4127-82c7-015d218f7bfe",
+      "timestamp": "2025-08-22 00:33:52.602239",
+      "agent_id": "agent_5",
+      "team_id": "team_B",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_11",
+        "alignment_score": 0.8381717034802236
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "b8c1b3ec-7efc-48c8-bf6d-5580a5167f42",
+      "timestamp": "2025-08-22 00:33:52.612526",
+      "agent_id": "agent_1",
+      "team_id": "team_A",
+      "event_type": "task_assignment",
+      "event_data": {
+        "receiver": "agent_11",
+        "alignment_score": 0.9992812516829241
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "372db921-89cc-4aca-a9ac-dfe18b8a9d42",
+      "timestamp": "2025-08-22 00:33:52.622793",
+      "agent_id": "agent_1",
+      "team_id": "team_A",
+      "event_type": "task_assignment",
+      "event_data": {
+        "receiver": "agent_5",
+        "alignment_score": 0.9151572617094121
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "828d8a98-e445-4ed1-97df-a6ece36bb762",
+      "timestamp": "2025-08-22 00:33:52.633051",
+      "agent_id": "agent_12",
+      "team_id": "team_B",
+      "event_type": "communication",
+      "event_data": {
+        "receiver": "agent_9",
+        "alignment_score": 0.8224596368421673
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "a08fac51-fa0d-4db0-b2b9-ab18bed2d474",
+      "timestamp": "2025-08-22 00:33:52.643271",
+      "agent_id": "agent_2",
+      "team_id": "team_D",
+      "event_type": "task_assignment",
+      "event_data": {
+        "receiver": "agent_2",
+        "alignment_score": 0.780948768259488
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "628de427-d421-4b3d-bb2e-972cf077dd77",
+      "timestamp": "2025-08-22 00:33:52.653500",
+      "agent_id": "agent_9",
+      "team_id": "team_B",
+      "event_type": "task_assignment",
+      "event_data": {
+        "receiver": "agent_2",
+        "alignment_score": 0.821435499584561
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "a17446f5-6f52-4986-a314-9a8ba8819a92",
+      "timestamp": "2025-08-22 00:33:52.663909",
+      "agent_id": "agent_5",
+      "team_id": "team_B",
+      "event_type": "task_assignment",
+      "event_data": {
+        "receiver": "agent_3",
+        "alignment_score": 0.9556132329537692
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "ec593c8c-ff35-4963-8dc3-4fd64e7d9087",
+      "timestamp": "2025-08-22 00:33:52.674377",
+      "agent_id": "agent_9",
+      "team_id": "team_C",
+      "event_type": "communication",
+      "event_data": {
+        "receiver": "agent_2",
+        "alignment_score": 0.977708782010549
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "3edfa153-f6a6-45b4-923a-dd13bd6c01da",
+      "timestamp": "2025-08-22 00:33:52.684867",
+      "agent_id": "agent_10",
+      "team_id": "team_B",
+      "event_type": "communication",
+      "event_data": {
+        "receiver": "agent_3",
+        "alignment_score": 0.9382872057807734
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "ebd89d0b-2896-47c5-af3b-69ddb2704474",
+      "timestamp": "2025-08-22 00:33:52.695241",
+      "agent_id": "agent_12",
+      "team_id": "team_D",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_5",
+        "alignment_score": 0.7961967625570605
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "d94fe3cd-53c9-41c7-81f5-1d60dfd6d53e",
+      "timestamp": "2025-08-22 00:33:52.705612",
+      "agent_id": "agent_13",
+      "team_id": "team_A",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_10",
+        "alignment_score": 0.9703588388766222
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "af9d12d1-0821-4390-98d7-ddce6b0d588a",
+      "timestamp": "2025-08-22 00:33:52.716043",
+      "agent_id": "agent_3",
+      "team_id": "team_D",
+      "event_type": "task_assignment",
+      "event_data": {
+        "receiver": "agent_4",
+        "alignment_score": 0.895439964907357
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "1580bebd-dd01-4ff7-be01-9ab4e0d584c8",
+      "timestamp": "2025-08-22 00:33:52.726341",
+      "agent_id": "agent_8",
+      "team_id": "team_C",
+      "event_type": "communication",
+      "event_data": {
+        "receiver": "agent_0",
+        "alignment_score": 0.9596183162513393
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "d4a10b59-07e3-48fd-9308-06f3b63e603e",
+      "timestamp": "2025-08-22 00:33:52.736620",
+      "agent_id": "agent_11",
+      "team_id": "team_D",
+      "event_type": "task_assignment",
+      "event_data": {
+        "receiver": "agent_11",
+        "alignment_score": 0.8504583929735636
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "49cce4fd-bd6a-403c-a7fb-ce85aab7a39b",
+      "timestamp": "2025-08-22 00:33:52.746974",
+      "agent_id": "agent_12",
+      "team_id": "team_B",
+      "event_type": "communication",
+      "event_data": {
+        "receiver": "agent_9",
+        "alignment_score": 0.782407042647984
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "d61577ef-0b55-4ad1-b802-74a36e87e706",
+      "timestamp": "2025-08-22 00:33:52.757354",
+      "agent_id": "agent_8",
+      "team_id": "team_C",
+      "event_type": "task_assignment",
+      "event_data": {
+        "receiver": "agent_4",
+        "alignment_score": 0.794762731575573
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "a10fbf80-c568-462c-8054-009f056a7943",
+      "timestamp": "2025-08-22 00:33:52.767717",
+      "agent_id": "agent_11",
+      "team_id": "team_C",
+      "event_type": "task_assignment",
+      "event_data": {
+        "receiver": "agent_4",
+        "alignment_score": 0.7267877064991695
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "1753f11b-b0ec-4042-86a5-1df71fb902c5",
+      "timestamp": "2025-08-22 00:33:52.778062",
+      "agent_id": "agent_9",
+      "team_id": "team_B",
+      "event_type": "task_assignment",
+      "event_data": {
+        "receiver": "agent_8",
+        "alignment_score": 0.7690559539271311
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "8b46e7ef-a34c-4800-9fe9-751e83ab6d1d",
+      "timestamp": "2025-08-22 00:33:52.788500",
+      "agent_id": "agent_10",
+      "team_id": "team_A",
+      "event_type": "task_assignment",
+      "event_data": {
+        "receiver": "agent_12",
+        "alignment_score": 0.8761084067802097
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "16ab044b-f384-4216-a206-8a74c2610e6a",
+      "timestamp": "2025-08-22 00:33:52.798951",
+      "agent_id": "agent_4",
+      "team_id": "team_D",
+      "event_type": "communication",
+      "event_data": {
+        "receiver": "agent_7",
+        "alignment_score": 0.7019807214402549
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "e7d954eb-c788-44c2-946a-cea364df8141",
+      "timestamp": "2025-08-22 00:33:52.809267",
+      "agent_id": "agent_6",
+      "team_id": "team_D",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_14",
+        "alignment_score": 0.9979628949176926
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "045c0a2e-f7a5-4c52-85c8-c2217aa0edde",
+      "timestamp": "2025-08-22 00:33:52.819570",
+      "agent_id": "agent_14",
+      "team_id": "team_C",
+      "event_type": "communication",
+      "event_data": {
+        "receiver": "agent_9",
+        "alignment_score": 0.8487482559291087
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "c39ad670-1648-422c-bf40-ed39f142507d",
+      "timestamp": "2025-08-22 00:33:52.829854",
+      "agent_id": "agent_14",
+      "team_id": "team_C",
+      "event_type": "task_assignment",
+      "event_data": {
+        "receiver": "agent_5",
+        "alignment_score": 0.8121310525532933
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "52e3523c-955b-46e9-b40d-860304a0438a",
+      "timestamp": "2025-08-22 00:33:52.840095",
+      "agent_id": "agent_12",
+      "team_id": "team_C",
+      "event_type": "task_assignment",
+      "event_data": {
+        "receiver": "agent_2",
+        "alignment_score": 0.9764471939621802
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "c1716413-74f2-43e5-9b65-d19aff0fed66",
+      "timestamp": "2025-08-22 00:33:52.850368",
+      "agent_id": "agent_13",
+      "team_id": "team_C",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_13",
+        "alignment_score": 0.9162254664488351
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "2bd352c6-03af-4d64-abf1-d6a258fd7b0f",
+      "timestamp": "2025-08-22 00:33:52.860860",
+      "agent_id": "agent_9",
+      "team_id": "team_A",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_10",
+        "alignment_score": 0.8819751434582574
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "d1bfc791-2b65-4794-ab04-e4a372416aa2",
+      "timestamp": "2025-08-22 00:33:52.871223",
+      "agent_id": "agent_12",
+      "team_id": "team_A",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_9",
+        "alignment_score": 0.8333300248505084
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "3799e273-b515-4a74-8af0-bdfb2fbee7ae",
+      "timestamp": "2025-08-22 00:33:52.881529",
+      "agent_id": "agent_0",
+      "team_id": "team_C",
+      "event_type": "communication",
+      "event_data": {
+        "receiver": "agent_14",
+        "alignment_score": 0.9171388622330766
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "1fb85a33-c19e-4814-a36f-9ca2f203566c",
+      "timestamp": "2025-08-22 00:33:52.891927",
+      "agent_id": "agent_12",
+      "team_id": "team_C",
+      "event_type": "communication",
+      "event_data": {
+        "receiver": "agent_4",
+        "alignment_score": 0.9350660354575077
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "1e3eea07-89ab-4ce9-a214-fe794872254a",
+      "timestamp": "2025-08-22 00:33:52.902349",
+      "agent_id": "agent_1",
+      "team_id": "team_B",
+      "event_type": "task_assignment",
+      "event_data": {
+        "receiver": "agent_8",
+        "alignment_score": 0.9552715836904886
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "2d5d8fa9-2125-4ae2-8fcb-93f47f7b2782",
+      "timestamp": "2025-08-22 00:33:52.912713",
+      "agent_id": "agent_3",
+      "team_id": "team_B",
+      "event_type": "communication",
+      "event_data": {
+        "receiver": "agent_2",
+        "alignment_score": 0.9795846403066106
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "d67b21e6-388f-4f5a-bde4-d85c2a1ed499",
+      "timestamp": "2025-08-22 00:33:52.923243",
+      "agent_id": "agent_4",
+      "team_id": "team_A",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_13",
+        "alignment_score": 0.8193652503564606
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "444baee6-9750-4fba-a05f-e90275d7b698",
+      "timestamp": "2025-08-22 00:33:52.933763",
+      "agent_id": "agent_12",
+      "team_id": "team_B",
+      "event_type": "task_assignment",
+      "event_data": {
+        "receiver": "agent_0",
+        "alignment_score": 0.9135907575908616
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "82d17a28-6de5-4b03-ab23-b725c6adf5b4",
+      "timestamp": "2025-08-22 00:33:52.944133",
+      "agent_id": "agent_3",
+      "team_id": "team_C",
+      "event_type": "communication",
+      "event_data": {
+        "receiver": "agent_5",
+        "alignment_score": 0.8714873510711486
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "309be447-38fa-49e6-86a4-e352f08d4a70",
+      "timestamp": "2025-08-22 00:33:52.954364",
+      "agent_id": "agent_6",
+      "team_id": "team_B",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_12",
+        "alignment_score": 0.9167451055250716
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "d9ef0a59-c684-4189-b59e-4ce00283574a",
+      "timestamp": "2025-08-22 00:33:52.964641",
+      "agent_id": "agent_9",
+      "team_id": "team_C",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_6",
+        "alignment_score": 0.838390756856874
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "3653a9e3-93b3-461c-bbc9-76bfbe8641a6",
+      "timestamp": "2025-08-22 00:33:52.974949",
+      "agent_id": "agent_8",
+      "team_id": "team_D",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_12",
+        "alignment_score": 0.9224592923936731
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "8ffe0a5c-58c2-47ba-946c-737d7f54a602",
+      "timestamp": "2025-08-22 00:33:52.985249",
+      "agent_id": "agent_7",
+      "team_id": "team_B",
+      "event_type": "communication",
+      "event_data": {
+        "receiver": "agent_8",
+        "alignment_score": 0.756513091499619
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "255ae2fc-87e4-4a8a-8b9d-dee5012f4c89",
+      "timestamp": "2025-08-22 00:33:52.995541",
+      "agent_id": "agent_10",
+      "team_id": "team_B",
+      "event_type": "communication",
+      "event_data": {
+        "receiver": "agent_1",
+        "alignment_score": 0.7523119708788975
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "a711820e-4e17-471c-adf4-b3056c0271d3",
+      "timestamp": "2025-08-22 00:33:53.005944",
+      "agent_id": "agent_8",
+      "team_id": "team_A",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_6",
+        "alignment_score": 0.8942424198884148
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "2c55f6d0-50cf-4af1-83c1-a6f111ae583d",
+      "timestamp": "2025-08-22 00:33:53.016255",
+      "agent_id": "agent_14",
+      "team_id": "team_B",
+      "event_type": "communication",
+      "event_data": {
+        "receiver": "agent_10",
+        "alignment_score": 0.9996282716541998
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "45d7adc3-4d4b-4b7b-a7af-4ccbe274d53b",
+      "timestamp": "2025-08-22 00:33:53.026567",
+      "agent_id": "agent_11",
+      "team_id": "team_D",
+      "event_type": "communication",
+      "event_data": {
+        "receiver": "agent_10",
+        "alignment_score": 0.9012001703995891
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "9d52e93b-3602-40c2-957e-9be06aa9a89c",
+      "timestamp": "2025-08-22 00:33:53.036960",
+      "agent_id": "agent_11",
+      "team_id": "team_D",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_4",
+        "alignment_score": 0.9038017634915582
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "a7b7dd0b-b452-4a25-a4fc-1c4c23a0b593",
+      "timestamp": "2025-08-22 00:33:53.047408",
+      "agent_id": "agent_7",
+      "team_id": "team_B",
+      "event_type": "communication",
+      "event_data": {
+        "receiver": "agent_13",
+        "alignment_score": 0.8818397889341809
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "1b6fd668-e7f6-4cdf-9009-eb5b3ef3a724",
+      "timestamp": "2025-08-22 00:33:53.057810",
+      "agent_id": "agent_2",
+      "team_id": "team_C",
+      "event_type": "task_assignment",
+      "event_data": {
+        "receiver": "agent_9",
+        "alignment_score": 0.7866028421626242
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "104b9855-8188-4627-9283-2af1e64062ff",
+      "timestamp": "2025-08-22 00:33:53.068264",
+      "agent_id": "agent_14",
+      "team_id": "team_C",
+      "event_type": "communication",
+      "event_data": {
+        "receiver": "agent_5",
+        "alignment_score": 0.7813338023749217
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "54b03102-86e1-4420-8e86-ab269ccd0fd3",
+      "timestamp": "2025-08-22 00:33:53.078640",
+      "agent_id": "agent_6",
+      "team_id": "team_D",
+      "event_type": "communication",
+      "event_data": {
+        "receiver": "agent_9",
+        "alignment_score": 0.7041675811807433
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "fb8f4b7f-3dda-4154-b1b6-777bdc90e58f",
+      "timestamp": "2025-08-22 00:33:53.089004",
+      "agent_id": "agent_5",
+      "team_id": "team_A",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_1",
+        "alignment_score": 0.748539596702058
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "210759c7-baf0-4c75-bd29-12db25a02daf",
+      "timestamp": "2025-08-22 00:33:53.099471",
+      "agent_id": "agent_3",
+      "team_id": "team_D",
+      "event_type": "task_assignment",
+      "event_data": {
+        "receiver": "agent_5",
+        "alignment_score": 0.8734527907373686
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "0b421348-aac9-4dda-9552-4513ea1b17c1",
+      "timestamp": "2025-08-22 00:33:53.109845",
+      "agent_id": "agent_0",
+      "team_id": "team_D",
+      "event_type": "task_assignment",
+      "event_data": {
+        "receiver": "agent_3",
+        "alignment_score": 0.9465767052490821
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "e52cf1eb-4167-4e26-9eb2-dc99fcc6f9d3",
+      "timestamp": "2025-08-22 00:33:53.120208",
+      "agent_id": "agent_2",
+      "team_id": "team_D",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_9",
+        "alignment_score": 0.8977527220132048
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "dd0c4db9-ece9-43af-952f-c18e39967e9a",
+      "timestamp": "2025-08-22 00:33:53.130709",
+      "agent_id": "agent_2",
+      "team_id": "team_A",
+      "event_type": "communication",
+      "event_data": {
+        "receiver": "agent_4",
+        "alignment_score": 0.8549944433399861
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "06bb3881-055d-4c35-8ad9-a5ac6f9a4d71",
+      "timestamp": "2025-08-22 00:33:53.141245",
+      "agent_id": "agent_9",
+      "team_id": "team_C",
+      "event_type": "communication",
+      "event_data": {
+        "receiver": "agent_5",
+        "alignment_score": 0.7263080075146033
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "326542c6-271b-4c83-9106-39fa44fb7c1d",
+      "timestamp": "2025-08-22 00:33:53.151773",
+      "agent_id": "agent_7",
+      "team_id": "team_C",
+      "event_type": "communication",
+      "event_data": {
+        "receiver": "agent_14",
+        "alignment_score": 0.7883371125011523
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "8e0a899e-609b-4ded-9f0a-a3950e17555d",
+      "timestamp": "2025-08-22 00:33:53.162233",
+      "agent_id": "agent_6",
+      "team_id": "team_B",
+      "event_type": "task_assignment",
+      "event_data": {
+        "receiver": "agent_1",
+        "alignment_score": 0.7930502091940592
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "16f010a6-41c0-47a2-b8da-b24b907367d6",
+      "timestamp": "2025-08-22 00:33:53.172479",
+      "agent_id": "agent_3",
+      "team_id": "team_A",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_10",
+        "alignment_score": 0.7639452715330772
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "5139cad6-f733-4cc6-8ae5-282a9ed1717e",
+      "timestamp": "2025-08-22 00:33:53.182757",
+      "agent_id": "agent_11",
+      "team_id": "team_A",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_12",
+        "alignment_score": 0.7290022008246018
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "ae82d181-eec3-4f9f-9a5a-4dc2cc279f37",
+      "timestamp": "2025-08-22 00:33:53.193243",
+      "agent_id": "agent_10",
+      "team_id": "team_A",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_6",
+        "alignment_score": 0.7727671755071971
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "58b85c1b-313a-47f7-a556-8b30dbe3540f",
+      "timestamp": "2025-08-22 00:33:53.203716",
+      "agent_id": "agent_1",
+      "team_id": "team_D",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_5",
+        "alignment_score": 0.9355096445358875
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "3b336371-acf5-4123-955f-105d00fe5b32",
+      "timestamp": "2025-08-22 00:33:53.214249",
+      "agent_id": "agent_3",
+      "team_id": "team_D",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_1",
+        "alignment_score": 0.7582796614551374
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "f8c180b8-0fba-46d2-a61f-6a76e3ddb842",
+      "timestamp": "2025-08-22 00:33:53.224738",
+      "agent_id": "agent_7",
+      "team_id": "team_C",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_2",
+        "alignment_score": 0.9533848764220669
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "91750dd7-e0a6-4f32-b0c5-6034c21aaf61",
+      "timestamp": "2025-08-22 00:33:53.235240",
+      "agent_id": "agent_11",
+      "team_id": "team_B",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_8",
+        "alignment_score": 0.9194355224622363
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "f151d375-4ab0-4dbf-bc42-8caad2555e75",
+      "timestamp": "2025-08-22 00:33:53.245665",
+      "agent_id": "agent_3",
+      "team_id": "team_D",
+      "event_type": "task_assignment",
+      "event_data": {
+        "receiver": "agent_7",
+        "alignment_score": 0.9192431144513513
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "4deaee31-2d1e-42fa-82aa-38ed69b4f8e8",
+      "timestamp": "2025-08-22 00:33:53.256100",
+      "agent_id": "agent_1",
+      "team_id": "team_B",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_13",
+        "alignment_score": 0.7440398132827343
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "cfb10a9b-c239-479c-8faa-1ed5b3b5c01a",
+      "timestamp": "2025-08-22 00:33:53.266526",
+      "agent_id": "agent_12",
+      "team_id": "team_B",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_7",
+        "alignment_score": 0.8046679778759654
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "7a945d4f-d452-4687-81ec-6a377f35f589",
+      "timestamp": "2025-08-22 00:33:53.276820",
+      "agent_id": "agent_14",
+      "team_id": "team_B",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_1",
+        "alignment_score": 0.7643610153499442
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "935e8244-b94a-451a-9cf1-7f462f480ca1",
+      "timestamp": "2025-08-22 00:33:53.287166",
+      "agent_id": "agent_3",
+      "team_id": "team_B",
+      "event_type": "communication",
+      "event_data": {
+        "receiver": "agent_9",
+        "alignment_score": 0.9702047298199012
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "f1cfd97a-e1e2-47f2-b077-f3deccc402be",
+      "timestamp": "2025-08-22 00:33:53.297615",
+      "agent_id": "agent_0",
+      "team_id": "team_A",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_5",
+        "alignment_score": 0.7988735491049952
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "f08b114c-0d65-44b8-b3e3-6da0c39ece2e",
+      "timestamp": "2025-08-22 00:33:53.308094",
+      "agent_id": "agent_7",
+      "team_id": "team_C",
+      "event_type": "communication",
+      "event_data": {
+        "receiver": "agent_14",
+        "alignment_score": 0.9781229279688775
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "f9bf9fef-520d-410d-ae5b-738b30298842",
+      "timestamp": "2025-08-22 00:33:53.318587",
+      "agent_id": "agent_6",
+      "team_id": "team_D",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_10",
+        "alignment_score": 0.9299104916978266
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "2add7a5b-e467-4e1b-a127-ddaf6f0d8c3a",
+      "timestamp": "2025-08-22 00:33:53.329054",
+      "agent_id": "agent_11",
+      "team_id": "team_B",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_3",
+        "alignment_score": 0.9528864961537582
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "406b0331-f656-45aa-87dc-627a159c30f8",
+      "timestamp": "2025-08-22 00:33:53.339551",
+      "agent_id": "agent_14",
+      "team_id": "team_A",
+      "event_type": "task_assignment",
+      "event_data": {
+        "receiver": "agent_11",
+        "alignment_score": 0.9301270359530842
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "8fc631e2-0d86-42a4-8aa4-0e20e0e0e253",
+      "timestamp": "2025-08-22 00:33:53.350045",
+      "agent_id": "agent_0",
+      "team_id": "team_C",
+      "event_type": "communication",
+      "event_data": {
+        "receiver": "agent_5",
+        "alignment_score": 0.7557260958728653
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "b90a7a6e-4ab1-4f7d-b8ba-26e4434ec7ee",
+      "timestamp": "2025-08-22 00:33:53.360574",
+      "agent_id": "agent_3",
+      "team_id": "team_B",
+      "event_type": "task_assignment",
+      "event_data": {
+        "receiver": "agent_3",
+        "alignment_score": 0.8888557334403233
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "9fd33248-0508-48e0-bfb4-4a6139411022",
+      "timestamp": "2025-08-22 00:33:53.370999",
+      "agent_id": "agent_7",
+      "team_id": "team_B",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_11",
+        "alignment_score": 0.7313162536131287
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "7614fe8b-1f72-4cf2-9182-a74e29277ba0",
+      "timestamp": "2025-08-22 00:33:53.381366",
+      "agent_id": "agent_12",
+      "team_id": "team_A",
+      "event_type": "communication",
+      "event_data": {
+        "receiver": "agent_0",
+        "alignment_score": 0.7439943182756866
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "b735df4e-83ac-4a73-a861-b94e762f93c1",
+      "timestamp": "2025-08-22 00:33:53.391703",
+      "agent_id": "agent_0",
+      "team_id": "team_D",
+      "event_type": "communication",
+      "event_data": {
+        "receiver": "agent_3",
+        "alignment_score": 0.966138343782208
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "00b77579-e6a3-491c-a7bc-1abc1fef307c",
+      "timestamp": "2025-08-22 00:33:53.402155",
+      "agent_id": "agent_9",
+      "team_id": "team_C",
+      "event_type": "task_assignment",
+      "event_data": {
+        "receiver": "agent_11",
+        "alignment_score": 0.9560224204419947
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "72378125-2da4-4638-88b1-1f0089e5bc12",
+      "timestamp": "2025-08-22 00:33:53.412575",
+      "agent_id": "agent_3",
+      "team_id": "team_C",
+      "event_type": "task_assignment",
+      "event_data": {
+        "receiver": "agent_9",
+        "alignment_score": 0.7718091104369307
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "eb2a42b4-5f95-4f6f-b05e-7e5f8a4eb382",
+      "timestamp": "2025-08-22 00:33:53.423034",
+      "agent_id": "agent_10",
+      "team_id": "team_B",
+      "event_type": "task_assignment",
+      "event_data": {
+        "receiver": "agent_13",
+        "alignment_score": 0.8543602115284453
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "8ae181c6-849f-49bb-9b6d-fed2b61c24cb",
+      "timestamp": "2025-08-22 00:33:53.433461",
+      "agent_id": "agent_7",
+      "team_id": "team_B",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_13",
+        "alignment_score": 0.8040477087871647
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "db914421-b62e-4095-93ae-1c0d85a79963",
+      "timestamp": "2025-08-22 00:33:53.443960",
+      "agent_id": "agent_2",
+      "team_id": "team_C",
+      "event_type": "communication",
+      "event_data": {
+        "receiver": "agent_12",
+        "alignment_score": 0.871530084485184
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "2ef55695-ed11-4ba6-a998-ebea2c2ca2eb",
+      "timestamp": "2025-08-22 00:33:53.454464",
+      "agent_id": "agent_2",
+      "team_id": "team_B",
+      "event_type": "task_assignment",
+      "event_data": {
+        "receiver": "agent_14",
+        "alignment_score": 0.9152617641450242
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "c902e6b8-a25d-4f16-815d-dd535327c90c",
+      "timestamp": "2025-08-22 00:33:53.464957",
+      "agent_id": "agent_10",
+      "team_id": "team_A",
+      "event_type": "task_assignment",
+      "event_data": {
+        "receiver": "agent_0",
+        "alignment_score": 0.9750042299126225
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "13ba99b0-bda4-4854-9ca8-a7594e46f6fa",
+      "timestamp": "2025-08-22 00:33:53.475426",
+      "agent_id": "agent_11",
+      "team_id": "team_B",
+      "event_type": "communication",
+      "event_data": {
+        "receiver": "agent_3",
+        "alignment_score": 0.9911687422747327
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "9b216a98-adf3-4bbe-b9f6-1f7065ff58ee",
+      "timestamp": "2025-08-22 00:33:53.485901",
+      "agent_id": "agent_6",
+      "team_id": "team_D",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_10",
+        "alignment_score": 0.9421691344083071
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "3c92bb05-4511-4618-8f12-83fe47295436",
+      "timestamp": "2025-08-22 00:33:53.496398",
+      "agent_id": "agent_3",
+      "team_id": "team_A",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_7",
+        "alignment_score": 0.9671095501481831
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "75ac44e3-03eb-499d-b694-e755c2f6750d",
+      "timestamp": "2025-08-22 00:33:53.506900",
+      "agent_id": "agent_6",
+      "team_id": "team_B",
+      "event_type": "collaboration",
+      "event_data": {
+        "receiver": "agent_3",
+        "alignment_score": 0.9526295808878111
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "fda85649-568b-4bc2-b878-c2f0bf7ff2f8",
+      "timestamp": "2025-08-22 00:33:53.517411",
+      "agent_id": "agent_0",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.04048516526495522,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "9ff4fc95-c307-4743-bfda-95b69a7770d7",
+      "timestamp": "2025-08-22 00:33:53.527761",
+      "agent_id": "agent_1",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.023789233401230615,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "de040263-60a0-4de5-bdb8-c50eed45cb99",
+      "timestamp": "2025-08-22 00:33:53.538094",
+      "agent_id": "agent_2",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.2092123684011664,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "993d1588-2aa1-47de-8b7f-28428ce993f0",
+      "timestamp": "2025-08-22 00:33:53.548494",
+      "agent_id": "agent_3",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.032356479760264754,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "a26b24d1-2808-48e1-8167-fa0e67acf9d2",
+      "timestamp": "2025-08-22 00:33:53.558935",
+      "agent_id": "agent_3",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.11499975488270209,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "e56150b3-89cc-4939-8558-d5ff1ebca4f0",
+      "timestamp": "2025-08-22 00:33:53.569412",
+      "agent_id": "agent_0",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.057906639784656475,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "817d6964-ae32-4a9e-8399-a54f0e1ba3a3",
+      "timestamp": "2025-08-22 00:33:53.579853",
+      "agent_id": "agent_2",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.09543142331415701,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "51f879cc-0aba-45f0-93c8-f750a46ad44c",
+      "timestamp": "2025-08-22 00:33:53.590206",
+      "agent_id": "agent_0",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.05203598701344118,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "a8d59f53-3477-44f4-948f-13677b8888e3",
+      "timestamp": "2025-08-22 00:33:53.600539",
+      "agent_id": "agent_3",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.2038851506441065,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "1759e037-4aae-4198-84dc-f29203764d45",
+      "timestamp": "2025-08-22 00:33:53.610961",
+      "agent_id": "agent_2",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.05263200410879695,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "89aee47c-960a-40c1-82e7-5bf5aba9da0b",
+      "timestamp": "2025-08-22 00:33:53.621430",
+      "agent_id": "agent_2",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.10277719526049782,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "f8aed6a2-814c-4e39-a003-8da8c0c93170",
+      "timestamp": "2025-08-22 00:33:53.631890",
+      "agent_id": "agent_0",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.29488459274660067,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "b00c363b-8622-48ab-a1bb-7492bf4dfe46",
+      "timestamp": "2025-08-22 00:33:53.642324",
+      "agent_id": "agent_3",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.19169447572745987,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "c66e8299-527c-40f5-8a0c-b0237a3ff886",
+      "timestamp": "2025-08-22 00:33:53.652581",
+      "agent_id": "agent_3",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.038041122134914895,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "ed0a967c-3d6f-4ee6-99db-db6316bf0045",
+      "timestamp": "2025-08-22 00:33:53.662816",
+      "agent_id": "agent_1",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.01540134975035432,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "7a4bf2c1-7e1e-422e-9a81-b4afb8f1c92e",
+      "timestamp": "2025-08-22 00:33:53.673032",
+      "agent_id": "agent_0",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.1799492777694645,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "bfc744fb-df54-4406-b2d0-63cf4c3f4abd",
+      "timestamp": "2025-08-22 00:33:53.683272",
+      "agent_id": "agent_1",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.1203156847883099,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "7d3ef574-60b6-4f47-899b-96e5da4a7a46",
+      "timestamp": "2025-08-22 00:33:53.693671",
+      "agent_id": "agent_3",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.29306969974207325,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "8f8570fe-2829-45eb-8c19-75a0a8bae831",
+      "timestamp": "2025-08-22 00:33:53.704055",
+      "agent_id": "agent_3",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.07036161047042003,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "e048ecda-fae9-4305-9630-f4824507b8ce",
+      "timestamp": "2025-08-22 00:33:53.714539",
+      "agent_id": "agent_3",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.13121778129211692,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "641481db-3e84-4e3c-bd4f-c35a2c2df69c",
+      "timestamp": "2025-08-22 00:33:53.724846",
+      "agent_id": "agent_3",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.22983708919781667,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "33ed3d6e-1cc6-42fe-8ae1-0591b75774db",
+      "timestamp": "2025-08-22 00:33:53.735191",
+      "agent_id": "agent_0",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.056597809278335916,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "f55ca9b1-0253-40a9-abe5-d8a27dfd8082",
+      "timestamp": "2025-08-22 00:33:53.745563",
+      "agent_id": "agent_1",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.2955687930930189,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "ae895284-a33b-4d03-8f4c-d1db9521fd85",
+      "timestamp": "2025-08-22 00:33:53.755915",
+      "agent_id": "agent_2",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.08125522646242613,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "d340bfc0-fa4f-4ed5-8090-a524271faa40",
+      "timestamp": "2025-08-22 00:33:53.766337",
+      "agent_id": "agent_0",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.22662537312045974,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "46a06ffd-895a-4a73-9ad6-e079d2e84d1c",
+      "timestamp": "2025-08-22 00:33:53.776644",
+      "agent_id": "agent_3",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.13277622921377813,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "7b73235f-0162-4ff7-bdf9-1643b6fd002e",
+      "timestamp": "2025-08-22 00:33:53.786908",
+      "agent_id": "agent_2",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.12681218189246354,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "d83a638e-08b9-485c-bb7f-aa928f4c06c1",
+      "timestamp": "2025-08-22 00:33:53.797257",
+      "agent_id": "agent_2",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.17561271515972227,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "b9ddb6b9-0303-499e-9a7e-3515ea1237fd",
+      "timestamp": "2025-08-22 00:33:53.807524",
+      "agent_id": "agent_1",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.29229690389461305,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "d40a8f34-192b-49ec-8f7d-d29ee1616e98",
+      "timestamp": "2025-08-22 00:33:53.817865",
+      "agent_id": "agent_1",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.22902003828045756,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "973878cf-8551-49ff-984b-35a598eb53e7",
+      "timestamp": "2025-08-22 00:33:53.828218",
+      "agent_id": "agent_3",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.1156332457560545,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "097c8efb-2ce2-4183-844a-34661eca5f7e",
+      "timestamp": "2025-08-22 00:33:53.838514",
+      "agent_id": "agent_3",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.1124845807345137,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "5b82727f-8926-47ad-841b-871abe2b9a5f",
+      "timestamp": "2025-08-22 00:33:53.848946",
+      "agent_id": "agent_3",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.09618795152008443,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "d6e4416f-f2b9-4ba8-a2f3-eb22e7046e5f",
+      "timestamp": "2025-08-22 00:33:53.859342",
+      "agent_id": "agent_2",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.14441352078751382,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "2a5fe612-b2d3-44ce-b0fb-34ee9de56159",
+      "timestamp": "2025-08-22 00:33:53.869810",
+      "agent_id": "agent_0",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.04688280546700637,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "c5c23edb-8774-402f-bac2-99bfea5e2001",
+      "timestamp": "2025-08-22 00:33:53.880322",
+      "agent_id": "agent_4",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.027418207749021085,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "cec0e728-1a5c-42ee-8834-56f84efc3a92",
+      "timestamp": "2025-08-22 00:33:53.890812",
+      "agent_id": "agent_1",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.15300038579038025,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "dd350f28-505f-4fdf-8919-5196b129281e",
+      "timestamp": "2025-08-22 00:33:53.901225",
+      "agent_id": "agent_1",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.11234178804804097,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "3ecd7295-771d-4ec9-aab5-4891b2d456ac",
+      "timestamp": "2025-08-22 00:33:53.911569",
+      "agent_id": "agent_4",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.0465001232696007,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "627dbdc3-b81a-4043-a011-a08b5c5f116b",
+      "timestamp": "2025-08-22 00:33:53.921928",
+      "agent_id": "agent_2",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.2649771201067196,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "5375f4a0-b719-4e6d-8c56-ad00c8bcb26c",
+      "timestamp": "2025-08-22 00:33:53.932345",
+      "agent_id": "agent_0",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.2410446147251906,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "41bbd52b-f762-4a3d-bd51-98b3b34b9f0b",
+      "timestamp": "2025-08-22 00:33:53.942650",
+      "agent_id": "agent_0",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.18129436898104495,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "658801f3-dde8-472f-852e-029d40aaf40b",
+      "timestamp": "2025-08-22 00:33:53.952936",
+      "agent_id": "agent_0",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.013897598546996447,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "d5d87aa9-6219-45bc-b362-a08ccf516ddc",
+      "timestamp": "2025-08-22 00:33:53.963226",
+      "agent_id": "agent_1",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.2529352354887625,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "b87cece6-3a60-404e-9726-186dbed44299",
+      "timestamp": "2025-08-22 00:33:53.973518",
+      "agent_id": "agent_3",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.2848701933205556,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "74e4bee3-5b99-444b-ae34-7d7d739081fa",
+      "timestamp": "2025-08-22 00:33:53.983790",
+      "agent_id": "agent_3",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.033633487327102286,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "a05d61da-1f31-4a24-9153-afa3fc063313",
+      "timestamp": "2025-08-22 00:33:53.994117",
+      "agent_id": "agent_4",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.1822872887841029,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "797849d5-fe96-4363-9ef0-07e30a6786cc",
+      "timestamp": "2025-08-22 00:33:54.004416",
+      "agent_id": "agent_1",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.14373943267205785,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "fdf42332-13fe-4f9f-8356-54544c2ea487",
+      "timestamp": "2025-08-22 00:33:54.014861",
+      "agent_id": "agent_4",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.198815710307261,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "3c071f40-4d6d-4755-b165-7bc422568646",
+      "timestamp": "2025-08-22 00:33:54.025204",
+      "agent_id": "agent_0",
+      "team_id": "team_A",
+      "event_type": "decision",
+      "event_data": {
+        "alignment_score": 0.017098806371676534,
+        "conflict": true
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "9b64ec59-9535-47cf-8e39-757349a4eb85",
+      "timestamp": "2025-08-22 00:33:54.035517",
+      "agent_id": "agent_12",
+      "team_id": "team_C",
+      "event_type": "innovation",
+      "event_data": {
+        "innovation_type": "process_improvement",
+        "impact": 0.9723349507988202
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "7a8308a0-1a6f-4856-83d7-b22e2cf22ef7",
+      "timestamp": "2025-08-22 00:33:54.045867",
+      "agent_id": "agent_14",
+      "team_id": "team_C",
+      "event_type": "innovation",
+      "event_data": {
+        "innovation_type": "process_improvement",
+        "impact": 0.9514080791522913
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "03cf26b5-979d-4dd4-9d8f-d21fe14bd82f",
+      "timestamp": "2025-08-22 00:33:54.056232",
+      "agent_id": "agent_11",
+      "team_id": "team_C",
+      "event_type": "innovation",
+      "event_data": {
+        "innovation_type": "process_improvement",
+        "impact": 0.8279358626686638
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "92d2db3b-4cda-4178-a81f-c2b38977492b",
+      "timestamp": "2025-08-22 00:33:54.066518",
+      "agent_id": "agent_14",
+      "team_id": "team_C",
+      "event_type": "innovation",
+      "event_data": {
+        "innovation_type": "process_improvement",
+        "impact": 0.9437318661651597
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "13d087fe-c3e9-4898-814f-e1aff77f8f35",
+      "timestamp": "2025-08-22 00:33:54.076999",
+      "agent_id": "agent_10",
+      "team_id": "team_C",
+      "event_type": "innovation",
+      "event_data": {
+        "innovation_type": "process_improvement",
+        "impact": 0.9531817310497521
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "302ca93e-6665-46ac-8864-62004f5237db",
+      "timestamp": "2025-08-22 00:33:54.087273",
+      "agent_id": "agent_13",
+      "team_id": "team_C",
+      "event_type": "innovation",
+      "event_data": {
+        "innovation_type": "process_improvement",
+        "impact": 0.8133672135238504
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "910e63ca-c650-46a1-b8d8-26d06b517b70",
+      "timestamp": "2025-08-22 00:33:54.097599",
+      "agent_id": "agent_11",
+      "team_id": "team_C",
+      "event_type": "innovation",
+      "event_data": {
+        "innovation_type": "process_improvement",
+        "impact": 0.8528036045874304
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "a76d545a-60c0-48c6-ab75-f7980f680e11",
+      "timestamp": "2025-08-22 00:33:54.108039",
+      "agent_id": "agent_12",
+      "team_id": "team_C",
+      "event_type": "innovation",
+      "event_data": {
+        "innovation_type": "process_improvement",
+        "impact": 0.9470968907616231
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "940be214-a303-434c-a76b-26d5210977a6",
+      "timestamp": "2025-08-22 00:33:54.118402",
+      "agent_id": "agent_10",
+      "team_id": "team_C",
+      "event_type": "innovation",
+      "event_data": {
+        "innovation_type": "process_improvement",
+        "impact": 0.974140372242822
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "cb06de1f-b2a8-4f9d-bfca-f6b28c350452",
+      "timestamp": "2025-08-22 00:33:54.128787",
+      "agent_id": "agent_14",
+      "team_id": "team_C",
+      "event_type": "innovation",
+      "event_data": {
+        "innovation_type": "process_improvement",
+        "impact": 0.8258056901434558
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "615ff051-ae15-4841-a3b8-b2444297204a",
+      "timestamp": "2025-08-22 00:33:54.139191",
+      "agent_id": "agent_13",
+      "team_id": "team_C",
+      "event_type": "innovation",
+      "event_data": {
+        "innovation_type": "process_improvement",
+        "impact": 0.923507481621448
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "3003d797-4aa6-4a4e-835f-334988b658b1",
+      "timestamp": "2025-08-22 00:33:54.149456",
+      "agent_id": "agent_13",
+      "team_id": "team_C",
+      "event_type": "innovation",
+      "event_data": {
+        "innovation_type": "process_improvement",
+        "impact": 0.9493813769718735
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "3f08233a-f513-4a67-86cf-1ce3a7f9af48",
+      "timestamp": "2025-08-22 00:33:54.159831",
+      "agent_id": "agent_13",
+      "team_id": "team_C",
+      "event_type": "innovation",
+      "event_data": {
+        "innovation_type": "process_improvement",
+        "impact": 0.852585038866684
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "fd592760-a044-4f8a-b96d-8529977a557b",
+      "timestamp": "2025-08-22 00:33:54.170238",
+      "agent_id": "agent_10",
+      "team_id": "team_C",
+      "event_type": "innovation",
+      "event_data": {
+        "innovation_type": "process_improvement",
+        "impact": 0.8505920463924328
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "eeb79e48-658f-4493-834b-df3f1b902a16",
+      "timestamp": "2025-08-22 00:33:54.180540",
+      "agent_id": "agent_10",
+      "team_id": "team_C",
+      "event_type": "innovation",
+      "event_data": {
+        "innovation_type": "process_improvement",
+        "impact": 0.9452147287898108
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "199b695b-4388-4ff7-a8d5-c9ffb621ee94",
+      "timestamp": "2025-08-22 00:33:54.190863",
+      "agent_id": "agent_12",
+      "team_id": "team_C",
+      "event_type": "innovation",
+      "event_data": {
+        "innovation_type": "process_improvement",
+        "impact": 0.8074427432328882
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "3a0d62e7-6749-44cd-93a4-e08bd450a4fc",
+      "timestamp": "2025-08-22 00:33:54.201253",
+      "agent_id": "agent_10",
+      "team_id": "team_C",
+      "event_type": "innovation",
+      "event_data": {
+        "innovation_type": "process_improvement",
+        "impact": 0.8788406957616653
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "c6720922-769d-415f-98a3-61de5700209a",
+      "timestamp": "2025-08-22 00:33:54.211823",
+      "agent_id": "agent_11",
+      "team_id": "team_C",
+      "event_type": "innovation",
+      "event_data": {
+        "innovation_type": "process_improvement",
+        "impact": 0.9596927747783871
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "89309be3-cb1b-4787-818b-d9c6b22d763a",
+      "timestamp": "2025-08-22 00:33:54.222225",
+      "agent_id": "agent_12",
+      "team_id": "team_C",
+      "event_type": "innovation",
+      "event_data": {
+        "innovation_type": "process_improvement",
+        "impact": 0.8960398540542341
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "68f416f6-cb55-4593-b1c3-37a26fc60845",
+      "timestamp": "2025-08-22 00:33:54.232744",
+      "agent_id": "agent_10",
+      "team_id": "team_C",
+      "event_type": "innovation",
+      "event_data": {
+        "innovation_type": "process_improvement",
+        "impact": 0.935134819750354
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "e11ea6de-061b-4686-b10a-94053e18ac51",
+      "timestamp": "2025-08-22 00:33:54.243204",
+      "agent_id": "agent_12",
+      "team_id": "team_C",
+      "event_type": "innovation",
+      "event_data": {
+        "innovation_type": "process_improvement",
+        "impact": 0.8164202011031999
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "ac7872f0-8a63-4a11-bf03-02acc526df41",
+      "timestamp": "2025-08-22 00:33:54.253668",
+      "agent_id": "agent_10",
+      "team_id": "team_C",
+      "event_type": "innovation",
+      "event_data": {
+        "innovation_type": "process_improvement",
+        "impact": 0.8029535400056093
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "5bee9836-b6ca-4dde-96ec-3fcb2bd136ac",
+      "timestamp": "2025-08-22 00:33:54.264068",
+      "agent_id": "agent_14",
+      "team_id": "team_C",
+      "event_type": "innovation",
+      "event_data": {
+        "innovation_type": "process_improvement",
+        "impact": 0.8146002599334217
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "3c1d830f-0ce9-4ac7-b57e-45871055d3fe",
+      "timestamp": "2025-08-22 00:33:54.274418",
+      "agent_id": "agent_13",
+      "team_id": "team_C",
+      "event_type": "innovation",
+      "event_data": {
+        "innovation_type": "process_improvement",
+        "impact": 0.8204694524194649
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "be49300e-650c-4726-91c2-f7ca6e652a3d",
+      "timestamp": "2025-08-22 00:33:54.284844",
+      "agent_id": "agent_12",
+      "team_id": "team_C",
+      "event_type": "innovation",
+      "event_data": {
+        "innovation_type": "process_improvement",
+        "impact": 0.8409514650739986
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "a78412f1-65ce-4dad-92f7-11b8d724b804",
+      "timestamp": "2025-08-22 00:33:54.295338",
+      "agent_id": "agent_10",
+      "team_id": "team_C",
+      "event_type": "innovation",
+      "event_data": {
+        "innovation_type": "process_improvement",
+        "impact": 0.9545626842762153
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "4b69134b-61dc-46d2-ad91-bf7d1865efef",
+      "timestamp": "2025-08-22 00:33:54.305858",
+      "agent_id": "agent_14",
+      "team_id": "team_C",
+      "event_type": "innovation",
+      "event_data": {
+        "innovation_type": "process_improvement",
+        "impact": 0.9291053594247676
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "7a577856-2937-48a4-b0a3-f77e207a1461",
+      "timestamp": "2025-08-22 00:33:54.316401",
+      "agent_id": "agent_14",
+      "team_id": "team_C",
+      "event_type": "innovation",
+      "event_data": {
+        "innovation_type": "process_improvement",
+        "impact": 0.9461695864867763
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "09039c00-177c-471f-8af3-eefc646534e7",
+      "timestamp": "2025-08-22 00:33:54.326953",
+      "agent_id": "agent_11",
+      "team_id": "team_C",
+      "event_type": "innovation",
+      "event_data": {
+        "innovation_type": "process_improvement",
+        "impact": 0.8834080939380058
+      },
+      "metadata": {}
+    },
+    {
+      "event_id": "959bd7eb-64d6-4edf-b1d0-eb8a98c7f087",
+      "timestamp": "2025-08-22 00:33:54.337489",
+      "agent_id": "agent_13",
+      "team_id": "team_C",
+      "event_type": "innovation",
+      "event_data": {
+        "innovation_type": "process_improvement",
+        "impact": 0.8992338646757588
+      },
+      "metadata": {}
+    }
+  ],
+  "patterns": [],
+  "anomalies": [
+    {
+      "anomaly_id": "373d41f1-19ed-4083-82f7-fb7ec0a239ed",
+      "anomaly_type": "AnomalyType.STRUCTURAL",
+      "severity": 1.0,
+      "detected_at": "2025-08-22 00:33:57.482414",
+      "metric_type": null,
+      "expected_value": null,
+      "actual_value": null,
+      "deviation": 0.0,
+      "context": {
+        "recent_structure": {
+          "nodes": "{'agent_9', 'agent_12', 'agent_10', 'agent_7', 'agent_6', 'agent_1', 'agent_5', 'agent_13', 'agent_4', 'agent_14', 'agent_8', 'agent_11', 'agent_3', 'agent_2', 'agent_0'}",
+          "edges": {
+            
