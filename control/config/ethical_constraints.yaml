@@ -1,0 +1,167 @@
+accountability:
+  enabled: true
+  incident_response:
+    severity_levels:
+      critical:
+        auto_containment: true
+        human_notification: immediate
+        response_time_seconds: 60
+      high:
+        auto_containment: true
+        human_notification: true
+        response_time_seconds: 300
+      low:
+        auto_containment: false
+        human_notification: false
+        response_time_seconds: 3600
+      medium:
+        auto_containment: false
+        human_notification: true
+        response_time_seconds: 900
+  priority: high
+  responsibility_chain:
+    agent_level:
+    - decision_logging
+    - immediate_validation
+    - error_reporting
+    system_level:
+    - policy_enforcement
+    - audit_compliance
+    - incident_response
+    team_level:
+    - performance_monitoring
+    - resource_coordination
+    - conflict_resolution
+fairness:
+  enabled: true
+  priority: high
+  rules:
+  - absolute_fairness
+harm_prevention:
+  enabled: true
+  priority: critical
+  rules:
+  - prevent_all_harm
+learning_constraints:
+  enabled: true
+  knowledge_sharing:
+    external_sharing: false
+    internal_sharing: true
+    prohibited_knowledge:
+    - personal_data
+    - proprietary_information
+    - security_vulnerabilities
+    requires_sanitization: true
+  learning_boundaries:
+    prohibited_learning:
+    - harmful_techniques
+    - privacy_violation_methods
+    - discrimination_patterns
+    - manipulation_tactics
+    supervised_learning:
+    - critical_system_behavior
+    - safety_protocols
+    - ethical_decisions
+    unsupervised_learning:
+    - performance_optimization
+    - pattern_recognition
+    - efficiency_improvements
+  priority: medium
+  update_validation:
+    required_tests:
+    - regression_testing
+    - safety_validation
+    - bias_testing
+    - performance_benchmarks
+    rollback_triggers:
+    - test_failure
+    - performance_degradation
+    - safety_violation
+    - bias_increase
+manipulation_prevention:
+  enabled: true
+  priority: high
+  prohibited_behaviors:
+  - emotional_manipulation
+  - gaslighting
+  - false_urgency
+  - dark_patterns
+  - misleading_information
+  - coercion
+  - exploitation
+  truth_requirements:
+    correction_policy:
+      audit_trail: true
+      immediate_correction: true
+      notification_required: true
+    factual_accuracy:
+      citation_required: true
+      confidence_threshold: 0.8
+      required: true
+    uncertainty_disclosure:
+      format: confidence_percentage
+      required: true
+privacy_protection:
+  enabled: true
+  priority: critical
+  rules:
+  - maximum_privacy
+resource_limits:
+  max_cpu_percent: 50
+  max_memory_mb: 2048
+safety_mechanisms:
+  circuit_breakers:
+    cooldown_period_seconds: 60
+    error_threshold: 0.5
+    half_open_trials: 3
+    timeout_threshold: 10
+  enabled: true
+  kill_switches:
+    emergency_stop:
+      activation_methods:
+      - manual_trigger
+      - threshold_breach
+      - pattern_detection
+      cooldown_seconds: 300
+      enabled: true
+    gradual_shutdown:
+      enabled: true
+      max_duration_seconds: 600
+      phases:
+      - stop_new_tasks
+      - complete_current_tasks
+      - save_state
+      - shutdown_agents
+  priority: critical
+  sandboxing:
+    enabled: true
+    filesystem_isolation: true
+    network_isolation: true
+    resource_quotas: true
+    untrusted_code_execution: isolated_container
+sustainability:
+  enabled: true
+  energy_efficiency:
+    batch_processing: true
+    idle_shutdown: true
+    optimize_for_efficiency: true
+    prefer_green_computing: true
+  priority: low
+  resource_optimization:
+    cache_aggressively: true
+    clean_temporary_files: true
+    compress_data: true
+    minimize_redundancy: true
+transparency:
+  enabled: true
+  priority: high
+  rules:
+  - full_transparency
+version_control:
+  change_log:
+  - changes: Initial ethical constraints configuration
+    date: '2025-08-21'
+    version: 1.0.0
+  last_updated: '2025-08-21'
+  schema_version: 1.0.0
+  update_policy: backward_compatible
