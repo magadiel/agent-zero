@@ -1,0 +1,245 @@
+# Safety Thresholds Configuration
+# Defines thresholds and limits for safety monitoring
+
+# Resource usage thresholds
+resource_limits:
+  # CPU usage thresholds (percentage)
+  cpu_percent:
+    normal: 50      # Below this is considered normal
+    warning: 70     # Trigger warning alerts
+    critical: 85    # Trigger interventions
+    emergency: 95   # Trigger emergency stop
+  
+  # Memory usage thresholds (percentage)
+  memory_percent:
+    normal: 50
+    warning: 70
+    critical: 85
+    emergency: 95
+  
+  # Disk I/O thresholds (MB/s)
+  disk_io_mbps:
+    normal: 50
+    warning: 80
+    critical: 100
+    emergency: 120
+  
+  # Network bandwidth thresholds (MB/s)
+  network_mbps:
+    normal: 50
+    warning: 80
+    critical: 100
+    emergency: 120
+  
+  # GPU usage thresholds (percentage) - if applicable
+  gpu_percent:
+    normal: 50
+    warning: 70
+    critical: 85
+    emergency: 95
+
+# Response time thresholds
+response_times:
+  excellent_ms: 100      # Excellent response time
+  good_ms: 500          # Good response time
+  acceptable_ms: 1000   # Acceptable response time
+  warning_ms: 2000      # Warning threshold
+  critical_ms: 5000     # Critical threshold
+  timeout_ms: 10000     # Request timeout
+
+# Error rate thresholds (percentage)
+error_rates:
+  acceptable_percent: 1   # Normal error rate
+  warning_percent: 5      # Warning threshold
+  critical_percent: 10    # Critical threshold
+  emergency_percent: 25   # Emergency threshold
+
+# Agent-specific limits
+agent_limits:
+  max_runtime_seconds: 3600        # Maximum agent runtime (1 hour)
+  max_idle_seconds: 300            # Maximum idle time (5 minutes)
+  max_actions_per_minute: 100      # Rate limiting
+  max_concurrent_agents: 50        # Maximum concurrent agents
+  max_subordinate_depth: 5         # Maximum agent hierarchy depth
+  max_memory_per_agent_mb: 512     # Memory limit per agent
+  max_cpu_per_agent_percent: 25    # CPU limit per agent
+
+# Team-specific limits
+team_limits:
+  max_team_size: 10                # Maximum agents per team
+  max_teams: 20                     # Maximum concurrent teams
+  max_team_runtime_seconds: 7200   # Maximum team runtime (2 hours)
+  max_team_memory_gb: 8             # Memory limit per team
+  max_team_cpu_percent: 80          # CPU limit per team
+
+# Circuit breaker configuration
+circuit_breaker:
+  failure_threshold: 5              # Failures before opening
+  recovery_timeout_seconds: 60     # Time before recovery attempt
+  half_open_trials: 3              # Successful calls to close
+  error_types:                     # Error types that trigger breaker
+    - timeout
+    - resource_exhaustion
+    - unhandled_exception
+    - validation_failure
+
+# Kill switch configuration
+kill_switches:
+  # Emergency stop configuration
+  emergency_stop:
+    enabled: true
+    auto_trigger_on_emergency: true    # Auto-trigger on emergency level
+    manual_trigger_allowed: true       # Allow manual triggering
+    cooldown_seconds: 300              # Cooldown after activation (5 minutes)
+    require_confirmation: false        # Require confirmation for manual trigger
+    
+  # Graceful shutdown configuration
+  graceful_shutdown:
+    enabled: true
+    max_duration_seconds: 60          # Maximum time for graceful shutdown
+    save_state: true                  # Save system state before shutdown
+    notify_agents: true               # Notify agents before shutdown
+    completion_timeout_seconds: 30    # Time to complete current tasks
+
+# Monitoring configuration
+monitoring:
+  sampling_interval_seconds: 1        # How often to sample metrics
+  metric_window_size: 100             # Size of metric sliding window
+  alert_cooldown_seconds: 60         # Cooldown between repeated alerts
+  log_level: INFO                     # Logging level
+  audit_retention_days: 90           # Audit log retention
+
+# Intervention strategies
+interventions:
+  # Throttling configuration
+  throttle:
+    cpu_reduction_percent: 50        # Reduce CPU by this percentage
+    memory_reduction_percent: 30     # Reduce memory by this percentage
+    rate_limit_reduction_percent: 50 # Reduce rate limits by this percentage
+    duration_seconds: 60             # Duration of throttling
+  
+  # Pause configuration
+  pause:
+    max_pause_duration_seconds: 300  # Maximum pause duration
+    auto_resume: true                # Automatically resume after conditions improve
+    save_state: true                 # Save state during pause
+  
+  # Restart configuration
+  restart:
+    max_restart_attempts: 3          # Maximum restart attempts
+    restart_delay_seconds: 10        # Delay between restarts
+    clear_state: false               # Clear state on restart
+    preserve_context: true           # Preserve context on restart
+  
+  # Isolation configuration
+  isolate:
+    network_isolation: true          # Isolate network access
+    resource_isolation: true         # Isolate resource access
+    communication_allowed: false     # Allow inter-agent communication
+    max_isolation_seconds: 600       # Maximum isolation duration
+
+# Anomaly detection
+anomaly_detection:
+  enabled: true
+  sensitivity: medium                # low, medium, high
+  
+  # Behavioral patterns to detect
+  patterns:
+    rapid_spawning:
+      threshold: 10                 # Agents spawned
+      window_seconds: 60            # Time window
+      severity: high
+    
+    resource_spike:
+      threshold_percent: 200         # Percentage increase
+      window_seconds: 30            # Time window
+      severity: critical
+    
+    error_cascade:
+      threshold: 10                  # Consecutive errors
+      window_seconds: 30            # Time window
+      severity: critical
+    
+    infinite_loop:
+      same_action_threshold: 100     # Same action repeated
+      window_seconds: 60            # Time window
+      severity: high
+    
+    data_exfiltration:
+      data_threshold_mb: 100        # Data transferred
+      window_seconds: 60            # Time window
+      severity: critical
+
+# Escalation policies
+escalation:
+  # Automatic escalation thresholds
+  auto_escalate:
+    warning_to_critical_seconds: 300     # Time at warning before critical
+    critical_to_emergency_seconds: 60    # Time at critical before emergency
+    
+  # Notification settings
+  notifications:
+    warning:
+      enabled: true
+      channels: [log, audit]
+    critical:
+      enabled: true
+      channels: [log, audit, alert]
+    emergency:
+      enabled: true
+      channels: [log, audit, alert, email]
+
+# Recovery procedures
+recovery:
+  # Automatic recovery
+  auto_recovery:
+    enabled: true
+    min_stable_duration_seconds: 120    # Time stable before recovery
+    gradual_recovery: true              # Gradual vs immediate recovery
+    recovery_steps: 5                   # Number of recovery steps
+  
+  # Manual recovery
+  manual_recovery:
+    require_approval: true              # Require approval for recovery
+    verification_required: true         # Verify system state before recovery
+    test_mode_duration_seconds: 60     # Test mode before full recovery
+
+# Performance baselines
+baselines:
+  # Normal operating parameters
+  normal_operation:
+    avg_cpu_percent: 30-50
+    avg_memory_percent: 40-60
+    avg_response_ms: 100-500
+    error_rate_percent: 0-1
+  
+  # Peak load parameters
+  peak_operation:
+    avg_cpu_percent: 60-80
+    avg_memory_percent: 70-85
+    avg_response_ms: 500-2000
+    error_rate_percent: 1-5
+
+# Integration settings
+integration:
+  # Ethics engine integration
+  ethics_engine:
+    enabled: true
+    validate_interventions: true       # Validate interventions with ethics
+    sync_emergency_stops: true         # Synchronize emergency stops
+    share_audit_logs: true            # Share audit logs
+  
+  # External monitoring integration
+  external_monitoring:
+    enabled: false
+    prometheus_metrics: true          # Export Prometheus metrics
+    grafana_dashboards: true         # Provide Grafana dashboards
+    webhook_alerts: false            # Send webhook alerts
+    webhook_url: ""
+
+# Version and metadata
+metadata:
+  version: "1.0.0"
+  last_updated: "2025-08-21"
+  description: "Safety thresholds configuration for AI agent monitoring"
+  compatibility: "safety_monitor>=1.0.0"

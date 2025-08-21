@@ -58,13 +58,59 @@ Comprehensive configuration file with 11 categories of ethical rules including:
 - Manipulation prevention
 - Sustainability guidelines
 
-## 🚧 Upcoming Components
+### Safety Monitor (`safety_monitor.py`) - COMPLETED
+The real-time safety monitoring system that tracks agent behavior and enforces safety thresholds.
 
-### Safety Monitor (`safety_monitor.py`) - PLANNED
-- Real-time monitoring of agent activities
-- Enforces safety thresholds and limits
-- Implements emergency kill switches
-- Tracks resource consumption and performance
+**Key Features:**
+- ✅ Real-time resource monitoring (CPU, memory, response times)
+- ✅ Multi-level safety thresholds (normal, warning, critical, emergency)
+- ✅ Kill switch mechanisms (emergency stop & graceful shutdown)
+- ✅ Circuit breaker pattern for fault tolerance
+- ✅ Agent-specific monitoring and intervention
+- ✅ Comprehensive threat detection (resource exhaustion, runaway agents, cascading failures)
+- ✅ Intervention system (throttle, pause, terminate, restart, isolate)
+
+**Usage Example:**
+```python
+from control.safety_monitor import SafetyMonitor
+
+# Initialize monitor
+monitor = SafetyMonitor()
+
+# Start monitoring
+await monitor.start_monitoring()
+
+# Register agents
+await monitor.register_agent("agent-001")
+
+# Report agent activity
+await monitor.report_agent_activity(
+    "agent-001",
+    cpu=45.0,
+    memory=60.0,
+    response_time=150.0
+)
+
+# Check status
+status = await monitor.get_status()
+print(f"Safety Level: {status['safety_level']}")
+
+# Emergency stop if needed
+await monitor.emergency_stop("Critical threat detected")
+```
+
+### Safety Thresholds Configuration (`config/safety_thresholds.yaml`) - COMPLETED
+Comprehensive configuration with:
+- Resource limits (CPU, memory, disk I/O, network)
+- Response time thresholds
+- Error rate limits
+- Agent and team limits
+- Circuit breaker settings
+- Kill switch configurations
+- Anomaly detection patterns
+- Escalation policies
+
+## 🚧 Upcoming Components
 
 ### Resource Allocator (`resource_allocator.py`) - PLANNED
 - Manages computational resource distribution
@@ -134,9 +180,11 @@ The Control Layer integrates with:
 |-----------|--------|-------|
 | Ethics Engine | ✅ COMPLETED | `ethics_engine.py` |
 | Ethical Constraints | ✅ COMPLETED | `config/ethical_constraints.yaml` |
-| Unit Tests | ✅ COMPLETED | `tests/test_ethics_engine.py` |
+| Safety Monitor | ✅ COMPLETED | `safety_monitor.py` |
+| Safety Thresholds | ✅ COMPLETED | `config/safety_thresholds.yaml` |
+| Unit Tests (Ethics) | ✅ COMPLETED | `tests/test_ethics_engine.py` |
+| Unit Tests (Safety) | ✅ COMPLETED | `tests/test_safety_monitor.py` |
 | Documentation | ✅ COMPLETED | `README.md` |
-| Safety Monitor | ⏳ PENDING | `safety_monitor.py` |
 | Resource Allocator | ⏳ PENDING | `resource_allocator.py` |
 | Control API | ⏳ PENDING | `api.py` |
 | Docker Container | ⏳ PENDING | `Dockerfile` |

@@ -1,0 +1,46 @@
+2025-08-21 06:34:35,698 - INFO - {"event": "agent_registered", "agent_id": "test-agent-001", "timestamp": "2025-08-21T05:34:35.698385"}
+2025-08-21 06:34:35,707 - INFO - {"event": "agent_registered", "agent_id": "test-agent-001", "timestamp": "2025-08-21T05:34:35.707108"}
+2025-08-21 06:34:35,707 - INFO - {"event": "agent_registered", "agent_id": "test-agent-001", "timestamp": "2025-08-21T05:34:35.707108"}
+2025-08-21 06:34:35,715 - INFO - {"event": "agent_registered", "agent_id": "test-agent-001", "timestamp": "2025-08-21T05:34:35.715210"}
+2025-08-21 06:34:35,715 - INFO - {"event": "agent_registered", "agent_id": "test-agent-001", "timestamp": "2025-08-21T05:34:35.715210"}
+2025-08-21 06:34:35,715 - INFO - {"event": "agent_registered", "agent_id": "test-agent-001", "timestamp": "2025-08-21T05:34:35.715210"}
+2025-08-21 06:34:35,723 - INFO - {"event": "agent_registered", "agent_id": "test-agent-001", "timestamp": "2025-08-21T05:34:35.723390"}
+2025-08-21 06:34:35,723 - INFO - {"event": "agent_registered", "agent_id": "test-agent-001", "timestamp": "2025-08-21T05:34:35.723390"}
+2025-08-21 06:34:35,723 - INFO - {"event": "agent_registered", "agent_id": "test-agent-001", "timestamp": "2025-08-21T05:34:35.723390"}
+2025-08-21 06:34:35,723 - INFO - {"event": "agent_registered", "agent_id": "test-agent-001", "timestamp": "2025-08-21T05:34:35.723390"}
+2025-08-21 06:34:35,723 - INFO - {"event": "agent_unregistered", "agent_id": "test-agent-001", "timestamp": "2025-08-21T05:34:35.723538"}
+2025-08-21 06:34:35,723 - INFO - {"event": "agent_unregistered", "agent_id": "test-agent-001", "timestamp": "2025-08-21T05:34:35.723538"}
+2025-08-21 06:34:35,723 - INFO - {"event": "agent_unregistered", "agent_id": "test-agent-001", "timestamp": "2025-08-21T05:34:35.723538"}
+2025-08-21 06:34:35,723 - INFO - {"event": "agent_unregistered", "agent_id": "test-agent-001", "timestamp": "2025-08-21T05:34:35.723538"}
+2025-08-21 06:34:35,732 - INFO - {"event": "agent_registered", "agent_id": "test-agent-000", "timestamp": "2025-08-21T05:34:35.732568"}
+2025-08-21 06:34:35,732 - INFO - {"event": "agent_registered", "agent_id": "test-agent-000", "timestamp": "2025-08-21T05:34:35.732568"}
+2025-08-21 06:34:35,732 - INFO - {"event": "agent_registered", "agent_id": "test-agent-000", "timestamp": "2025-08-21T05:34:35.732568"}
+2025-08-21 06:34:35,732 - INFO - {"event": "agent_registered", "agent_id": "test-agent-000", "timestamp": "2025-08-21T05:34:35.732568"}
+2025-08-21 06:34:35,732 - INFO - {"event": "agent_registered", "agent_id": "test-agent-000", "timestamp": "2025-08-21T05:34:35.732568"}
+2025-08-21 06:34:35,732 - INFO - {"event": "agent_registered", "agent_id": "test-agent-001", "timestamp": "2025-08-21T05:34:35.732699"}
+2025-08-21 06:34:35,732 - INFO - {"event": "agent_registered", "agent_id": "test-agent-001", "timestamp": "2025-08-21T05:34:35.732699"}
+2025-08-21 06:34:35,732 - INFO - {"event": "agent_registered", "agent_id": "test-agent-001", "timestamp": "2025-08-21T05:34:35.732699"}
+2025-08-21 06:34:35,732 - INFO - {"event": "agent_registered", "agent_id": "test-agent-001", "timestamp": "2025-08-21T05:34:35.732699"}
+2025-08-21 06:34:35,732 - INFO - {"event": "agent_registered", "agent_id": "test-agent-001", "timestamp": "2025-08-21T05:34:35.732699"}
+2025-08-21 06:34:35,732 - INFO - {"event": "agent_registered", "agent_id": "test-agent-002", "timestamp": "2025-08-21T05:34:35.732800"}
+2025-08-21 06:34:35,732 - INFO - {"event": "agent_registered", "agent_id": "test-agent-002", "timestamp": "2025-08-21T05:34:35.732800"}
+2025-08-21 06:34:35,732 - INFO - {"event": "agent_registered", "agent_id": "test-agent-002", "timestamp": "2025-08-21T05:34:35.732800"}
+2025-08-21 06:34:35,732 - INFO - {"event": "agent_registered", "agent_id": "test-agent-002", "timestamp": "2025-08-21T05:34:35.732800"}
+2025-08-21 06:34:35,732 - INFO - {"event": "agent_registered", "agent_id": "test-agent-002", "timestamp": "2025-08-21T05:34:35.732800"}
+2025-08-21 06:34:35,732 - CRITICAL - {"event": "emergency_stop", "reason": "Test emergency", "timestamp": "2025-08-21T05:34:35.732921"}
+2025-08-21 06:34:35,732 - CRITICAL - {"event": "emergency_stop", "reason": "Test emergency", "timestamp": "2025-08-21T05:34:35.732921"}
+2025-08-21 06:34:35,732 - CRITICAL - {"event": "emergency_stop", "reason": "Test emergency", "timestamp": "2025-08-21T05:34:35.732921"}
+2025-08-21 06:34:35,732 - CRITICAL - {"event": "emergency_stop", "reason": "Test emergency", "timestamp": "2025-08-21T05:34:35.732921"}
+2025-08-21 06:34:35,732 - CRITICAL - {"event": "emergency_stop", "reason": "Test emergency", "timestamp": "2025-08-21T05:34:35.732921"}
+2025-08-21 06:34:35,741 - INFO - {"event": "agent_registered", "agent_id": "test-agent-001", "timestamp": "2025-08-21T05:34:35.741615"}
+2025-08-21 06:34:35,741 - INFO - {"event": "agent_registered", "agent_id": "test-agent-001", "timestamp": "2025-08-21T05:34:35.741615"}
+2025-08-21 06:34:35,741 - INFO - {"event": "agent_registered", "agent_id": "test-agent-001", "timestamp": "2025-08-21T05:34:35.741615"}
+2025-08-21 06:34:35,741 - INFO - {"event": "agent_registered", "agent_id": "test-agent-001", "timestamp": "2025-08-21T05:34:35.741615"}
+2025-08-21 06:34:35,741 - INFO - {"event": "agent_registered", "agent_id": "test-agent-001", "timestamp": "2025-08-21T05:34:35.741615"}
+2025-08-21 06:34:35,741 - INFO - {"event": "agent_registered", "agent_id": "test-agent-001", "timestamp": "2025-08-21T05:34:35.741615"}
+2025-08-21 06:34:35,741 - WARNING - {"event": "agent_intervention", "agent_id": "test-agent-001", "type": "pause", "reason": "Circuit breaker triggered", "timestamp": "2025-08-21T05:34:35.741891"}
+2025-08-21 06:34:35,741 - WARNING - {"event": "agent_intervention", "agent_id": "test-agent-001", "type": "pause", "reason": "Circuit breaker triggered", "timestamp": "2025-08-21T05:34:35.741891"}
+2025-08-21 06:34:35,741 - WARNING - {"event": "agent_intervention", "agent_id": "test-agent-001", "type": "pause", "reason": "Circuit breaker triggered", "timestamp": "2025-08-21T05:34:35.741891"}
+2025-08-21 06:34:35,741 - WARNING - {"event": "agent_intervention", "agent_id": "test-agent-001", "type": "pause", "reason": "Circuit breaker triggered", "timestamp": "2025-08-21T05:34:35.741891"}
+2025-08-21 06:34:35,741 - WARNING - {"event": "agent_intervention", "agent_id": "test-agent-001", "type": "pause", "reason": "Circuit breaker triggered", "timestamp": "2025-08-21T05:34:35.741891"}
+2025-08-21 06:34:35,741 - WARNING - {"event": "agent_intervention", "agent_id": "test-agent-001", "type": "pause", "reason": "Circuit breaker triggered", "timestamp": "2025-08-21T05:34:35.741891"}
