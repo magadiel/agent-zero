@@ -1,0 +1,364 @@
+# Epic Template for Agile AI Company
+# BMAD-style template for creating and managing epics
+
+template:
+  id: epic-template-001
+  name: Standard Epic Template
+  version: 1.0.0
+  type: epic
+  
+metadata:
+  title: "{epic_name}"
+  description: "Epic template for managing large features or initiatives"
+  owner: "{owner}"
+  editor: "{team}"
+  created: "{timestamp}"
+  
+sections:
+  - id: vision
+    title: Vision Statement
+    description: "High-level vision for what this epic will achieve"
+    type: text
+    required: true
+    interaction: elicit
+    prompt: "What is the overall vision for this epic? What business value will it deliver?"
+    template: |
+      This epic will deliver {epic_name} to enable {business_value}.
+      
+      The key outcome will be {expected_outcome}, which will {impact_description}.
+    
+  - id: goals
+    title: Epic Goals
+    description: "Specific goals this epic aims to achieve"
+    type: list
+    required: true
+    interaction: multiple_choice_plus
+    min_items: 3
+    max_items: 7
+    default_items:
+      - "Implement core {epic_name} functionality"
+      - "Ensure scalability and performance requirements are met"
+      - "Provide comprehensive user documentation"
+      - "Enable monitoring and observability"
+      - "Deliver training materials for teams"
+    custom_allowed: true
+    
+  - id: success_criteria
+    title: Success Criteria
+    description: "Measurable criteria for epic completion"
+    type: list
+    required: true
+    interaction: checklist
+    items:
+      - id: stories_complete
+        text: "All user stories completed and accepted"
+        validation: story_count
+      - id: performance_met
+        text: "Performance benchmarks achieved"
+        validation: metrics
+      - id: quality_assured
+        text: "Quality gates passed with no critical issues"
+        validation: quality_gate
+      - id: documentation_complete
+        text: "Documentation reviewed and approved"
+        validation: review
+      - id: stakeholder_approval
+        text: "Stakeholder sign-off received"
+        validation: approval
+    
+  - id: scope
+    title: Scope Definition
+    description: "What is included and excluded from this epic"
+    type: structured
+    required: true
+    subsections:
+      - id: in_scope
+        title: In Scope
+        type: list
+        interaction: elicit_list
+        prompt: "List all features and capabilities that ARE included in this epic"
+        min_items: 3
+      - id: out_of_scope
+        title: Out of Scope
+        type: list
+        interaction: elicit_list
+        prompt: "List features and capabilities that are NOT included (may be future work)"
+        min_items: 1
+      - id: assumptions
+        title: Assumptions
+        type: list
+        interaction: elicit_list
+        prompt: "List key assumptions this epic is based on"
+    
+  - id: user_stories
+    title: User Story Breakdown
+    description: "Stories that comprise this epic"
+    type: story_list
+    required: true
+    interaction: generate_from_epic
+    story_templates:
+      - type: research
+        title: "Research {epic_name} requirements and constraints"
+        acceptance_criteria:
+          - "Requirements documented"
+          - "Constraints identified"
+          - "Stakeholder input gathered"
+      - type: design
+        title: "Design {epic_name} architecture and interfaces"
+        acceptance_criteria:
+          - "Architecture documented"
+          - "API contracts defined"
+          - "Design reviewed and approved"
+      - type: implementation
+        title: "Implement core {epic_name} functionality"
+        acceptance_criteria:
+          - "Core features implemented"
+          - "Unit tests passing"
+          - "Code reviewed"
+      - type: integration
+        title: "Integrate {epic_name} with existing systems"
+        acceptance_criteria:
+          - "Integration points tested"
+          - "End-to-end tests passing"
+          - "Performance validated"
+      - type: documentation
+        title: "Document {epic_name} for users and developers"
+        acceptance_criteria:
+          - "User guide completed"
+          - "API documentation generated"
+          - "Runbook created"
+    
+  - id: dependencies
+    title: Dependencies
+    description: "Other epics or external dependencies"
+    type: structured
+    required: false
+    subsections:
+      - id: depends_on
+        title: This Epic Depends On
+        type: reference_list
+        reference_type: epic
+        interaction: search_and_select
+      - id: blocks
+        title: This Epic Blocks
+        type: reference_list
+        reference_type: epic
+        interaction: auto_populate
+      - id: external
+        title: External Dependencies
+        type: list
+        interaction: elicit_list
+        prompt: "List any external dependencies (vendors, APIs, services)"
+    
+  - id: risks
+    title: Risks and Mitigations
+    description: "Identified risks and mitigation strategies"
+    type: risk_matrix
+    required: true
+    interaction: guided
+    risk_categories:
+      - technical
+      - resource
+      - timeline
+      - dependency
+      - business
+    risk_template:
+      - risk: "Risk description"
+        probability: "low|medium|high"
+        impact: "low|medium|high"
+        mitigation: "Mitigation strategy"
+        owner: "Risk owner"
+    
+  - id: timeline
+    title: Timeline
+    description: "Expected timeline for epic completion"
+    type: structured
+    required: true
+    subsections:
+      - id: start_date
+        title: Planned Start Date
+        type: date
+        interaction: calendar
+      - id: target_completion
+        title: Target Completion Date
+        type: date
+        interaction: calendar
+      - id: milestones
+        title: Key Milestones
+        type: milestone_list
+        interaction: timeline
+        milestones:
+          - name: "Research Complete"
+            target_date: "+1 week"
+          - name: "Design Approved"
+            target_date: "+2 weeks"
+          - name: "MVP Complete"
+            target_date: "+4 weeks"
+          - name: "Full Implementation"
+            target_date: "+6 weeks"
+          - name: "Production Ready"
+            target_date: "+8 weeks"
+    
+  - id: resources
+    title: Resource Requirements
+    description: "Team and resource needs"
+    type: structured
+    required: true
+    subsections:
+      - id: team
+        title: Team Composition
+        type: team_list
+        interaction: role_assignment
+        roles:
+          - product_owner
+          - scrum_master
+          - architect
+          - developers
+          - qa_engineers
+          - devops
+      - id: capacity
+        title: Capacity Requirements
+        type: capacity_planning
+        interaction: calculate
+        unit: story_points_per_sprint
+      - id: tools
+        title: Tools and Infrastructure
+        type: list
+        interaction: checklist
+        items:
+          - Development environment
+          - CI/CD pipeline
+          - Testing infrastructure
+          - Monitoring tools
+          - Documentation platform
+    
+  - id: acceptance
+    title: Acceptance Criteria
+    description: "Final acceptance criteria for epic completion"
+    type: checklist
+    required: true
+    interaction: review
+    items:
+      - id: functional
+        text: "All functional requirements implemented and tested"
+      - id: non_functional
+        text: "Non-functional requirements (performance, security) met"
+      - id: documentation
+        text: "Complete documentation delivered"
+      - id: training
+        text: "Team training completed"
+      - id: handover
+        text: "Operational handover complete"
+      - id: retrospective
+        text: "Epic retrospective conducted"
+    
+  - id: metrics
+    title: Success Metrics
+    description: "How we measure the success of this epic"
+    type: structured
+    required: false
+    subsections:
+      - id: business_metrics
+        title: Business Metrics
+        type: metric_list
+        metrics:
+          - name: "User adoption rate"
+            target: "80% within 3 months"
+            measurement: "Analytics dashboard"
+          - name: "Revenue impact"
+            target: "$X increase"
+            measurement: "Financial reports"
+      - id: technical_metrics
+        title: Technical Metrics
+        type: metric_list
+        metrics:
+          - name: "System availability"
+            target: "99.9% uptime"
+            measurement: "Monitoring system"
+          - name: "Response time"
+            target: "<200ms p95"
+            measurement: "APM tools"
+      - id: quality_metrics
+        title: Quality Metrics
+        type: metric_list
+        metrics:
+          - name: "Defect escape rate"
+            target: "<5%"
+            measurement: "Bug tracking"
+          - name: "Test coverage"
+            target: ">80%"
+            measurement: "Code coverage tools"
+
+validation_rules:
+  - rule: epic_name_unique
+    description: "Epic name must be unique within the portfolio"
+    type: uniqueness
+    field: epic_name
+  - rule: timeline_consistency
+    description: "Target completion must be after start date"
+    type: date_comparison
+    fields: [start_date, target_completion]
+  - rule: dependency_cycles
+    description: "No circular dependencies allowed"
+    type: graph_validation
+    field: dependencies
+  - rule: capacity_feasibility
+    description: "Required capacity must be available"
+    type: resource_validation
+    fields: [capacity, team]
+
+variables:
+  required:
+    - epic_name: "Name of the epic"
+    - business_value: "Business value delivered"
+    - owner: "Epic owner"
+    - team: "Primary team"
+  optional:
+    - expected_outcome: "Expected outcome description"
+    - impact_description: "Impact on business/users"
+    - stakeholders: "List of stakeholders"
+    - budget: "Budget allocation"
+    - priority: "Epic priority (Critical/High/Medium/Low)"
+
+change_tracking:
+  enabled: true
+  track_fields:
+    - vision
+    - goals
+    - success_criteria
+    - scope
+    - timeline
+    - resources
+  require_justification: true
+  notify_stakeholders: true
+
+automation:
+  story_generation:
+    enabled: true
+    template: bmad_story
+    auto_assign: false
+  progress_tracking:
+    enabled: true
+    update_frequency: daily
+    metrics:
+      - story_completion
+      - point_velocity
+      - blocker_count
+  notifications:
+    enabled: true
+    events:
+      - epic_created
+      - milestone_reached
+      - blocker_added
+      - epic_completed
+    channels:
+      - email
+      - slack
+      - dashboard
+
+export_formats:
+  - markdown
+  - json
+  - pdf
+  - jira
+  - azure_devops
