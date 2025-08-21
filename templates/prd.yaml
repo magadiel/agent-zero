@@ -1,0 +1,261 @@
+id: prd-template
+name: Product Requirements Document
+description: Template for creating comprehensive product requirements documents
+metadata:
+  version: "1.0"
+  author: BMAD System
+  category: product
+
+validation_rules:
+  - "Must include problem statement"
+  - "Must define success metrics"
+  - "Must specify target audience"
+
+sections:
+  executive_summary:
+    title: Executive Summary
+    description: High-level overview of the product and its value proposition
+    required: true
+    access_roles:
+      product_owner: owner
+      product_manager: owner
+      architect: editor
+      developer: viewer
+      qa_engineer: viewer
+    interaction:
+      type: text_input
+      prompt: "Provide a concise executive summary of the product (2-3 paragraphs)"
+    validation_rules:
+      - "Must be between 100-500 words"
+    metadata:
+      importance: critical
+      
+  problem_statement:
+    title: Problem Statement
+    description: Clear definition of the problem being solved
+    required: true
+    access_roles:
+      product_owner: owner
+      product_manager: owner
+      architect: editor
+      developer: viewer
+      qa_engineer: viewer
+    interaction:
+      type: text_input
+      prompt: "Describe the problem this product solves"
+    children:
+      current_state:
+        title: Current State
+        description: How things work today without this product
+        required: true
+        content: ""
+      pain_points:
+        title: Pain Points
+        description: Specific issues users face
+        required: true
+        content: ""
+      opportunity:
+        title: Opportunity
+        description: Market opportunity and potential impact
+        required: false
+        content: ""
+        
+  target_audience:
+    title: Target Audience
+    description: Primary and secondary users of the product
+    required: true
+    access_roles:
+      product_owner: owner
+      product_manager: owner
+      architect: viewer
+      developer: viewer
+      qa_engineer: viewer
+    interaction:
+      type: multi_choice
+      prompt: "Select all target audience segments"
+      options:
+        - Enterprise customers
+        - Small businesses
+        - Individual developers
+        - Data scientists
+        - Product managers
+        - System administrators
+        - End users
+        - Technical teams
+    children:
+      primary_users:
+        title: Primary Users
+        description: Main user personas
+        required: true
+        content: ""
+      secondary_users:
+        title: Secondary Users
+        description: Additional user groups
+        required: false
+        content: ""
+        
+  requirements:
+    title: Requirements
+    description: Functional and non-functional requirements
+    required: true
+    access_roles:
+      product_owner: owner
+      product_manager: owner
+      architect: editor
+      developer: editor
+      qa_engineer: editor
+    children:
+      functional:
+        title: Functional Requirements
+        description: What the product must do
+        required: true
+        content: ""
+        metadata:
+          format: numbered_list
+      non_functional:
+        title: Non-Functional Requirements
+        description: Performance, security, and quality requirements
+        required: true
+        content: ""
+        metadata:
+          format: numbered_list
+      constraints:
+        title: Constraints
+        description: Technical, business, or regulatory constraints
+        required: false
+        content: ""
+        
+  user_stories:
+    title: User Stories
+    description: High-level user stories and epics
+    required: true
+    access_roles:
+      product_owner: owner
+      product_manager: owner
+      scrum_master: editor
+      developer: viewer
+      qa_engineer: viewer
+    content: ""
+    metadata:
+      format: story_format
+      template: "As a [user type], I want [feature] so that [benefit]"
+      
+  success_metrics:
+    title: Success Metrics
+    description: KPIs and success criteria
+    required: true
+    access_roles:
+      product_owner: owner
+      product_manager: owner
+      architect: viewer
+      developer: viewer
+      qa_engineer: editor
+    interaction:
+      type: text_input
+      prompt: "Define measurable success metrics and KPIs"
+    children:
+      kpis:
+        title: Key Performance Indicators
+        description: Quantifiable metrics
+        required: true
+        content: ""
+      acceptance_criteria:
+        title: Acceptance Criteria
+        description: Definition of done for the product
+        required: true
+        content: ""
+        
+  technical_considerations:
+    title: Technical Considerations
+    description: High-level technical requirements and architecture
+    required: false
+    access_roles:
+      product_owner: viewer
+      product_manager: viewer
+      architect: owner
+      developer: editor
+      qa_engineer: viewer
+    children:
+      architecture:
+        title: Architecture Overview
+        description: High-level system architecture
+        required: false
+        content: ""
+      integrations:
+        title: Integrations
+        description: Required third-party integrations
+        required: false
+        content: ""
+      security:
+        title: Security Requirements
+        description: Security and compliance requirements
+        required: false
+        content: ""
+        
+  timeline:
+    title: Timeline
+    description: Project timeline and milestones
+    required: true
+    access_roles:
+      product_owner: owner
+      product_manager: owner
+      scrum_master: editor
+      developer: viewer
+      qa_engineer: viewer
+    interaction:
+      type: text_input
+      prompt: "Provide estimated timeline with key milestones"
+    children:
+      phases:
+        title: Development Phases
+        description: Major phases of development
+        required: true
+        content: ""
+      milestones:
+        title: Milestones
+        description: Key delivery milestones
+        required: true
+        content: ""
+        
+  risks:
+    title: Risks and Mitigation
+    description: Identified risks and mitigation strategies
+    required: false
+    access_roles:
+      product_owner: owner
+      product_manager: owner
+      architect: editor
+      developer: viewer
+      qa_engineer: editor
+    content: ""
+    metadata:
+      format: risk_matrix
+      
+  appendix:
+    title: Appendix
+    description: Additional documentation and references
+    required: false
+    access_roles:
+      product_owner: editor
+      product_manager: editor
+      architect: editor
+      developer: editor
+      qa_engineer: editor
+    children:
+      glossary:
+        title: Glossary
+        description: Term definitions
+        required: false
+        content: ""
+      references:
+        title: References
+        description: External references and documentation
+        required: false
+        content: ""
+      changelog:
+        title: Change Log
+        description: Document revision history
+        required: false
+        content: ""
+        metadata:
+          auto_generated: true

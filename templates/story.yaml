@@ -1,0 +1,327 @@
+id: story-template
+name: User Story
+description: Template for creating user stories with acceptance criteria
+metadata:
+  version: "1.0"
+  author: BMAD System
+  category: agile
+
+validation_rules:
+  - "Must follow user story format"
+  - "Must include acceptance criteria"
+  - "Must specify story points"
+
+sections:
+  story_header:
+    title: Story Information
+    description: Basic story metadata
+    required: true
+    access_roles:
+      product_owner: owner
+      scrum_master: editor
+      developer: viewer
+      qa_engineer: viewer
+    children:
+      story_id:
+        title: Story ID
+        description: Unique story identifier
+        required: true
+        content: ""
+        metadata:
+          auto_generated: true
+          format: "STORY-{number}"
+      epic_link:
+        title: Epic Link
+        description: Parent epic this story belongs to
+        required: false
+        content: ""
+      priority:
+        title: Priority
+        description: Story priority
+        required: true
+        interaction:
+          type: choice
+          prompt: "Select story priority"
+          options:
+            - Critical
+            - High
+            - Medium
+            - Low
+      story_points:
+        title: Story Points
+        description: Estimated complexity
+        required: true
+        interaction:
+          type: choice
+          prompt: "Select story points"
+          options:
+            - "1"
+            - "2"
+            - "3"
+            - "5"
+            - "8"
+            - "13"
+            - "21"
+            
+  user_story:
+    title: User Story
+    description: The user story following standard format
+    required: true
+    access_roles:
+      product_owner: owner
+      scrum_master: editor
+      developer: viewer
+      qa_engineer: viewer
+    interaction:
+      type: text_input
+      prompt: "Enter the user story (As a [user], I want [feature] so that [benefit])"
+    validation_rules:
+      - "Must start with 'As a'"
+      - "Must contain 'I want'"
+      - "Must contain 'so that'"
+    metadata:
+      format: user_story
+      template: "As a [user type], I want [feature/capability] so that [benefit/value]"
+      
+  description:
+    title: Detailed Description
+    description: Additional context and details
+    required: false
+    access_roles:
+      product_owner: owner
+      scrum_master: editor
+      developer: editor
+      qa_engineer: editor
+    interaction:
+      type: text_input
+      prompt: "Provide additional context or details about this story"
+    children:
+      background:
+        title: Background
+        description: Context and background information
+        required: false
+        content: ""
+      business_value:
+        title: Business Value
+        description: Business value this story delivers
+        required: true
+        content: ""
+        
+  acceptance_criteria:
+    title: Acceptance Criteria
+    description: Conditions that must be met for story completion
+    required: true
+    access_roles:
+      product_owner: owner
+      scrum_master: editor
+      developer: editor
+      qa_engineer: owner
+    interaction:
+      type: text_input
+      prompt: "List acceptance criteria (use Given/When/Then format or bullet points)"
+    validation_rules:
+      - "Must have at least 2 criteria"
+    metadata:
+      format: criteria_list
+      template: |
+        Given [context]
+        When [action]
+        Then [outcome]
+        
+  technical_details:
+    title: Technical Details
+    description: Technical implementation details
+    required: false
+    access_roles:
+      architect: editor
+      tech_lead: editor
+      developer: owner
+      qa_engineer: editor
+    children:
+      implementation_notes:
+        title: Implementation Notes
+        description: Technical implementation guidance
+        required: false
+        content: ""
+      api_changes:
+        title: API Changes
+        description: Required API modifications
+        required: false
+        content: ""
+      database_changes:
+        title: Database Changes
+        description: Required database modifications
+        required: false
+        content: ""
+      dependencies:
+        title: Dependencies
+        description: Technical dependencies and prerequisites
+        required: false
+        content: ""
+        
+  testing_requirements:
+    title: Testing Requirements
+    description: Testing approach and requirements
+    required: true
+    access_roles:
+      qa_engineer: owner
+      developer: editor
+      scrum_master: viewer
+      product_owner: viewer
+    children:
+      test_scenarios:
+        title: Test Scenarios
+        description: Key test scenarios to cover
+        required: true
+        content: ""
+        metadata:
+          format: numbered_list
+      test_data:
+        title: Test Data Requirements
+        description: Test data needed
+        required: false
+        content: ""
+      automation:
+        title: Automation Requirements
+        description: What should be automated
+        required: false
+        interaction:
+          type: multi_choice
+          prompt: "Select test automation requirements"
+          options:
+            - Unit tests
+            - Integration tests
+            - API tests
+            - UI tests
+            - Performance tests
+            - Security tests
+            
+  ui_ux_requirements:
+    title: UI/UX Requirements
+    description: User interface and experience requirements
+    required: false
+    access_roles:
+      ux_designer: owner
+      product_owner: editor
+      developer: editor
+      qa_engineer: viewer
+    children:
+      mockups:
+        title: Mockups/Wireframes
+        description: Links or references to design mockups
+        required: false
+        content: ""
+      user_flow:
+        title: User Flow
+        description: Step-by-step user interaction flow
+        required: false
+        content: ""
+      accessibility:
+        title: Accessibility Requirements
+        description: Accessibility standards to meet
+        required: false
+        interaction:
+          type: multi_choice
+          prompt: "Select accessibility requirements"
+          options:
+            - WCAG 2.1 Level A
+            - WCAG 2.1 Level AA
+            - WCAG 2.1 Level AAA
+            - Section 508
+            - Screen reader support
+            - Keyboard navigation
+            
+  definition_of_done:
+    title: Definition of Done
+    description: Checklist for story completion
+    required: true
+    access_roles:
+      scrum_master: owner
+      developer: editor
+      qa_engineer: editor
+      product_owner: viewer
+    content: ""
+    metadata:
+      format: checklist
+      default_items:
+        - Code complete and reviewed
+        - Unit tests written and passing
+        - Integration tests passing
+        - Documentation updated
+        - Acceptance criteria met
+        - Product owner approval
+        
+  blockers_risks:
+    title: Blockers & Risks
+    description: Known blockers and risks
+    required: false
+    access_roles:
+      scrum_master: owner
+      developer: editor
+      qa_engineer: editor
+      product_owner: editor
+    children:
+      blockers:
+        title: Blockers
+        description: Current blockers preventing progress
+        required: false
+        content: ""
+        metadata:
+          format: blocker_list
+      risks:
+        title: Risks
+        description: Identified risks and mitigation
+        required: false
+        content: ""
+        metadata:
+          format: risk_list
+          
+  sprint_tracking:
+    title: Sprint Tracking
+    description: Sprint assignment and tracking
+    required: false
+    access_roles:
+      scrum_master: owner
+      developer: editor
+      qa_engineer: viewer
+      product_owner: viewer
+    children:
+      sprint:
+        title: Sprint Assignment
+        description: Sprint this story is assigned to
+        required: false
+        content: ""
+      status:
+        title: Status
+        description: Current story status
+        required: true
+        interaction:
+          type: choice
+          prompt: "Select current status"
+          options:
+            - Backlog
+            - Ready
+            - In Progress
+            - In Review
+            - Testing
+            - Done
+            - Blocked
+      assigned_to:
+        title: Assigned To
+        description: Team member assigned to this story
+        required: false
+        content: ""
+        
+  notes:
+    title: Notes & Comments
+    description: Additional notes and discussion
+    required: false
+    access_roles:
+      product_owner: editor
+      scrum_master: editor
+      developer: editor
+      qa_engineer: editor
+    content: ""
+    metadata:
+      format: discussion_thread
+      allow_comments: true

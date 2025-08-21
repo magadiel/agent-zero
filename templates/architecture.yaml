@@ -1,0 +1,395 @@
+id: architecture-template
+name: System Architecture Document
+description: Template for comprehensive system architecture documentation
+metadata:
+  version: "1.0"
+  author: BMAD System
+  category: technical
+
+validation_rules:
+  - "Must include system overview"
+  - "Must define component architecture"
+  - "Must specify data flow"
+
+sections:
+  overview:
+    title: System Overview
+    description: High-level system description and purpose
+    required: true
+    access_roles:
+      architect: owner
+      tech_lead: owner
+      developer: editor
+      qa_engineer: viewer
+      product_manager: viewer
+    interaction:
+      type: text_input
+      prompt: "Provide a high-level overview of the system architecture"
+    validation_rules:
+      - "Must include system purpose"
+      - "Must describe key components"
+      
+  architecture_goals:
+    title: Architecture Goals & Constraints
+    description: Design goals and constraints driving architecture decisions
+    required: true
+    access_roles:
+      architect: owner
+      tech_lead: editor
+      developer: viewer
+      qa_engineer: viewer
+      product_manager: viewer
+    children:
+      goals:
+        title: Architecture Goals
+        description: Key design goals
+        required: true
+        content: ""
+        metadata:
+          examples:
+            - Scalability
+            - Performance
+            - Maintainability
+            - Security
+      constraints:
+        title: Constraints
+        description: Technical and business constraints
+        required: true
+        content: ""
+      principles:
+        title: Design Principles
+        description: Guiding architectural principles
+        required: false
+        content: ""
+        
+  system_architecture:
+    title: System Architecture
+    description: Detailed system architecture
+    required: true
+    access_roles:
+      architect: owner
+      tech_lead: owner
+      developer: editor
+      qa_engineer: viewer
+      product_manager: viewer
+    children:
+      components:
+        title: Component Architecture
+        description: Major system components and their responsibilities
+        required: true
+        content: ""
+        metadata:
+          format: component_diagram
+      layers:
+        title: Architectural Layers
+        description: System layers (presentation, business, data, etc.)
+        required: true
+        content: ""
+      patterns:
+        title: Design Patterns
+        description: Architectural and design patterns used
+        required: false
+        content: ""
+        
+  data_architecture:
+    title: Data Architecture
+    description: Data models, storage, and flow
+    required: true
+    access_roles:
+      architect: owner
+      tech_lead: owner
+      developer: editor
+      qa_engineer: viewer
+      data_engineer: owner
+    children:
+      data_model:
+        title: Data Model
+        description: Conceptual and logical data models
+        required: true
+        content: ""
+        metadata:
+          format: entity_relationship
+      data_flow:
+        title: Data Flow
+        description: How data moves through the system
+        required: true
+        content: ""
+        metadata:
+          format: data_flow_diagram
+      storage:
+        title: Data Storage
+        description: Database and storage solutions
+        required: true
+        interaction:
+          type: multi_choice
+          prompt: "Select data storage technologies"
+          options:
+            - PostgreSQL
+            - MySQL
+            - MongoDB
+            - Redis
+            - Elasticsearch
+            - S3
+            - DynamoDB
+            - Cassandra
+            - HDFS
+            
+  integration_architecture:
+    title: Integration Architecture
+    description: External systems and integration points
+    required: true
+    access_roles:
+      architect: owner
+      tech_lead: owner
+      developer: editor
+      qa_engineer: editor
+      product_manager: viewer
+    children:
+      apis:
+        title: API Architecture
+        description: API design and specifications
+        required: true
+        content: ""
+        metadata:
+          format: openapi
+      external_systems:
+        title: External Systems
+        description: Third-party systems and services
+        required: false
+        content: ""
+      protocols:
+        title: Communication Protocols
+        description: Protocols used for integration
+        required: true
+        interaction:
+          type: multi_choice
+          prompt: "Select communication protocols"
+          options:
+            - REST
+            - GraphQL
+            - gRPC
+            - WebSocket
+            - AMQP
+            - MQTT
+            - SOAP
+            
+  security_architecture:
+    title: Security Architecture
+    description: Security measures and controls
+    required: true
+    access_roles:
+      architect: owner
+      security_engineer: owner
+      tech_lead: editor
+      developer: viewer
+      qa_engineer: editor
+    children:
+      authentication:
+        title: Authentication & Authorization
+        description: Identity and access management
+        required: true
+        content: ""
+      encryption:
+        title: Encryption
+        description: Data encryption at rest and in transit
+        required: true
+        content: ""
+      security_controls:
+        title: Security Controls
+        description: Security measures and controls
+        required: true
+        content: ""
+        
+  deployment_architecture:
+    title: Deployment Architecture
+    description: Deployment topology and infrastructure
+    required: true
+    access_roles:
+      architect: owner
+      devops_engineer: owner
+      tech_lead: editor
+      developer: viewer
+      qa_engineer: viewer
+    children:
+      infrastructure:
+        title: Infrastructure
+        description: Hardware and cloud infrastructure
+        required: true
+        interaction:
+          type: choice
+          prompt: "Select deployment infrastructure"
+          options:
+            - AWS
+            - Azure
+            - Google Cloud
+            - On-premises
+            - Hybrid
+            - Kubernetes
+            - Docker Swarm
+      environments:
+        title: Environments
+        description: Development, staging, production environments
+        required: true
+        content: ""
+      ci_cd:
+        title: CI/CD Pipeline
+        description: Continuous integration and deployment
+        required: true
+        content: ""
+        
+  performance_architecture:
+    title: Performance Architecture
+    description: Performance requirements and optimization
+    required: true
+    access_roles:
+      architect: owner
+      tech_lead: owner
+      developer: editor
+      qa_engineer: editor
+      performance_engineer: owner
+    children:
+      requirements:
+        title: Performance Requirements
+        description: Specific performance targets
+        required: true
+        content: ""
+        metadata:
+          metrics:
+            - Response time
+            - Throughput
+            - Concurrent users
+            - Data volume
+      optimization:
+        title: Performance Optimization
+        description: Caching, indexing, and optimization strategies
+        required: true
+        content: ""
+      monitoring:
+        title: Performance Monitoring
+        description: Monitoring and alerting strategy
+        required: true
+        content: ""
+        
+  technology_stack:
+    title: Technology Stack
+    description: Technologies and frameworks used
+    required: true
+    access_roles:
+      architect: owner
+      tech_lead: owner
+      developer: editor
+      qa_engineer: viewer
+      product_manager: viewer
+    children:
+      languages:
+        title: Programming Languages
+        description: Languages used in the system
+        required: true
+        interaction:
+          type: multi_choice
+          prompt: "Select programming languages"
+          options:
+            - Python
+            - JavaScript/TypeScript
+            - Java
+            - C#
+            - Go
+            - Rust
+            - Ruby
+            - PHP
+            - Swift
+            - Kotlin
+      frameworks:
+        title: Frameworks & Libraries
+        description: Major frameworks and libraries
+        required: true
+        content: ""
+      tools:
+        title: Development Tools
+        description: Build, test, and deployment tools
+        required: true
+        content: ""
+        
+  quality_attributes:
+    title: Quality Attributes
+    description: Non-functional requirements and quality attributes
+    required: false
+    access_roles:
+      architect: owner
+      tech_lead: editor
+      developer: viewer
+      qa_engineer: owner
+      product_manager: viewer
+    children:
+      reliability:
+        title: Reliability
+        description: System reliability and availability
+        required: false
+        content: ""
+      scalability:
+        title: Scalability
+        description: Horizontal and vertical scaling
+        required: false
+        content: ""
+      maintainability:
+        title: Maintainability
+        description: Code maintainability and technical debt
+        required: false
+        content: ""
+        
+  decisions:
+    title: Architecture Decisions
+    description: Key architecture decisions and rationale
+    required: true
+    access_roles:
+      architect: owner
+      tech_lead: owner
+      developer: viewer
+      qa_engineer: viewer
+      product_manager: viewer
+    content: ""
+    metadata:
+      format: adr
+      template: "ADR-{number}: {title}"
+      
+  risks:
+    title: Technical Risks
+    description: Technical risks and mitigation strategies
+    required: false
+    access_roles:
+      architect: owner
+      tech_lead: owner
+      developer: viewer
+      qa_engineer: editor
+      product_manager: viewer
+    content: ""
+    metadata:
+      format: risk_register
+      
+  appendix:
+    title: Appendix
+    description: Additional technical documentation
+    required: false
+    access_roles:
+      architect: editor
+      tech_lead: editor
+      developer: editor
+      qa_engineer: editor
+    children:
+      diagrams:
+        title: Architecture Diagrams
+        description: Additional architecture diagrams
+        required: false
+        content: ""
+        metadata:
+          format: diagram_links
+      references:
+        title: References
+        description: External references and documentation
+        required: false
+        content: ""
+      glossary:
+        title: Technical Glossary
+        description: Technical term definitions
+        required: false
+        content: ""
