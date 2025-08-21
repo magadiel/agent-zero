@@ -1,0 +1,459 @@
+id: operations
+name: Operations Management Workflow
+description: Workflow for system operations, monitoring, and optimization
+version: 1.0.0
+author: Agent-Zero Team
+tags: [operations, monitoring, optimization, maintenance]
+
+# Agent configurations
+agents:
+  operations_analyst:
+    profile: operations_analyst
+    description: Monitors and analyzes system operations
+  performance_engineer:
+    profile: performance_engineer
+    description: Optimizes system performance
+  reliability_engineer:
+    profile: reliability_engineer
+    description: Ensures system reliability and uptime
+  security_analyst:
+    profile: security_analyst
+    description: Monitors and addresses security concerns
+  incident_manager:
+    profile: incident_manager
+    description: Manages incidents and outages
+
+# Workflow configuration
+max_parallel_agents: 5
+default_timeout: 1200  # 20 minutes for most operations
+allow_partial_success: true
+
+# Workflow steps
+steps:
+  # Phase 1: Continuous Monitoring
+  - id: system_monitoring
+    type: parallel
+    name: System Monitoring
+    parallel_steps:
+      - id: performance_monitoring
+        type: agent_task
+        name: Monitor Performance Metrics
+        agent: performance_engineer
+        task: |
+          Monitor system performance:
+          - CPU utilization
+          - Memory usage
+          - Network throughput
+          - Response times
+          - Queue depths
+          - Error rates
+        creates: performance-metrics.md
+        timeout: 600
+      
+      - id: availability_monitoring
+        type: agent_task
+        name: Monitor System Availability
+        agent: reliability_engineer
+        task: |
+          Monitor availability:
+          - Service uptime
+          - Component health
+          - Dependency status
+          - Failover readiness
+          - Backup status
+        creates: availability-metrics.md
+        timeout: 600
+      
+      - id: security_monitoring
+        type: agent_task
+        name: Monitor Security Events
+        agent: security_analyst
+        task: |
+          Monitor security:
+          - Authentication attempts
+          - Access patterns
+          - Vulnerability scans
+          - Threat indicators
+          - Compliance status
+        creates: security-metrics.md
+        timeout: 600
+
+  # Phase 2: Analysis and Detection
+  - id: analyze_metrics
+    type: agent_task
+    name: Analyze System Metrics
+    description: Analyze all collected metrics for anomalies
+    agent: operations_analyst
+    task: |
+      Analyze system state:
+      - Identify anomalies
+      - Detect trends
+      - Predict issues
+      - Calculate SLI/SLO compliance
+      - Generate alerts if needed
+    requires: [performance-metrics.md, availability-metrics.md, security-metrics.md]
+    creates: system-analysis.md
+
+  # Phase 3: Issue Detection
+  - id: issue_detection
+    type: conditional
+    name: Check for Issues
+    condition:
+      field: step_analyze_metrics.output.issues_detected
+      operator: "=="
+      value: true
+    then_steps:
+      # Issue Response Path
+      - id: classify_issue
+        type: agent_task
+        name: Classify Issue
+        agent: operations_analyst
+        task: |
+          Classify detected issues:
+          - Severity (Critical/High/Medium/Low)
+          - Type (Performance/Availability/Security/Capacity)
+          - Impact scope
+          - Urgency
+          - Root cause hypothesis
+        requires: [system-analysis.md]
+        creates: issue-classification.md
+      
+      - id: incident_decision
+        type: conditional
+        name: Determine If Incident
+        condition:
+          field: step_classify_issue.output.severity
+          operator: in
+          value: [Critical, High]
+        then_steps:
+          # Incident Management Path
+          - id: declare_incident
+            type: agent_task
+            name: Declare Incident
+            agent: incident_manager
+            task: |
+              Declare incident:
+              - Create incident ticket
+              - Notify stakeholders
+              - Establish command center
+              - Begin incident log
+              - Set communication cadence
+            requires: [issue-classification.md]
+            creates: incident-declaration.md
+          
+          - id: incident_response
+            type: parallel
+            name: Incident Response
+            parallel_steps:
+              - id: immediate_mitigation
+                type: agent_task
+                name: Immediate Mitigation
+                agent: reliability_engineer
+                task: |
+                  Apply immediate mitigation:
+                  - Implement workarounds
+                  - Scale resources
+                  - Redirect traffic
+                  - Enable circuit breakers
+                requires: [incident-declaration.md]
+                creates: mitigation-actions.md
+              
+              - id: root_cause_analysis
+                type: agent_task
+                name: Root Cause Analysis
+                agent: operations_analyst
+                task: |
+                  Investigate root cause:
+                  - Analyze logs
+                  - Review changes
+                  - Check dependencies
+                  - Correlate events
+                requires: [incident-declaration.md]
+                creates: root-cause-analysis.md
+          
+          - id: implement_fix
+            type: agent_task
+            name: Implement Fix
+            agent: reliability_engineer
+            task: |
+              Implement permanent fix:
+              - Develop solution
+              - Test in staging
+              - Deploy fix
+              - Verify resolution
+            requires: [root-cause-analysis.md]
+            creates: fix-implementation.md
+          
+          - id: incident_closure
+            type: agent_task
+            name: Close Incident
+            agent: incident_manager
+            task: |
+              Close incident:
+              - Verify resolution
+              - Document timeline
+              - Calculate impact
+              - Update status page
+              - Schedule post-mortem
+            requires: [fix-implementation.md]
+            creates: incident-closure.md
+        else_steps:
+          # Non-Incident Issue Path
+          - id: create_optimization_plan
+            type: agent_task
+            name: Create Optimization Plan
+            agent: performance_engineer
+            task: |
+              Plan optimization:
+              - Identify optimization opportunities
+              - Estimate impact
+              - Define implementation steps
+              - Set success metrics
+            requires: [issue-classification.md]
+            creates: optimization-plan.md
+    else_steps:
+      # No Issues Path - Routine Optimization
+      - id: routine_optimization
+        type: agent_task
+        name: Routine Optimization
+        agent: performance_engineer
+        task: |
+          Perform routine optimizations:
+          - Clean up logs
+          - Optimize queries
+          - Update indices
+          - Compress data
+          - Archive old records
+        creates: routine-optimization.md
+        optional: true
+
+  # Phase 4: Capacity Planning
+  - id: capacity_planning
+    type: agent_task
+    name: Capacity Planning
+    description: Analyze capacity trends and plan for growth
+    agent: operations_analyst
+    task: |
+      Perform capacity planning:
+      - Analyze growth trends
+      - Forecast resource needs
+      - Identify bottlenecks
+      - Plan scaling strategy
+      - Budget requirements
+    requires: [performance-metrics.md]
+    creates: capacity-plan.md
+    optional: true
+    timeout: 1800
+
+  # Phase 5: Maintenance Planning
+  - id: maintenance_check
+    type: conditional
+    name: Check Maintenance Needs
+    condition:
+      field: workflow.day_of_week
+      operator: "=="
+      value: 1  # Monday
+    then_steps:
+      - id: plan_maintenance
+        type: agent_task
+        name: Plan Weekly Maintenance
+        agent: operations_analyst
+        task: |
+          Plan maintenance activities:
+          - Security patches
+          - Software updates
+          - Database maintenance
+          - Certificate renewals
+          - Backup verification
+        creates: maintenance-plan.md
+      
+      - id: schedule_maintenance
+        type: agent_task
+        name: Schedule Maintenance Window
+        agent: operations_analyst
+        task: |
+          Schedule maintenance:
+          - Identify low-traffic window
+          - Notify stakeholders
+          - Prepare rollback plan
+          - Update status page
+        requires: [maintenance-plan.md]
+        creates: maintenance-schedule.md
+
+  # Phase 6: Compliance and Reporting
+  - id: compliance_check
+    type: agent_task
+    name: Compliance Check
+    description: Verify compliance with policies and regulations
+    agent: security_analyst
+    task: |
+      Check compliance:
+      - Security policies
+      - Data retention
+      - Access controls
+      - Audit requirements
+      - Regulatory standards
+    creates: compliance-report.md
+    optional: true
+    timeout: 2400
+
+  # Phase 7: Cost Optimization
+  - id: cost_analysis
+    type: agent_task
+    name: Cost Analysis
+    description: Analyze and optimize operational costs
+    agent: operations_analyst
+    task: |
+      Analyze costs:
+      - Resource utilization
+      - Cloud costs
+      - License usage
+      - Identify waste
+      - Recommend optimizations
+    creates: cost-analysis.md
+    optional: true
+
+  - id: cost_optimization
+    type: conditional
+    name: Apply Cost Optimizations
+    condition:
+      field: step_cost_analysis.output.savings_potential
+      operator: ">"
+      value: 1000
+    then_steps:
+      - id: implement_cost_savings
+        type: agent_task
+        name: Implement Cost Savings
+        agent: operations_analyst
+        task: |
+          Implement cost optimizations:
+          - Right-size resources
+          - Terminate unused services
+          - Optimize storage
+          - Negotiate contracts
+        requires: [cost-analysis.md]
+        creates: cost-savings.md
+
+  # Phase 8: Quality Gates
+  - id: operations_quality_gate
+    type: quality_gate
+    name: Operations Quality Gate
+    description: Verify operational standards are met
+    checklist: operations-quality-checklist
+    requires: [system-analysis.md]
+    gate_type: PASS
+    optional: true
+
+  # Phase 9: Reporting
+  - id: generate_reports
+    type: parallel
+    name: Generate Operations Reports
+    parallel_steps:
+      - id: sla_report
+        type: agent_task
+        name: Generate SLA Report
+        agent: operations_analyst
+        task: |
+          Generate SLA report:
+          - Uptime percentages
+          - Response times
+          - Incident counts
+          - SLA compliance
+        creates: sla-report.md
+        optional: true
+      
+      - id: performance_report
+        type: agent_task
+        name: Generate Performance Report
+        agent: performance_engineer
+        task: |
+          Generate performance report:
+          - Performance trends
+          - Optimization results
+          - Capacity utilization
+          - Bottleneck analysis
+        creates: performance-report.md
+        optional: true
+      
+      - id: security_report
+        type: agent_task
+        name: Generate Security Report
+        agent: security_analyst
+        task: |
+          Generate security report:
+          - Security events
+          - Vulnerability status
+          - Compliance status
+          - Risk assessment
+        creates: security-report.md
+        optional: true
+
+  # Phase 10: Continuous Improvement
+  - id: improvement_analysis
+    type: agent_task
+    name: Identify Improvements
+    description: Analyze operations for improvement opportunities
+    agent: operations_analyst
+    task: |
+      Identify improvements:
+      - Process inefficiencies
+      - Automation opportunities
+      - Tool enhancements
+      - Training needs
+      - Documentation gaps
+    requires: [sla-report.md, performance-report.md, security-report.md]
+    creates: improvement-opportunities.md
+    optional: true
+
+  - id: post_mortem
+    type: conditional
+    name: Conduct Post-Mortem
+    condition:
+      field: documents.incident-closure.md
+      operator: exists
+      value: null
+    then_steps:
+      - id: conduct_post_mortem
+        type: agent_task
+        name: Conduct Post-Mortem
+        agent: incident_manager
+        task: |
+          Conduct post-mortem:
+          - Timeline reconstruction
+          - Contributing factors
+          - What went well
+          - What went wrong
+          - Action items
+          - Lessons learned
+        requires: [incident-closure.md]
+        creates: post-mortem.md
+      
+      - id: update_runbooks
+        type: agent_task
+        name: Update Runbooks
+        agent: reliability_engineer
+        task: |
+          Update runbooks:
+          - Add new procedures
+          - Update existing steps
+          - Document workarounds
+          - Improve automation
+        requires: [post-mortem.md]
+        creates: runbook-updates.md
+        optional: true
+
+# Workflow dependencies and metadata
+dependencies:
+  checklists:
+    - operations-quality-checklist
+    - incident-response-checklist
+    - maintenance-checklist
+  templates:
+    - incident-template
+    - maintenance-template
+    - report-template
+  data:
+    - monitoring-thresholds
+    - escalation-matrix
+    - runbooks
+    - sla-definitions

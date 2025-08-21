@@ -372,21 +372,6 @@ Transform Agent-Zero into a framework for autonomous AI companies using agile me
 
 ### 📋 BACKLOG
 
-- [ ] **TASK-305**: Create Workflow Definitions
-  - **Description**: Implement standard workflows
-  - **Acceptance Criteria**:
-    - Create greenfield development workflow
-    - Create brownfield development workflow
-    - Create customer service workflow
-    - Create operations workflow
-  - **Dependencies**: TASK-301
-  - **Files to Create**:
-    - `/workflows/greenfield_development.yaml`
-    - `/workflows/brownfield_development.yaml`
-    - `/workflows/customer_service.yaml`
-    - `/workflows/operations.yaml`
-  - **Priority**: MEDIUM
-
 - [ ] **TASK-306**: Implement Workflow Monitoring
   - **Description**: Create workflow tracking and visualization
   - **Acceptance Criteria**:
@@ -404,6 +389,28 @@ Transform Agent-Zero into a framework for autonomous AI companies using agile me
 - [ ] (Tasks move here when work begins)
 
 ### ✅ DONE
+- [x] **TASK-305**: Create Workflow Definitions (Completed: 2025-08-21)
+  - **Description**: Implement standard workflows
+  - **Acceptance Criteria**: ✅ All met
+    - ✅ Created greenfield development workflow (14 steps, 6 agents)
+    - ✅ Created brownfield development workflow (10 steps, 5 agents)
+    - ✅ Created customer service workflow (10 steps, 4 agents)
+    - ✅ Created operations workflow (12 steps, 5 agents)
+  - **Dependencies**: TASK-301
+  - **Files Created**:
+    - `/workflows/greenfield_development.yaml` - Complete greenfield development workflow
+    - `/workflows/brownfield_development.yaml` - Brownfield maintenance workflow
+    - `/workflows/customer_service.yaml` - Customer service automation workflow
+    - `/workflows/operations.yaml` - Operations monitoring and management workflow
+  - **Priority**: MEDIUM
+  - **Additional Achievements**:
+    - Implemented BMAD-compatible workflow structures
+    - Created comprehensive agent role definitions
+    - Added quality gates and conditional branching
+    - Included parallel execution for efficiency
+    - Validated all workflows with YAML parser
+    - Tested compatibility with workflow engine
+
 - [x] **TASK-304**: Build Inter-Agent Communication (Completed: 2025-08-21)
   - **Description**: Enhance A2A protocol for team communication
   - **Acceptance Criteria**: ✅ All met
@@ -871,9 +878,9 @@ Transform Agent-Zero into a framework for autonomous AI companies using agile me
 
 ### Overall Progress
 - **Total Tasks**: 75
-- **Completed**: 20 (Phase 0: 4, Phase 1: 6, Phase 2: 6, Phase 3: 4)
+- **Completed**: 21 (Phase 0: 4, Phase 1: 6, Phase 2: 6, Phase 3: 5)
 - **In Progress**: 0
-- **Remaining**: 55
+- **Remaining**: 54
 
 ### Phase Status
 | Phase | Status | Progress | Target Date |
@@ -881,7 +888,7 @@ Transform Agent-Zero into a framework for autonomous AI companies using agile me
 | Phase 0 | ✅ Completed | 100% (4/4) | Week 1 |
 | Phase 1 | ✅ Completed | 100% (6/6) | Week 2-3 |
 | Phase 2 | ✅ Completed | 100% (6/6) | Week 4-5 |
-| Phase 3 | 🚧 In Progress | 67% (4/6) | Week 6-7 |
+| Phase 3 | 🚧 In Progress | 83% (5/6) | Week 6-7 |
 | Phase 4 | ⏸️ Not Started | 0% | Week 8-9 |
 | Phase 5 | ⏸️ Not Started | 0% | Week 10-11 |
 | Phase 6 | ⏸️ Not Started | 0% | Week 12-13 |
