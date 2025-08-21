@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KPI Dashboard - Agile AI Company</title>
+    
+    <!-- Chart.js for visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        .metric-card {
+            @apply bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow;
+        }
+        
+        .metric-value {
+            @apply text-3xl font-bold;
+        }
+        
+        .metric-label {
+            @apply text-gray-600 text-sm uppercase tracking-wide;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+        
+        .status-indicator {
+            @apply inline-block w-3 h-3 rounded-full;
+        }
+        
+        .status-green { @apply bg-green-500; }
+        .status-yellow { @apply bg-yellow-500; }
+        .status-red { @apply bg-red-500; }
+        
+        .loading-spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .view-tab {
+            @apply px-4 py-2 text-sm font-medium rounded-t-lg cursor-pointer transition-colors;
+        }
+        
+        .view-tab.active {
+            @apply bg-blue-500 text-white;
+        }
+        
+        .view-tab:not(.active) {
+            @apply bg-gray-200 text-gray-700 hover:bg-gray-300;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <h1 class="text-2xl font-bold text-gray-900">KPI Dashboard</h1>
+                <div class="flex items-center space-x-4">
+                    <!-- Team Selector -->
+                    <select id="teamSelector" class="rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        <option value="all">All Teams</option>
+                        <option value="customer-value">Customer Value</option>
+                        <option value="operations">Operations</option>
+                        <option value="innovation">Innovation Lab</option>
+                    </select>
+                    
+                    <!-- Time Range Selector -->
+                    <select id="timeRangeSelector" class="rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        <option value="day">Today</option>
+                        <option value="week" selected>This Week</option>
+                        <option value="sprint">Current Sprint</option>
+                        <option value="month">This Month</option>
+                        <option value="quarter">This Quarter</option>
+                    </select>
+                    
+                    <!-- Export Button -->
+                    <button id="exportBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        Export
+                    </button>
+                    
+                    <!-- Real-time Status -->
+                    <div class="flex items-center">
+                        <span id="connectionStatus" class="status-indicator status-red"></span>
+                        <span class="ml-2 text-sm text-gray-600">Live Updates</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- View Tabs -->
+            <div class="flex space-x-2 pb-2">
+                <button class="view-tab active" data-view="executive">Executive View</button>
+                <button class="view-tab" data-view="team">Team Performance</button>
+                <button class="view-tab" data-view="velocity">Velocity</button>
+                <button class="view-tab" data-view="quality">Quality</button>
+                <button class="view-tab" data-view="efficiency">Efficiency</button>
+                <button class="view-tab" data-view="workflow">Workflow</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Loading Indicator -->
+        <div id="loadingIndicator" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
+            <div class="loading-spinner"></div>
+        </div>
+        
+        <!-- Executive View -->
+        <div id="executiveView" class="view-content">
+            <!-- Key Metrics Row -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="metric-card">
+                    <div class="metric-label">Team Velocity</div>
+                    <div class="metric-value text-blue-600" id="velocityMetric">--</div>
+                    <div class="text-sm text-gray-500 mt-2">
+                        <span id="velocityTrend">--</span>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-label">Quality Score</div>
+                    <div class="metric-value text-green-600" id="qualityMetric">--</div>
+                    <div class="text-sm text-gray-500 mt-2">
+                        <span id="qualityTrend">--</span>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-label">Efficiency</div>
+                    <div class="metric-value text-purple-600" id="efficiencyMetric">--</div>
+                    <div class="text-sm text-gray-500 mt-2">
+                        <span id="efficiencyTrend">--</span>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-label">Team Health</div>
+                    <div class="metric-value text-orange-600" id="healthMetric">--</div>
+                    <div class="text-sm text-gray-500 mt-2">
+                        <span id="healthTrend">--</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Charts Row -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold mb-4">Velocity Trend</h3>
+                    <div class="chart-container">
+                        <canvas id="velocityChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold mb-4">Quality Gates</h3>
+                    <div class="chart-container">
+                        <canvas id="qualityChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold mb-4">Sprint Burndown</h3>
+                    <div class="chart-container">
+                        <canvas id="burndownChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold mb-4">Resource Utilization</h3>
+                    <div class="chart-container">
+                        <canvas id="resourceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Team Performance View -->
+        <div id="teamView" class="view-content hidden">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-lg font-semibold mb-4">Team Performance Metrics</h3>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Team</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Velocity</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quality</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Efficiency</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Health Score</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="teamTableBody" class="bg-white divide-y divide-gray-200">
+                            <!-- Team rows will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Velocity View -->
+        <div id="velocityView" class="view-content hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold mb-4">Velocity Analysis</h3>
+                    <div class="chart-container">
+                        <canvas id="velocityAnalysisChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold mb-4">Velocity Prediction</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <span class="text-sm text-gray-600">Next Sprint Prediction:</span>
+                            <span class="text-2xl font-bold text-blue-600 ml-2" id="velocityPrediction">--</span>
+                        </div>
+                        <div>
+                            <span class="text-sm text-gray-600">Confidence Level:</span>
+                            <span class="text-lg font-semibold ml-2" id="predictionConfidence">--</span>
+                        </div>
+                        <div>
+                            <span class="text-sm text-gray-600">Recommended Capacity:</span>
+                            <span class="text-lg font-semibold ml-2" id="recommendedCapacity">--</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Quality View -->
+        <div id="qualityView" class="view-content hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                <div class="metric-card">
+                    <div class="metric-label">Gates Passed</div>
+                    <div class="metric-value text-green-600" id="gatesPassedMetric">--</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Gates Failed</div>
+                    <div class="metric-value text-red-600" id="gatesFailedMetric">--</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Open Issues</div>
+                    <div class="metric-value text-orange-600" id="openIssuesMetric">--</div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-lg font-semibold mb-4">Quality Gate History</h3>
+                <div class="chart-container">
+                    <canvas id="qualityHistoryChart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Efficiency View -->
+        <div id="efficiencyView" class="view-content hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold mb-4">Efficiency Breakdown</h3>
+                    <div class="chart-container">
+                        <canvas id="efficiencyBreakdownChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-semibold mb-4">Bottlenecks</h3>
+                    <div id="bottlenecksList" class="space-y-3">
+                        <!-- Bottlenecks will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Workflow View -->
+        <div id="workflowView" class="view-content hidden">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-lg font-semibold mb-4">Active Workflows</h3>
+                <div id="workflowList" class="space-y-4">
+                    <!-- Workflow items will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- JavaScript -->
+    <script>
+        // Configuration
+        const API_BASE_URL = 'http://localhost:8003';
+        const WS_URL = 'ws://localhost:8003/ws';
+        
+        // Global variables
+        let ws = null;
+        let charts = {};
+        let currentView = 'executive';
+        let currentTeam = 'all';
+        let currentTimeRange = 'week';
+        
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeWebSocket();
+            initializeEventListeners();
+            initializeCharts();
+            loadDashboardData();
+        });
+        
+        // Initialize WebSocket connection
+        function initializeWebSocket() {
+            ws = new WebSocket(WS_URL);
+            
+            ws.onopen = function() {
+                console.log('WebSocket connected');
+                updateConnectionStatus(true);
+                
+                // Subscribe to updates
+                ws.send(JSON.stringify({
+                    type: 'subscribe',
+                    category: 'all',
+                    team_id: currentTeam
+                }));
+            };
+            
+            ws.onmessage = function(event) {
+                const data = JSON.parse(event.data);
+                handleWebSocketMessage(data);
+            };
+            
+            ws.onerror = function(error) {
+                console.error('WebSocket error:', error);
+                updateConnectionStatus(false);
+            };
+            
+            ws.onclose = function() {
+                console.log('WebSocket disconnected');
+                updateConnectionStatus(false);
+                
+                // Attempt to reconnect after 5 seconds
+                setTimeout(initializeWebSocket, 5000);
+            };
+        }
+        
+        // Handle WebSocket messages
+        function handleWebSocketMessage(data) {
+            if (data.type === 'metric_update') {
+                updateMetrics(data.data);
+            } else if (data.type === 'periodic_update') {
+                updatePeriodicMetrics(data.data);
+            }
+        }
+        
+        // Initialize event listeners
+        function initializeEventListeners() {
+            // View tabs
+            document.querySelectorAll('.view-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    switchView(this.dataset.view);
+                });
+            });
+            
+            // Team selector
+            document.getElementById('teamSelector').addEventListener('change', function() {
+                currentTeam = this.value;
+                loadDashboardData();
+            });
+            
+            // Time range selector
+            document.getElementById('timeRangeSelector').addEventListener('change', function() {
+                currentTimeRange = this.value;
+                loadDashboardData();
+            });
+            
+            // Export button
+            document.getElementById('exportBtn').addEventListener('click', function() {
+                exportDashboard();
+            });
+        }
+        
+        // Initialize charts
+        function initializeCharts() {
+            // Velocity trend chart
+            const velocityCtx = document.getElementById('velocityChart').getContext('2d');
+            charts.velocity = new Chart(velocityCtx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Velocity',
+                        data: [],
+                        borderColor: 'rgb(59, 130, 246)',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+            
+            // Quality gates chart
+            const qualityCtx = document.getElementById('qualityChart').getContext('2d');
+            charts.quality = new Chart(qualityCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Passed', 'Failed', 'Concerns', 'Waived'],
+                    datasets: [{
+                        data: [0, 0, 0, 0],
+                        backgroundColor: [
+                            'rgb(34, 197, 94)',
+                            'rgb(239, 68, 68)',
+                            'rgb(251, 146, 60)',
+                            'rgb(156, 163, 175)'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+            
+            // Burndown chart
+            const burndownCtx = document.getElementById('burndownChart').getContext('2d');
+            charts.burndown = new Chart(burndownCtx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Ideal',
+                        data: [],
+                        borderColor: 'rgb(156, 163, 175)',
+                        borderDash: [5, 5],
+                        fill: false
+                    }, {
+                        label: 'Actual',
+                        data: [],
+                        borderColor: 'rgb(59, 130, 246)',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+            
+            // Resource utilization chart
+            const resourceCtx = document.getElementById('resourceChart').getContext('2d');
+            charts.resource = new Chart(resourceCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['CPU', 'Memory', 'Disk I/O', 'Network'],
+                    datasets: [{
+                        label: 'Utilization %',
+                        data: [0, 0, 0, 0],
+                        backgroundColor: 'rgba(147, 51, 234, 0.5)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Load dashboard data
+        async function loadDashboardData() {
+            showLoading(true);
+            
+            try {
+                // Fetch metrics based on current view
+                const response = await fetch(
+                    `${API_BASE_URL}/metrics/all?time_range=${currentTimeRange}&team_id=${currentTeam}`
+                );
+                const data = await response.json();
+                
+                if (data.status === 'success') {
+                    updateDashboard(data.data);
+                }
+            } catch (error) {
+                console.error('Error loading dashboard data:', error);
+            } finally {
+                showLoading(false);
+            }
+        }
+        
+        // Update dashboard with new data
+        function updateDashboard(data) {
+            // Update key metrics
+            updateKeyMetrics(data);
+            
+            // Update charts
+            updateCharts(data);
+            
+            // Update view-specific content
+            updateViewContent(data);
+        }
+        
+        // Update key metrics
+        function updateKeyMetrics(data) {
+            // Velocity
+            if (data.velocity) {
+                document.getElementById('velocityMetric').textContent = 
+                    data.velocity.current || '--';
+                document.getElementById('velocityTrend').textContent = 
+                    formatTrend(data.velocity.trend);
+            }
+            
+            // Quality
+            if (data.quality) {
+                const qualityScore = calculateQualityScore(data.quality);
+                document.getElementById('qualityMetric').textContent = 
+                    qualityScore + '%';
+                document.getElementById('qualityTrend').textContent = 
+                    formatTrend(data.quality.trend);
+            }
+            
+            // Efficiency
+            if (data.efficiency) {
+                document.getElementById('efficiencyMetric').textContent = 
+                    Math.round(data.efficiency.score * 100) + '%';
+                document.getElementById('efficiencyTrend').textContent = 
+                    formatTrend(data.efficiency.trend);
+            }
+            
+            // Team Health
+            if (data.team && data.team.health_score) {
+                document.getElementById('healthMetric').textContent = 
+                    data.team.health_score + '%';
+                document.getElementById('healthTrend').textContent = 
+                    formatTrend(data.team.health_trend);
+            }
+        }
+        
+        // Update charts with new data
+        function updateCharts(data) {
+            // Update velocity chart
+            if (data.velocity && data.velocity.trend) {
+                const trend = data.velocity.trend;
+                charts.velocity.data.labels = trend.map(t => t.sprint);
+                charts.velocity.data.datasets[0].data = trend.map(t => t.velocity);
+                charts.velocity.update();
+            }
+            
+            // Update quality chart
+            if (data.quality && data.quality.gates) {
+                const gates = data.quality.gates;
+                charts.quality.data.datasets[0].data = [
+                    gates.passed || 0,
+                    gates.failed || 0,
+                    gates.concerns || 0,
+                    gates.waived || 0
+                ];
+                charts.quality.update();
+            }
+            
+            // Update resource chart
+            if (data.performance && data.performance.resource_usage) {
+                const resources = data.performance.resource_usage;
+                charts.resource.data.datasets[0].data = [
+                    resources.cpu_percent || 0,
+                    resources.memory_percent || 0,
+                    resources.disk_io || 0,
+                    resources.network || 0
+                ];
+                charts.resource.update();
+            }
+        }
+        
+        // Update view-specific content
+        function updateViewContent(data) {
+            switch (currentView) {
+                case 'team':
+                    updateTeamView(data);
+                    break;
+                case 'velocity':
+                    updateVelocityView(data);
+                    break;
+                case 'quality':
+                    updateQualityView(data);
+                    break;
+                case 'efficiency':
+                    updateEfficiencyView(data);
+                    break;
+                case 'workflow':
+                    updateWorkflowView(data);
+                    break;
+            }
+        }
+        
+        // Switch view
+        function switchView(view) {
+            // Update active tab
+            document.querySelectorAll('.view-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelector(`[data-view="${view}"]`).classList.add('active');
+            
+            // Hide all views
+            document.querySelectorAll('.view-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            
+            // Show selected view
+            document.getElementById(view + 'View').classList.remove('hidden');
+            
+            currentView = view;
+            loadDashboardData();
+        }
+        
+        // Update connection status indicator
+        function updateConnectionStatus(connected) {
+            const indicator = document.getElementById('connectionStatus');
+            if (connected) {
+                indicator.classList.remove('status-red');
+                indicator.classList.add('status-green');
+            } else {
+                indicator.classList.remove('status-green');
+                indicator.classList.add('status-red');
+            }
+        }
+        
+        // Show/hide loading indicator
+        function showLoading(show) {
+            const indicator = document.getElementById('loadingIndicator');
+            if (show) {
+                indicator.classList.remove('hidden');
+            } else {
+                indicator.classList.add('hidden');
+            }
+        }
+        
+        // Export dashboard
+        async function exportDashboard() {
+            const format = prompt('Export format (json, csv, markdown, html):', 'markdown');
+            if (!format) return;
+            
+            try {
+                const response = await fetch(
+                    `${API_BASE_URL}/export/${format}?category=all&time_range=${currentTimeRange}`
+                );
+                
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `kpi-dashboard.${format}`;
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    document.body.removeChild(a);
+                }
+            } catch (error) {
+                console.error('Error exporting dashboard:', error);
+                alert('Failed to export dashboard');
+            }
+        }
+        
+        // Helper functions
+        function calculateQualityScore(quality) {
+            if (!quality || !quality.gates) return 0;
+            const total = quality.gates.passed + quality.gates.failed;
+            if (total === 0) return 100;
+            return Math.round((quality.gates.passed / total) * 100);
+        }
+        
+        function formatTrend(trend) {
+            if (!trend) return '→ Stable';
+            if (trend > 0) return `↑ ${Math.abs(trend)}%`;
+            if (trend < 0) return `↓ ${Math.abs(trend)}%`;
+            return '→ Stable';
+        }
+        
+        // View-specific update functions
+        function updateTeamView(data) {
+            // Implementation for team view updates
+            const tbody = document.getElementById('teamTableBody');
+            tbody.innerHTML = ''; // Clear existing rows
+            
+            // Add team rows (placeholder data)
+            const teams = [
+                { name: 'Customer Value', velocity: 45, quality: 92, efficiency: 87, health: 89 },
+                { name: 'Operations', velocity: 38, quality: 95, efficiency: 91, health: 93 },
+                { name: 'Innovation Lab', velocity: 52, quality: 88, efficiency: 82, health: 85 }
+            ];
+            
+            teams.forEach(team => {
+                const row = tbody.insertRow();
+                row.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap">${team.name}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">${team.velocity}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">${team.quality}%</td>
+                    <td class="px-6 py-4 whitespace-nowrap">${team.efficiency}%</td>
+                    <td class="px-6 py-4 whitespace-nowrap">${team.health}%</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="status-indicator status-green"></span>
+                        <span class="ml-2">Active</span>
+                    </td>
+                `;
+            });
+        }
+        
+        function updateVelocityView(data) {
+            if (data.velocity) {
+                document.getElementById('velocityPrediction').textContent = 
+                    data.velocity.prediction || '--';
+                document.getElementById('predictionConfidence').textContent = 
+                    data.velocity.confidence || '--';
+                document.getElementById('recommendedCapacity').textContent = 
+                    data.velocity.capacity || '--';
+            }
+        }
+        
+        function updateQualityView(data) {
+            if (data.quality) {
+                document.getElementById('gatesPassedMetric').textContent = 
+                    data.quality.gates?.passed || 0;
+                document.getElementById('gatesFailedMetric').textContent = 
+                    data.quality.gates?.failed || 0;
+                document.getElementById('openIssuesMetric').textContent = 
+                    data.quality.open_issues || 0;
+            }
+        }
+        
+        function updateEfficiencyView(data) {
+            if (data.efficiency && data.efficiency.breakdown) {
+                const bottlenecksList = document.getElementById('bottlenecksList');
+                bottlenecksList.innerHTML = '';
+                
+                Object.entries(data.efficiency.breakdown).forEach(([key, value]) => {
+                    const item = document.createElement('div');
+                    item.className = 'flex justify-between items-center p-3 bg-gray-50 rounded';
+                    item.innerHTML = `
+                        <span class="font-medium">${key}</span>
+                        <span class="text-sm ${value > 80 ? 'text-red-600' : 'text-green-600'}">
+                            ${value}%
+                        </span>
+                    `;
+                    bottlenecksList.appendChild(item);
+                });
+            }
+        }
+        
+        function updateWorkflowView(data) {
+            if (data.workflow) {
+                const workflowList = document.getElementById('workflowList');
+                workflowList.innerHTML = '';
+                
+                // Add workflow items (placeholder)
+                const workflows = data.workflow.active || [];
+                workflows.forEach(workflow => {
+                    const item = document.createElement('div');
+                    item.className = 'border rounded-lg p-4';
+                    item.innerHTML = `
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="font-semibold">${workflow.name}</h4>
+                                <p class="text-sm text-gray-600">${workflow.status}</p>
+                            </div>
+                            <span class="status-indicator ${workflow.active ? 'status-green' : 'status-yellow'}"></span>
+                        </div>
+                        <div class="mt-2">
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-blue-600 h-2 rounded-full" style="width: ${workflow.progress}%"></div>
+                            </div>
+                        </div>
+                    `;
+                    workflowList.appendChild(item);
+                });
+            }
+        }
+    </script>
+</body>
+</html>
