@@ -1,0 +1,18 @@
+[
+  {
+    "learning_id": "test_learning_001",
+    "quality_score": 0.6300000000000001,
+    "impact_score": 0.8,
+    "application_rate": 0.2,
+    "validation_score": 0.9,
+    "reuse_count": 2,
+    "propagation_speed": 2.0,
+    "retention_rate": 1.0,
+    "metadata": {
+      "team_id": "team_alpha",
+      "type": "technical",
+      "priority": "high",
+      "timestamp": "2025-08-21T21:09:32.014181"
+    }
+  }
+]

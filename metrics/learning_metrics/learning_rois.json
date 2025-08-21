@@ -1,0 +1,20 @@
+[
+  {
+    "learning_id": "test_learning_001",
+    "investment_cost": 300.0,
+    "value_generated": 2200.0,
+    "roi_percentage": 633.3333333333333,
+    "payback_period": 353454.545455,
+    "affected_teams": 2,
+    "prevented_issues": 2,
+    "time_saved": 20.0,
+    "quality_improvement": 0.6300000000000001,
+    "metadata": {
+      "calculated_at": "2025-08-21T21:09:32.017055",
+      "teams": [
+        "team_beta",
+        "team_gamma"
+      ]
+    }
+  }
+]

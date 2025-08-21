@@ -1,0 +1,24 @@
+[
+  {
+    "team_id": "team_alpha",
+    "total_learnings": 1,
+    "learning_frequency": 0.0,
+    "avg_quality_score": 0.6300000000000001,
+    "avg_impact_score": 0.8,
+    "learning_velocity": 0.0,
+    "knowledge_retention": 1.0,
+    "pattern_recognition": 0.5,
+    "application_effectiveness": 0.5,
+    "learning_types": {
+      "technical": 1
+    },
+    "strengths": [
+      "High impact discoveries"
+    ],
+    "weaknesses": [
+      "Infrequent learning capture",
+      "Limited learning diversity"
+    ],
+    "metadata": {}
+  }
+]

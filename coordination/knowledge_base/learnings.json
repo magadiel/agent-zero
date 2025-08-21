@@ -1,0 +1,77 @@
+[
+  {
+    "id": "c78622ec9e38",
+    "team_id": "team_alpha",
+    "type": "technical",
+    "priority": "high",
+    "title": "Database optimization technique",
+    "description": "Using connection pooling reduced query latency by 40%",
+    "context": {
+      "area": "backend",
+      "technology": "postgresql"
+    },
+    "tags": [
+      "database",
+      "performance",
+      "optimization"
+    ],
+    "source": "sprint_retrospective",
+    "timestamp": "2025-08-21T21:09:17.028154",
+    "impact_score": 0.8,
+    "confidence": 0.8,
+    "validated": false,
+    "applied_count": 0,
+    "related_learnings": [],
+    "metadata": {}
+  },
+  {
+    "id": "23f139b2c6a8",
+    "team_id": "team_beta",
+    "type": "failure",
+    "priority": "critical",
+    "title": "Memory leak in worker process",
+    "description": "Unclosed connections caused memory leak in background workers",
+    "context": {
+      "area": "backend",
+      "component": "worker"
+    },
+    "tags": [
+      "memory",
+      "bug",
+      "performance"
+    ],
+    "source": "incident",
+    "timestamp": "2025-08-16T21:09:17.028163",
+    "impact_score": 0.9,
+    "confidence": 0.8,
+    "validated": false,
+    "applied_count": 0,
+    "related_learnings": [],
+    "metadata": {}
+  },
+  {
+    "id": "ca78d8502225",
+    "team_id": "team_gamma",
+    "type": "success",
+    "priority": "medium",
+    "title": "Agile adoption success",
+    "description": "Daily standups improved team communication and reduced blockers",
+    "context": {
+      "area": "process",
+      "methodology": "scrum"
+    },
+    "tags": [
+      "agile",
+      "communication",
+      "process"
+    ],
+    "source": "team_survey",
+    "timestamp": "2025-08-11T21:09:17.028169",
+    "impact_score": 0.7,
+    "confidence": 0.8,
+    "validated": false,
+    "applied_count": 0,
+    "related_learnings": [],
+    "metadata": {}
+  }
+]
