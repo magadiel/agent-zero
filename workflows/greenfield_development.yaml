@@ -1,0 +1,289 @@
+id: greenfield-development
+name: Greenfield Software Development Workflow
+description: Complete workflow for developing new software from scratch
+version: 1.0.0
+author: Agent-Zero Team
+tags: [development, greenfield, agile]
+
+# Agent configurations
+agents:
+  analyst:
+    profile: analyst
+    description: Business analyst for requirements gathering
+  product_manager:
+    profile: product_manager
+    description: Product manager for PRD creation
+  architect:
+    profile: architect
+    description: System architect for technical design
+  scrum_master:
+    profile: scrum_master
+    description: Scrum master for story creation
+  developer:
+    profile: developer
+    description: Developer for implementation
+  qa_engineer:
+    profile: qa_engineer
+    description: QA engineer for testing
+
+# Workflow configuration
+max_parallel_agents: 5
+default_timeout: 3600
+allow_partial_success: false
+
+# Workflow steps
+steps:
+  # Phase 1: Discovery & Planning
+  - id: requirements_gathering
+    type: agent_task
+    name: Gather Requirements
+    description: Analyze business needs and gather requirements
+    agent: analyst
+    task: |
+      Analyze the project requirements and create a comprehensive project brief.
+      Include:
+      - Business objectives
+      - Target users
+      - Key features
+      - Success metrics
+      - Constraints and assumptions
+    creates: project-brief.md
+    optional: false
+
+  - id: market_research
+    type: parallel
+    name: Parallel Research Activities
+    parallel_steps:
+      - id: competitive_analysis
+        type: agent_task
+        name: Competitive Analysis
+        agent: analyst
+        task: Research competitive products and identify differentiators
+        creates: competitive-analysis.md
+        optional: true
+      
+      - id: user_research
+        type: agent_task
+        name: User Research
+        agent: analyst
+        task: Conduct user research and identify pain points
+        creates: user-research.md
+        optional: true
+
+  # Phase 2: Product Definition
+  - id: create_prd
+    type: agent_task
+    name: Create Product Requirements Document
+    description: Define product specifications and requirements
+    agent: product_manager
+    task: |
+      Create a comprehensive Product Requirements Document (PRD) based on:
+      - Project brief
+      - Market research (if available)
+      - User research (if available)
+      
+      Include all functional and non-functional requirements.
+    requires: [project-brief.md]
+    creates: prd.md
+    timeout: 1800
+
+  - id: prd_review_gate
+    type: quality_gate
+    name: PRD Quality Review
+    description: Validate PRD completeness and quality
+    checklist: prd-review-checklist
+    requires: [prd.md]
+    gate_type: PASS
+    optional: false
+
+  # Phase 3: Technical Design
+  - id: architecture_design
+    type: agent_task
+    name: Design System Architecture
+    description: Create technical architecture and design
+    agent: architect
+    task: |
+      Design the system architecture based on the PRD.
+      Include:
+      - High-level architecture diagram
+      - Component design
+      - Data models
+      - API specifications
+      - Technology stack
+      - Security considerations
+      - Scalability plan
+    requires: [prd.md]
+    creates: architecture.md
+    timeout: 2400
+
+  - id: architecture_review
+    type: quality_gate
+    name: Architecture Review
+    description: Validate architecture design
+    checklist: architecture-review-checklist
+    requires: [architecture.md]
+    gate_type: PASS
+
+  # Phase 4: Sprint Planning
+  - id: epic_creation
+    type: agent_task
+    name: Create Epics
+    description: Break down PRD into epics
+    agent: scrum_master
+    task: |
+      Break down the PRD into manageable epics.
+      Each epic should be:
+      - Self-contained
+      - Deliverable in 2-4 sprints
+      - Aligned with business objectives
+    requires: [prd.md, architecture.md]
+    creates: epics.md
+
+  - id: story_creation
+    type: agent_task
+    name: Create User Stories
+    description: Create user stories from epics
+    agent: scrum_master
+    task: |
+      Create detailed user stories for the first epic.
+      Each story should include:
+      - User story format (As a... I want... So that...)
+      - Acceptance criteria
+      - Technical notes from architecture
+      - Story points estimate
+    requires: [epics.md, architecture.md]
+    creates: sprint-backlog.md
+
+  # Phase 5: Development Sprint
+  - id: sprint_execution
+    type: parallel
+    name: Sprint Development
+    parallel_steps:
+      - id: backend_development
+        type: agent_task
+        name: Backend Development
+        agent: developer
+        task: Implement backend components for current sprint stories
+        requires: [sprint-backlog.md, architecture.md]
+        creates: backend-code.md
+        timeout: 7200
+      
+      - id: frontend_development
+        type: agent_task
+        name: Frontend Development
+        agent: developer
+        task: Implement frontend components for current sprint stories
+        requires: [sprint-backlog.md, architecture.md]
+        creates: frontend-code.md
+        timeout: 7200
+      
+      - id: test_development
+        type: agent_task
+        name: Test Development
+        agent: qa_engineer
+        task: Create test cases and automated tests
+        requires: [sprint-backlog.md]
+        creates: test-cases.md
+        timeout: 3600
+
+  # Phase 6: Quality Assurance
+  - id: code_review
+    type: agent_task
+    name: Code Review
+    description: Review code quality and standards
+    agent: qa_engineer
+    task: |
+      Review all code for:
+      - Code quality and standards
+      - Security vulnerabilities
+      - Performance issues
+      - Test coverage
+      - Documentation
+    requires: [backend-code.md, frontend-code.md]
+    creates: code-review-report.md
+
+  - id: integration_testing
+    type: agent_task
+    name: Integration Testing
+    description: Test integrated components
+    agent: qa_engineer
+    task: Run integration tests and validate all components work together
+    requires: [backend-code.md, frontend-code.md, test-cases.md]
+    creates: test-report.md
+
+  - id: sprint_review_gate
+    type: quality_gate
+    name: Sprint Review Gate
+    description: Final quality gate before deployment
+    checklist: sprint-dod-checklist
+    requires: [test-report.md, code-review-report.md]
+    gate_type: PASS
+
+  # Phase 7: Deployment Decision
+  - id: deployment_decision
+    type: conditional
+    name: Deployment Decision
+    condition:
+      field: step_sprint_review_gate.output.gate_result
+      operator: "=="
+      value: PASS
+    then_steps:
+      - id: prepare_deployment
+        type: agent_task
+        name: Prepare Deployment
+        agent: developer
+        task: Prepare deployment package and documentation
+        creates: deployment-package.md
+      
+      - id: deploy_staging
+        type: agent_task
+        name: Deploy to Staging
+        agent: developer
+        task: Deploy application to staging environment
+        requires: [deployment-package.md]
+        creates: staging-deployment.md
+    else_steps:
+      - id: create_fix_plan
+        type: agent_task
+        name: Create Fix Plan
+        agent: scrum_master
+        task: Create plan to address quality gate failures
+        creates: fix-plan.md
+      
+      - id: schedule_rework
+        type: agent_task
+        name: Schedule Rework
+        agent: scrum_master
+        task: Add rework items to next sprint backlog
+        requires: [fix-plan.md]
+        creates: rework-backlog.md
+
+  # Phase 8: Retrospective
+  - id: sprint_retrospective
+    type: agent_task
+    name: Sprint Retrospective
+    description: Conduct sprint retrospective
+    agent: scrum_master
+    task: |
+      Conduct retrospective covering:
+      - What went well
+      - What could be improved
+      - Action items for next sprint
+      - Velocity metrics
+      - Team feedback
+    creates: retrospective.md
+    optional: true
+
+# Workflow dependencies and metadata
+dependencies:
+  checklists:
+    - prd-review-checklist
+    - architecture-review-checklist
+    - sprint-dod-checklist
+  templates:
+    - prd-template
+    - architecture-template
+    - story-template
+  data:
+    - coding-standards
+    - security-guidelines

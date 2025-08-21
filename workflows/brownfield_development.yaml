@@ -1,0 +1,353 @@
+id: brownfield-development
+name: Brownfield Software Development Workflow
+description: Workflow for enhancing and maintaining existing software systems
+version: 1.0.0
+author: Agent-Zero Team
+tags: [development, brownfield, maintenance, agile]
+
+# Agent configurations
+agents:
+  analyst:
+    profile: analyst
+    description: Analyzes existing system and new requirements
+  developer:
+    profile: developer
+    description: Implements changes and fixes
+  qa_engineer:
+    profile: qa_engineer
+    description: Tests changes and validates quality
+  architect:
+    profile: architect
+    description: Reviews architectural impact
+  scrum_master:
+    profile: scrum_master
+    description: Manages change process
+
+# Workflow configuration
+max_parallel_agents: 3
+default_timeout: 1800
+allow_partial_success: true
+
+# Workflow steps
+steps:
+  # Phase 1: Change Analysis
+  - id: analyze_existing_system
+    type: agent_task
+    name: Analyze Existing System
+    description: Understand current system state and architecture
+    agent: analyst
+    task: |
+      Analyze the existing system:
+      - Current architecture
+      - Codebase structure
+      - Dependencies
+      - Known issues
+      - Technical debt
+      - Performance metrics
+    creates: system-analysis.md
+    timeout: 1200
+
+  - id: change_request_analysis
+    type: agent_task
+    name: Analyze Change Request
+    description: Understand and document the requested changes
+    agent: analyst
+    task: |
+      Analyze the change request:
+      - Business justification
+      - Functional requirements
+      - Impact analysis
+      - Risk assessment
+      - Dependencies on existing features
+    creates: change-analysis.md
+
+  # Phase 2: Impact Assessment
+  - id: impact_assessment
+    type: parallel
+    name: Parallel Impact Assessment
+    parallel_steps:
+      - id: code_impact
+        type: agent_task
+        name: Code Impact Analysis
+        agent: developer
+        task: |
+          Analyze code impact:
+          - Affected modules
+          - Required refactoring
+          - Breaking changes
+          - API compatibility
+        requires: [system-analysis.md, change-analysis.md]
+        creates: code-impact.md
+      
+      - id: architecture_impact
+        type: agent_task
+        name: Architecture Impact Review
+        agent: architect
+        task: |
+          Review architectural impact:
+          - Design pattern changes
+          - Scalability implications
+          - Security considerations
+          - Performance impact
+        requires: [system-analysis.md, change-analysis.md]
+        creates: architecture-impact.md
+      
+      - id: test_impact
+        type: agent_task
+        name: Test Impact Analysis
+        agent: qa_engineer
+        task: |
+          Analyze testing impact:
+          - Affected test cases
+          - New test requirements
+          - Regression test scope
+          - Performance test needs
+        requires: [system-analysis.md, change-analysis.md]
+        creates: test-impact.md
+
+  # Phase 3: Change Decision Gate
+  - id: change_approval
+    type: quality_gate
+    name: Change Approval Gate
+    description: Decide whether to proceed with changes
+    checklist: change-approval-checklist
+    requires: [code-impact.md, architecture-impact.md, test-impact.md]
+    gate_type: PASS
+    optional: false
+
+  # Phase 4: Implementation Planning
+  - id: implementation_strategy
+    type: conditional
+    name: Choose Implementation Strategy
+    condition:
+      field: step_change_approval.output.gate_result
+      operator: "=="
+      value: PASS
+    then_steps:
+      - id: create_implementation_plan
+        type: agent_task
+        name: Create Implementation Plan
+        agent: scrum_master
+        task: |
+          Create detailed implementation plan:
+          - Task breakdown
+          - Timeline
+          - Resource allocation
+          - Rollback strategy
+          - Migration plan (if needed)
+        requires: [code-impact.md, architecture-impact.md]
+        creates: implementation-plan.md
+      
+      - id: create_stories
+        type: agent_task
+        name: Create Implementation Stories
+        agent: scrum_master
+        task: |
+          Create user stories for implementation:
+          - Refactoring stories
+          - Feature stories
+          - Bug fix stories
+          - Technical debt stories
+        requires: [implementation-plan.md]
+        creates: implementation-stories.md
+    else_steps:
+      - id: document_rejection
+        type: agent_task
+        name: Document Rejection Reasons
+        agent: analyst
+        task: Document why changes were not approved and alternatives
+        creates: rejection-report.md
+
+  # Phase 5: Implementation
+  - id: check_implementation_approved
+    type: conditional
+    name: Check If Implementation Approved
+    condition:
+      field: documents.implementation-plan.md
+      operator: exists
+      value: null
+    then_steps:
+      # Refactoring Phase
+      - id: refactoring
+        type: agent_task
+        name: Refactor Existing Code
+        agent: developer
+        task: |
+          Refactor code as needed:
+          - Clean up technical debt
+          - Improve code structure
+          - Update deprecated dependencies
+          - Ensure compatibility
+        requires: [implementation-stories.md]
+        creates: refactoring-complete.md
+        optional: true
+      
+      # Implementation Phase
+      - id: implement_changes
+        type: agent_task
+        name: Implement Changes
+        agent: developer
+        task: |
+          Implement the approved changes:
+          - Follow implementation plan
+          - Maintain backward compatibility
+          - Update documentation
+          - Add logging and monitoring
+        requires: [implementation-stories.md]
+        creates: implementation-code.md
+        timeout: 3600
+      
+      # Testing Phase
+      - id: unit_testing
+        type: agent_task
+        name: Unit Testing
+        agent: developer
+        task: |
+          Create and run unit tests:
+          - Test new functionality
+          - Test edge cases
+          - Ensure code coverage > 80%
+        requires: [implementation-code.md]
+        creates: unit-test-report.md
+      
+      - id: integration_testing
+        type: agent_task
+        name: Integration Testing
+        agent: qa_engineer
+        task: |
+          Run integration tests:
+          - Test with existing components
+          - Validate data flow
+          - Check API contracts
+          - Test error handling
+        requires: [implementation-code.md]
+        creates: integration-test-report.md
+      
+      - id: regression_testing
+        type: agent_task
+        name: Regression Testing
+        agent: qa_engineer
+        task: |
+          Run regression tests:
+          - Test existing functionality
+          - Validate no breaking changes
+          - Performance regression tests
+          - Security regression tests
+        requires: [implementation-code.md]
+        creates: regression-test-report.md
+
+  # Phase 6: Quality Validation
+  - id: quality_review
+    type: agent_task
+    name: Quality Review
+    agent: qa_engineer
+    task: |
+      Comprehensive quality review:
+      - Code quality metrics
+      - Test coverage analysis
+      - Performance benchmarks
+      - Security scan results
+      - Documentation completeness
+    requires: [unit-test-report.md, integration-test-report.md, regression-test-report.md]
+    creates: quality-report.md
+    optional: false
+
+  - id: final_quality_gate
+    type: quality_gate
+    name: Final Quality Gate
+    description: Final approval before deployment
+    checklist: brownfield-dod-checklist
+    requires: [quality-report.md]
+    gate_type: PASS
+
+  # Phase 7: Deployment Preparation
+  - id: deployment_readiness
+    type: conditional
+    name: Check Deployment Readiness
+    condition:
+      field: step_final_quality_gate.output.gate_result
+      operator: "=="
+      value: PASS
+    then_steps:
+      - id: create_rollback_plan
+        type: agent_task
+        name: Create Rollback Plan
+        agent: developer
+        task: |
+          Create detailed rollback plan:
+          - Database migration rollback
+          - Code rollback procedure
+          - Configuration rollback
+          - Communication plan
+        creates: rollback-plan.md
+      
+      - id: prepare_deployment
+        type: parallel
+        name: Prepare Deployment
+        parallel_steps:
+          - id: create_deployment_package
+            type: agent_task
+            name: Create Deployment Package
+            agent: developer
+            task: Package code and dependencies for deployment
+            creates: deployment-package.md
+          
+          - id: update_documentation
+            type: agent_task
+            name: Update Documentation
+            agent: developer
+            task: |
+              Update all documentation:
+              - API documentation
+              - User guides
+              - Operations manual
+              - Release notes
+            creates: documentation-updates.md
+          
+          - id: prepare_monitoring
+            type: agent_task
+            name: Setup Monitoring
+            agent: developer
+            task: |
+              Setup monitoring and alerts:
+              - Performance metrics
+              - Error tracking
+              - Business metrics
+              - Health checks
+            creates: monitoring-setup.md
+    else_steps:
+      - id: create_remediation_plan
+        type: agent_task
+        name: Create Remediation Plan
+        agent: scrum_master
+        task: Plan to address quality issues found
+        creates: remediation-plan.md
+
+  # Phase 8: Post-Implementation Review
+  - id: post_implementation_review
+    type: agent_task
+    name: Post-Implementation Review
+    agent: scrum_master
+    task: |
+      Conduct post-implementation review:
+      - Lessons learned
+      - Process improvements
+      - Technical debt introduced
+      - Performance metrics
+      - Team feedback
+    creates: post-implementation-review.md
+    optional: true
+
+# Workflow dependencies
+dependencies:
+  checklists:
+    - change-approval-checklist
+    - brownfield-dod-checklist
+  templates:
+    - change-request-template
+    - impact-analysis-template
+    - test-plan-template
+  data:
+    - system-documentation
+    - coding-standards
+    - deployment-procedures

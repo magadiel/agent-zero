@@ -1,0 +1,104 @@
+id: simple-example
+name: Simple Example Workflow
+description: A simple workflow demonstrating basic features
+version: 1.0.0
+author: Agent-Zero Team
+tags: [example, demo, simple]
+
+# Agent configurations
+agents:
+  default:
+    profile: default
+    description: Default agent for simple tasks
+
+# Workflow configuration
+max_parallel_agents: 2
+default_timeout: 600
+allow_partial_success: false
+
+# Simple sequential workflow
+steps:
+  # Step 1: Create initial document
+  - id: create_doc
+    type: document_create
+    name: Create Initial Document
+    description: Creates a simple document
+    creates: example-doc.md
+    inputs:
+      content: |
+        # Example Document
+        This is an example document created by the workflow.
+        
+        ## Purpose
+        Demonstrate basic workflow functionality.
+        
+        ## Status
+        Created at workflow start.
+
+  # Step 2: Agent task
+  - id: process_doc
+    type: agent_task
+    name: Process Document
+    description: Agent processes the document
+    agent: default
+    task: |
+      Read the example document and add a summary section.
+      Include:
+      - Key points
+      - Timestamp
+      - Recommendations
+    requires: [example-doc.md]
+    creates: processed-doc.md
+
+  # Step 3: Conditional branching
+  - id: check_success
+    type: conditional
+    name: Check Processing Success
+    condition:
+      field: step_process_doc.output.result
+      operator: exists
+      value: null
+    then_steps:
+      - id: success_message
+        type: document_create
+        name: Create Success Message
+        creates: success.md
+        inputs:
+          content: "Processing completed successfully!"
+    else_steps:
+      - id: failure_message
+        type: document_create
+        name: Create Failure Message
+        creates: failure.md
+        inputs:
+          content: "Processing failed. Please review."
+
+  # Step 4: Parallel execution
+  - id: parallel_tasks
+    type: parallel
+    name: Run Parallel Tasks
+    parallel_steps:
+      - id: task_a
+        type: wait
+        name: Task A
+        timeout: 2
+      
+      - id: task_b
+        type: wait
+        name: Task B
+        timeout: 3
+
+  # Step 5: Quality check
+  - id: quality_check
+    type: quality_gate
+    name: Final Quality Check
+    description: Verify workflow execution quality
+    checklist: simple-checklist
+    requires: [processed-doc.md]
+    gate_type: PASS
+    optional: true
+
+# Dependencies
+dependencies:
+  checklists:
+    - simple-checklist

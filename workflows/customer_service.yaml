@@ -1,0 +1,294 @@
+id: customer-service
+name: Customer Service Workflow
+description: Automated customer service request handling workflow
+version: 1.0.0
+author: Agent-Zero Team
+tags: [customer-service, support, automation]
+
+# Agent configurations
+agents:
+  support_agent:
+    profile: support_agent
+    description: First-line customer support
+  technical_specialist:
+    profile: technical_specialist
+    description: Technical support specialist
+  escalation_manager:
+    profile: escalation_manager
+    description: Handles escalated issues
+  knowledge_curator:
+    profile: knowledge_curator
+    description: Maintains knowledge base
+
+# Workflow configuration
+max_parallel_agents: 10
+default_timeout: 900  # 15 minutes for customer responses
+allow_partial_success: true
+
+# Workflow steps
+steps:
+  # Phase 1: Initial Contact
+  - id: receive_request
+    type: agent_task
+    name: Receive Customer Request
+    description: Process incoming customer request
+    agent: support_agent
+    task: |
+      Process customer request:
+      - Categorize issue type
+      - Determine urgency level
+      - Extract key information
+      - Check customer history
+    inputs:
+      customer_request: $customer_message
+      customer_id: $customer_id
+    creates: ticket.md
+    timeout: 300
+
+  # Phase 2: Knowledge Base Search
+  - id: search_knowledge_base
+    type: agent_task
+    name: Search Knowledge Base
+    description: Look for existing solutions
+    agent: support_agent
+    task: |
+      Search knowledge base for:
+      - Similar issues
+      - Standard solutions
+      - Troubleshooting steps
+      - FAQ responses
+    requires: [ticket.md]
+    creates: kb-search-results.md
+    timeout: 180
+
+  # Phase 3: Triage Decision
+  - id: triage
+    type: conditional
+    name: Triage Customer Issue
+    condition:
+      field: step_search_knowledge_base.output.solution_found
+      operator: "=="
+      value: true
+    then_steps:
+      # Standard solution path
+      - id: apply_standard_solution
+        type: agent_task
+        name: Apply Standard Solution
+        agent: support_agent
+        task: |
+          Provide standard solution:
+          - Customize response for customer
+          - Include relevant documentation
+          - Add troubleshooting steps
+          - Set follow-up if needed
+        requires: [kb-search-results.md]
+        creates: response.md
+      
+      - id: send_response
+        type: agent_task
+        name: Send Response to Customer
+        agent: support_agent
+        task: Send formatted response to customer
+        requires: [response.md]
+        creates: response-sent.md
+    else_steps:
+      # Escalation path
+      - id: technical_analysis
+        type: agent_task
+        name: Technical Analysis
+        agent: technical_specialist
+        task: |
+          Perform technical analysis:
+          - Diagnose root cause
+          - Identify potential solutions
+          - Check system logs
+          - Review configuration
+        requires: [ticket.md]
+        creates: technical-analysis.md
+        timeout: 600
+      
+      - id: solution_development
+        type: agent_task
+        name: Develop Custom Solution
+        agent: technical_specialist
+        task: |
+          Develop custom solution:
+          - Create specific fix
+          - Document steps
+          - Test solution
+          - Prepare implementation guide
+        requires: [technical-analysis.md]
+        creates: custom-solution.md
+
+  # Phase 4: Solution Validation
+  - id: validate_solution
+    type: quality_gate
+    name: Validate Solution Quality
+    description: Ensure solution meets quality standards
+    checklist: solution-quality-checklist
+    requires: [custom-solution.md]
+    gate_type: PASS
+    optional: true
+
+  # Phase 5: Customer Communication
+  - id: prepare_customer_communication
+    type: agent_task
+    name: Prepare Customer Communication
+    agent: support_agent
+    task: |
+      Prepare customer communication:
+      - Translate technical solution to customer language
+      - Include step-by-step instructions
+      - Add visuals if helpful
+      - Set expectations for resolution
+    requires: [custom-solution.md]
+    creates: customer-communication.md
+
+  - id: deliver_solution
+    type: agent_task
+    name: Deliver Solution to Customer
+    agent: support_agent
+    task: |
+      Deliver solution:
+      - Send communication to customer
+      - Provide support channel for questions
+      - Schedule follow-up
+      - Update ticket status
+    requires: [customer-communication.md]
+    creates: delivery-confirmation.md
+
+  # Phase 6: Follow-up
+  - id: schedule_followup
+    type: wait
+    name: Wait for Customer Response
+    timeout: 86400  # 24 hours
+
+  - id: followup_check
+    type: agent_task
+    name: Follow-up with Customer
+    agent: support_agent
+    task: |
+      Check resolution status:
+      - Contact customer
+      - Verify issue resolved
+      - Gather feedback
+      - Document outcome
+    requires: [delivery-confirmation.md]
+    creates: followup-result.md
+    optional: true
+
+  # Phase 7: Resolution Check
+  - id: check_resolution
+    type: conditional
+    name: Check If Issue Resolved
+    condition:
+      field: step_followup_check.output.resolved
+      operator: "=="
+      value: true
+    then_steps:
+      # Resolution path
+      - id: close_ticket
+        type: agent_task
+        name: Close Support Ticket
+        agent: support_agent
+        task: |
+          Close ticket:
+          - Document resolution
+          - Update ticket status
+          - Calculate resolution time
+          - Tag for analytics
+        requires: [followup-result.md]
+        creates: ticket-closed.md
+      
+      - id: update_knowledge_base
+        type: agent_task
+        name: Update Knowledge Base
+        agent: knowledge_curator
+        task: |
+          Update knowledge base:
+          - Add new solution if novel
+          - Update existing articles
+          - Tag for searchability
+          - Link related issues
+        requires: [custom-solution.md, ticket-closed.md]
+        creates: kb-update.md
+        optional: true
+      
+      - id: customer_satisfaction
+        type: agent_task
+        name: Collect Customer Satisfaction
+        agent: support_agent
+        task: Send satisfaction survey and collect feedback
+        requires: [ticket-closed.md]
+        creates: satisfaction-survey.md
+        optional: true
+    else_steps:
+      # Escalation path
+      - id: escalate_to_manager
+        type: agent_task
+        name: Escalate to Manager
+        agent: escalation_manager
+        task: |
+          Handle escalation:
+          - Review entire case history
+          - Identify blockers
+          - Determine special actions
+          - Authorize exceptions if needed
+        requires: [followup-result.md]
+        creates: escalation-plan.md
+      
+      - id: execute_escalation
+        type: agent_task
+        name: Execute Escalation Plan
+        agent: escalation_manager
+        task: |
+          Execute plan:
+          - Implement special measures
+          - Coordinate with other teams
+          - Provide direct support
+          - Ensure resolution
+        requires: [escalation-plan.md]
+        creates: escalation-result.md
+
+  # Phase 8: Analytics and Reporting
+  - id: generate_metrics
+    type: parallel
+    name: Generate Service Metrics
+    parallel_steps:
+      - id: response_time_metrics
+        type: agent_task
+        name: Calculate Response Metrics
+        agent: support_agent
+        task: Calculate first response time, resolution time
+        creates: response-metrics.md
+        optional: true
+      
+      - id: quality_metrics
+        type: agent_task
+        name: Calculate Quality Metrics
+        agent: support_agent
+        task: Calculate first contact resolution, escalation rate
+        creates: quality-metrics.md
+        optional: true
+      
+      - id: satisfaction_metrics
+        type: agent_task
+        name: Calculate Satisfaction Metrics
+        agent: support_agent
+        task: Calculate CSAT, NPS scores
+        requires: [satisfaction-survey.md]
+        creates: satisfaction-metrics.md
+        optional: true
+
+# Workflow dependencies
+dependencies:
+  checklists:
+    - solution-quality-checklist
+  templates:
+    - ticket-template
+    - response-template
+    - escalation-template
+  data:
+    - knowledge-base
+    - customer-history
+    - product-documentation
