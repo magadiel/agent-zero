@@ -1,0 +1,187 @@
+version: '3.8'
+
+services:
+  control-layer:
+    build:
+      context: ../control
+      dockerfile: Dockerfile
+    container_name: agile-ai-control
+    image: agile-ai/control:latest
+    
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    
+    # Environment variables
+    environment:
+      - CONTROL_ENV=production
+      - LOG_LEVEL=INFO
+      - MAX_WORKERS=4
+      - API_KEY=${CONTROL_API_KEY:-default-dev-key}
+      - JWT_SECRET=${JWT_SECRET:-change-me-in-production}
+      - DATABASE_URL=${DATABASE_URL:-sqlite:///app/control/storage/audit.db}
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379/0}
+      - ETHICS_CONFIG_PATH=/app/control/config/ethical_constraints.yaml
+      - SAFETY_CONFIG_PATH=/app/control/config/safety_thresholds.yaml
+      - RESOURCE_CONFIG_PATH=/app/control/config/resource_limits.yaml
+      - WAIT_FOR_SERVICES=${WAIT_FOR_SERVICES:-}
+      - TZ=UTC
+    
+    # Port mapping
+    ports:
+      - "8000:8000"  # Control API
+    
+    # Volume mounts
+    volumes:
+      # Configuration files (read-only in production)
+      - ./control/config:/app/control/config:ro
+      
+      # Persistent storage
+      - control-storage:/app/control/storage
+      
+      # Logs
+      - control-logs:/app/control/logs
+      
+      # Shared data with other services (optional)
+      - shared-data:/app/shared:ro
+    
+    # Health check
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    
+    # Restart policy
+    restart: unless-stopped
+    
+    # Networking
+    networks:
+      - agile-network
+      - control-network
+    
+    # Logging
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    
+    # Security options
+    security_opt:
+      - no-new-privileges:true
+    read_only: false
+    tmpfs:
+      - /tmp
+    
+    # Dependencies
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+
+  # Redis for caching and pub/sub
+  redis:
+    image: redis:7-alpine
+    container_name: agile-ai-redis
+    command: redis-server --appendonly yes
+    volumes:
+      - redis-data:/data
+    ports:
+      - "6379:6379"
+    networks:
+      - control-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # PostgreSQL for production audit storage (optional, can use SQLite)
+  postgres:
+    image: postgres:15-alpine
+    container_name: agile-ai-postgres
+    environment:
+      POSTGRES_DB: control_db
+      POSTGRES_USER: control_user
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-control_pass}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - control-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U control_user"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # Nginx reverse proxy (optional, for production)
+  nginx:
+    image: nginx:alpine
+    container_name: agile-ai-nginx
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - nginx-cache:/var/cache/nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - agile-network
+      - control-network
+    depends_on:
+      - control-layer
+    restart: unless-stopped
+
+# Networks
+networks:
+  agile-network:
+    driver: bridge
+    name: agile-network
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+  
+  control-network:
+    driver: bridge
+    name: control-network
+    internal: true  # Internal network for database access
+
+# Volumes
+volumes:
+  control-storage:
+    driver: local
+    name: control-storage
+  
+  control-logs:
+    driver: local
+    name: control-logs
+  
+  shared-data:
+    driver: local
+    name: shared-data
+  
+  redis-data:
+    driver: local
+    name: redis-data
+  
+  postgres-data:
+    driver: local
+    name: postgres-data
+  
+  nginx-cache:
+    driver: local
+    name: nginx-cache
