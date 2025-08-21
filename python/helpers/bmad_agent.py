@@ -18,6 +18,20 @@ from enum import Enum
 from python.helpers import files
 import python.helpers.log as Log
 
+# Import command system
+try:
+    from python.helpers.command_system import (
+        CommandSystem, CommandParser, AgentCommand as SystemCommand,
+        CommandParameter, ParameterType, CommandExecution
+    )
+except ImportError:
+    CommandSystem = None
+    CommandParser = None
+    SystemCommand = None
+    CommandParameter = None
+    ParameterType = None
+    CommandExecution = None
+
 # Try to import PrintStyle, but make it optional for testing
 try:
     from python.helpers.print_style import PrintStyle
@@ -129,6 +143,7 @@ class BMADAgentLoader:
         self.base_path = Path(base_path)
         self.agents: Dict[str, BMADAgentDefinition] = {}
         self.command_registry: Dict[str, AgentCommand] = {}
+        self.command_system = CommandSystem() if CommandSystem else None
         
     def load_agent(self, agent_name: str) -> Optional[BMADAgentDefinition]:
         """Load a BMAD agent definition from disk"""
@@ -222,6 +237,25 @@ class BMADAgentLoader:
         """Load command implementations from the commands directory"""
         commands = []
         
+        # First, try to load commands using the new command system
+        if self.command_system and CommandParser:
+            agent_path = commands_path.parent
+            parsed_commands = self.command_system.load_agent_commands(agent_path)
+            
+            # Convert SystemCommand to AgentCommand for backward compatibility
+            for sys_cmd in parsed_commands:
+                command = AgentCommand(
+                    name=sys_cmd.name,
+                    description=sys_cmd.description,
+                    handler=sys_cmd.handler,
+                    parameters={p.name: p.to_dict() if hasattr(p, 'to_dict') else {} 
+                               for p in sys_cmd.parameters},
+                    dependencies=sys_cmd.dependencies
+                )
+                commands.append(command)
+                self.command_registry[command.name] = command
+        
+        # Also check for legacy command implementations
         if not commands_path.exists():
             return commands
             
