@@ -1,0 +1,218 @@
+# Product Development Demo Scenario Configuration
+
+name: "AI-Powered Task Management Application"
+description: "Demonstrate full product development cycle with agile AI teams"
+type: "greenfield_development"
+duration: "1_sprint"  # Can be: 1_sprint, 2_sprints, continuous
+
+# Product Details
+product:
+  name: "TaskFlow AI"
+  version: "1.0.0"
+  description: "Intelligent task management system with AI-powered features"
+  features:
+    - name: "Intelligent Task Prioritization"
+      description: "AI analyzes context, deadlines, and dependencies to prioritize tasks"
+      story_points: 8
+      priority: "high"
+    - name: "Automated Task Breakdown"
+      description: "AI suggests subtasks and time estimates for complex tasks"
+      story_points: 5
+      priority: "high"
+    - name: "Smart Scheduling"
+      description: "AI optimizes calendar based on task priorities and availability"
+      story_points: 8
+      priority: "medium"
+    - name: "Dependency Detection"
+      description: "Automatically identify and visualize task dependencies"
+      story_points: 5
+      priority: "medium"
+    - name: "Intelligent Reminders"
+      description: "Context-aware reminders based on user behavior and preferences"
+      story_points: 3
+      priority: "low"
+
+# Team Configuration
+teams:
+  product_development:
+    name: "Product Development Team"
+    size: 6
+    composition:
+      - role: "product_manager"
+        count: 1
+        agent_profile: "/agents/product_manager/agent.md"
+        responsibilities:
+          - "Create and maintain PRD"
+          - "Prioritize backlog"
+          - "Accept completed work"
+      - role: "architect"
+        count: 1
+        agent_profile: "/agents/architect/agent.md"
+        responsibilities:
+          - "Design system architecture"
+          - "Review technical decisions"
+          - "Ensure scalability"
+      - role: "developer"
+        count: 2
+        agent_profile: "/agents/developer/agent.md"
+        responsibilities:
+          - "Implement user stories"
+          - "Write unit tests"
+          - "Conduct code reviews"
+      - role: "qa_engineer"
+        count: 1
+        agent_profile: "/agents/qa_engineer/agent.md"
+        responsibilities:
+          - "Create test plans"
+          - "Execute testing"
+          - "Report defects"
+      - role: "scrum_master"
+        count: 1
+        agent_profile: "/agents/scrum_master/agent.md"
+        responsibilities:
+          - "Facilitate ceremonies"
+          - "Remove blockers"
+          - "Track metrics"
+
+# Sprint Configuration
+sprint:
+  number: 1
+  duration_days: 10  # 2-week sprint minus weekends
+  capacity_percentage: 80  # Account for meetings, overhead
+  ceremonies:
+    planning:
+      duration_minutes: 120
+      participants: "all"
+    daily_standup:
+      duration_minutes: 15
+      participants: "all"
+      frequency: "daily"
+    review:
+      duration_minutes: 60
+      participants: "all + stakeholders"
+    retrospective:
+      duration_minutes: 90
+      participants: "all"
+
+# Workflow Configuration
+workflow:
+  type: "greenfield_development"
+  file: "/workflows/greenfield_development.yaml"
+  customizations:
+    - step: "requirements_gathering"
+      timeout_minutes: 30
+    - step: "architecture_design"
+      timeout_minutes: 45
+    - step: "sprint_execution"
+      parallel: true
+    - step: "quality_gates"
+      strict: true
+
+# Quality Gates
+quality_gates:
+  prd_approval:
+    required: true
+    checklist: "/checklists/prd_review.md"
+    min_score: 80
+  architecture_review:
+    required: true
+    checklist: "/checklists/architecture_review.md"
+    min_score: 85
+  code_review:
+    required: true
+    checklist: "/checklists/code_review.md"
+    min_score: 90
+  testing_signoff:
+    required: true
+    checklist: "/checklists/testing_complete.md"
+    min_score: 95
+
+# Metrics to Track
+metrics:
+  velocity:
+    track: true
+    target: 20  # story points per sprint
+  quality:
+    track: true
+    defect_escape_rate_max: 5  # percentage
+    test_coverage_min: 80  # percentage
+  efficiency:
+    track: true
+    cycle_time_max_days: 3
+    lead_time_max_days: 5
+
+# Resource Constraints
+resources:
+  compute:
+    cpu_limit: "2000m"  # 2 CPU cores per agent
+    memory_limit: "4Gi"  # 4GB RAM per agent
+  time:
+    max_execution_minutes: 60
+    checkpoint_interval_minutes: 10
+
+# Control Layer Settings
+control:
+  ethics:
+    enabled: true
+    config: "/control/config/ethical_constraints.yaml"
+  safety:
+    enabled: true
+    thresholds: "/control/config/safety_thresholds.yaml"
+  audit:
+    enabled: true
+    retention_days: 30
+
+# Output Configuration
+outputs:
+  directory: "./outputs"
+  formats:
+    documents: ["markdown", "json"]
+    metrics: ["json", "csv"]
+    reports: ["markdown", "html"]
+  artifacts:
+    - "PRD.md"
+    - "architecture.md"
+    - "sprint_backlog.md"
+    - "user_stories/"
+    - "test_plans/"
+    - "sprint_report.md"
+    - "retrospective.md"
+    - "metrics.json"
+
+# Demo Settings
+demo:
+  mode: "automatic"  # automatic, interactive, step-by-step
+  speed: "normal"  # slow, normal, fast
+  verbosity: "medium"  # low, medium, high
+  pause_points:
+    - "after_prd_creation"
+    - "after_sprint_planning"
+    - "after_sprint_completion"
+  visualization:
+    enabled: true
+    dashboard_url: "http://localhost:8001/dashboard/product-dev"
+
+# Validation Criteria
+validation:
+  required_outputs:
+    - "PRD.md"
+    - "architecture.md"
+    - "sprint_backlog.md"
+    - "sprint_report.md"
+  success_criteria:
+    - "all_quality_gates_passed"
+    - "sprint_goals_achieved"
+    - "no_critical_defects"
+    - "metrics_within_targets"
+
+# Extensions (Optional)
+extensions:
+  slack_integration:
+    enabled: false
+    webhook: ""
+  jira_integration:
+    enabled: false
+    api_url: ""
+  github_integration:
+    enabled: false
+    repo: ""
