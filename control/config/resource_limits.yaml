@@ -1,0 +1,219 @@
+# Resource Limits Configuration
+# Defines resource pools, team quotas, and allocation policies
+
+# Resource pools define the total available resources
+resource_pools:
+  # Default pool for general use
+  default:
+    cpu_cores: 32
+    memory_gb: 128
+    gpu_count: 4
+    disk_gb: 1000
+    network_mbps: 1000
+    api_calls: 10000
+    agent_slots: 50
+  
+  # High-performance pool for critical operations
+  high_performance:
+    cpu_cores: 64
+    memory_gb: 256
+    gpu_count: 8
+    disk_gb: 2000
+    network_mbps: 10000
+    api_calls: 50000
+    agent_slots: 100
+  
+  # Development pool for testing
+  development:
+    cpu_cores: 16
+    memory_gb: 64
+    gpu_count: 2
+    disk_gb: 500
+    network_mbps: 100
+    api_calls: 5000
+    agent_slots: 25
+
+# Team-specific resource limits
+team_limits:
+  # Default limits for any team
+  default:
+    max_cpu_cores: 8
+    max_memory_gb: 32
+    max_gpu_count: 1
+    max_disk_gb: 100
+    max_network_mbps: 100
+    max_api_calls: 1000
+    max_agent_slots: 10
+  
+  # Product development teams get more resources
+  product_team:
+    max_cpu_cores: 16
+    max_memory_gb: 64
+    max_gpu_count: 2
+    max_disk_gb: 200
+    max_network_mbps: 500
+    max_api_calls: 5000
+    max_agent_slots: 20
+  
+  # QA teams need moderate resources
+  qa_team:
+    max_cpu_cores: 12
+    max_memory_gb: 48
+    max_gpu_count: 1
+    max_disk_gb: 150
+    max_network_mbps: 200
+    max_api_calls: 2000
+    max_agent_slots: 15
+  
+  # Operations teams
+  ops_team:
+    max_cpu_cores: 10
+    max_memory_gb: 40
+    max_gpu_count: 0
+    max_disk_gb: 500
+    max_network_mbps: 1000
+    max_api_calls: 3000
+    max_agent_slots: 12
+  
+  # Customer service teams
+  service_team:
+    max_cpu_cores: 6
+    max_memory_gb: 24
+    max_gpu_count: 0
+    max_disk_gb: 50
+    max_network_mbps: 100
+    max_api_calls: 10000
+    max_agent_slots: 25
+  
+  # Research teams get GPU priority
+  research_team:
+    max_cpu_cores: 24
+    max_memory_gb: 96
+    max_gpu_count: 4
+    max_disk_gb: 500
+    max_network_mbps: 500
+    max_api_calls: 5000
+    max_agent_slots: 10
+
+# Allocation policies
+allocation_policies:
+  # Maximum duration for any single allocation (minutes)
+  max_duration_minutes: 120
+  
+  # Auto-release idle allocations after this time (minutes)
+  auto_release_idle_minutes: 15
+  
+  # Allow oversubscription ratio (1.0 = no oversubscription)
+  oversubscription_ratio: 1.2
+  
+  # Priority multipliers for resource availability
+  priority_boost_critical: 2.0
+  priority_boost_high: 1.5
+  
+  # Minimum resource units that can be allocated
+  min_allocation:
+    cpu_cores: 0.5
+    memory_gb: 1.0
+    gpu_count: 0
+    disk_gb: 10
+    network_mbps: 10
+    api_calls: 100
+    agent_slots: 1
+  
+  # Resource allocation strategies
+  allocation_strategy: "fair_share"  # Options: fair_share, priority_based, round_robin
+  
+  # Queue management
+  max_pending_requests: 100
+  request_timeout_minutes: 30
+  
+  # Resource reclamation
+  reclamation_enabled: true
+  reclamation_threshold: 0.8  # Reclaim when utilization > 80%
+  reclamation_grace_period_minutes: 5
+
+# Priority tiers define resource guarantees
+priority_tiers:
+  critical:
+    guaranteed_percentage: 40  # 40% of resources guaranteed
+    max_wait_minutes: 1
+    preemption_allowed: true
+  
+  high:
+    guaranteed_percentage: 30
+    max_wait_minutes: 5
+    preemption_allowed: false
+  
+  normal:
+    guaranteed_percentage: 20
+    max_wait_minutes: 15
+    preemption_allowed: false
+  
+  low:
+    guaranteed_percentage: 10
+    max_wait_minutes: 30
+    preemption_allowed: false
+  
+  background:
+    guaranteed_percentage: 0
+    max_wait_minutes: 60
+    preemption_allowed: false
+
+# Resource usage thresholds for alerts
+alert_thresholds:
+  cpu_utilization_high: 0.85
+  memory_utilization_high: 0.90
+  gpu_utilization_high: 0.95
+  disk_utilization_high: 0.80
+  api_calls_rate_high: 0.90
+  agent_slots_full: 0.95
+
+# Burst allocation settings
+burst_allocation:
+  enabled: true
+  burst_multiplier: 1.5  # Allow 50% burst above limits
+  burst_duration_minutes: 5
+  burst_cooldown_minutes: 30
+
+# Resource reservation settings
+reservations:
+  # Reserved for system operations
+  system_reserve:
+    cpu_cores: 4
+    memory_gb: 16
+    disk_gb: 100
+    network_mbps: 100
+    api_calls: 1000
+    agent_slots: 5
+  
+  # Emergency reserve
+  emergency_reserve:
+    cpu_cores: 2
+    memory_gb: 8
+    disk_gb: 50
+    network_mbps: 50
+    api_calls: 500
+    agent_slots: 3
+
+# Performance tuning
+performance:
+  allocation_check_interval_seconds: 1
+  expiration_check_interval_seconds: 30
+  metrics_collection_interval_seconds: 60
+  resource_sync_interval_seconds: 5
+
+# Integration settings
+integration:
+  # Integration with ethics engine
+  ethics_validation_required: true
+  ethics_check_resources:
+    - gpu_count  # GPU usage requires ethics check
+    - api_calls  # External API calls require validation
+  
+  # Integration with safety monitor
+  safety_monitoring_enabled: true
+  safety_thresholds_sync: true
+  
+  # Integration with audit logger
+  audit_all_allocations: true
+  audit_retention_days: 90

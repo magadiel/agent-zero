@@ -110,13 +110,51 @@ Comprehensive configuration with:
 - Anomaly detection patterns
 - Escalation policies
 
-## 🚧 Upcoming Components
+### Resource Allocator (`resource_allocator.py`) - COMPLETED
+The resource management system that allocates computational resources to agent teams.
 
-### Resource Allocator (`resource_allocator.py`) - PLANNED
-- Manages computational resource distribution
-- Enforces team resource limits
-- Implements priority-based allocation
-- Handles resource contention and scaling
+**Key Features:**
+- ✅ Resource pool management (CPU, memory, GPU, disk, network)
+- ✅ Priority-based allocation with queue management  
+- ✅ Team-specific resource quotas and limits
+- ✅ Automatic resource reclamation for expired allocations
+- ✅ Real-time usage tracking and monitoring
+- ✅ Emergency release mechanisms
+- ✅ Comprehensive audit logging
+- ✅ Full test coverage (20+ tests passing)
+
+**Usage Example:**
+```python
+from control.resource_allocator import ResourceAllocator, ResourceType, PriorityLevel
+
+# Initialize allocator
+allocator = ResourceAllocator()
+
+# Request resources for a team
+request_id, status = await allocator.request_resources(
+    team_id="product_team",
+    resources={
+        ResourceType.CPU_CORES: 4,
+        ResourceType.MEMORY_GB: 16,
+        ResourceType.GPU_COUNT: 1
+    },
+    priority=PriorityLevel.HIGH,
+    duration_minutes=60
+)
+
+# Check allocation status
+status = await allocator.get_allocation_status(f"alloc_{request_id}")
+print(f"Allocation status: {status['status']}")
+
+# Get team usage
+usage = await allocator.get_team_usage("product_team")
+print(f"Team usage: {usage}")
+
+# Release resources when done
+await allocator.release_resources(f"alloc_{request_id}")
+```
+
+## 🚧 Upcoming Components
 
 ### Audit Logger (`audit_logger.py`) - PARTIALLY COMPLETE
 - ✅ Basic logging to files implemented
@@ -128,8 +166,8 @@ Comprehensive configuration with:
 
 All control layer components are configured through YAML files in the `/control/config/` directory:
 - ✅ `ethical_constraints.yaml` - Ethical rules and principles (COMPLETED)
-- ⏳ `safety_thresholds.yaml` - Safety limits and triggers (pending)
-- ⏳ `resource_limits.yaml` - Resource allocation policies (pending)
+- ✅ `safety_thresholds.yaml` - Safety limits and triggers (COMPLETED)
+- ✅ `resource_limits.yaml` - Resource allocation policies (COMPLETED)
 
 ## Testing
 
@@ -137,19 +175,22 @@ Run the comprehensive test suite:
 ```bash
 cd /home/magadiel/Desktop/agent-zero/control
 python3 tests/test_ethics_engine.py
+python3 tests/test_safety_monitor.py
+python3 tests/test_resource_allocator.py
 ```
 
 Current test coverage:
-- ✅ 16 unit tests passing
-- ✅ 2 integration tests passing
-- Test scenarios include: harm prevention, privacy violations, fairness checks, transparency requirements, resource limits, emergency shutdown
+- ✅ Ethics Engine: 16 unit tests + 2 integration tests passing
+- ✅ Safety Monitor: 20+ unit tests passing
+- ✅ Resource Allocator: 22 unit tests passing
+- Test scenarios include: harm prevention, privacy violations, fairness checks, transparency requirements, resource limits, emergency shutdown, resource allocation, priority queueing, team limits enforcement
 
 ## API
 
 The Control Layer will expose a REST API (port 8000) for:
 - ✅ Ethics validation requests (logic complete, API pending)
-- ⏳ Safety status monitoring (pending)
-- ⏳ Resource allocation management (pending)
+- ✅ Safety status monitoring (logic complete, API pending)
+- ✅ Resource allocation management (logic complete, API pending)
 - ⏳ Audit trail queries (pending)
 
 ## Security
@@ -182,9 +223,12 @@ The Control Layer integrates with:
 | Ethical Constraints | ✅ COMPLETED | `config/ethical_constraints.yaml` |
 | Safety Monitor | ✅ COMPLETED | `safety_monitor.py` |
 | Safety Thresholds | ✅ COMPLETED | `config/safety_thresholds.yaml` |
+| Resource Allocator | ✅ COMPLETED | `resource_allocator.py` |
+| Resource Limits Config | ✅ COMPLETED | `config/resource_limits.yaml` |
 | Unit Tests (Ethics) | ✅ COMPLETED | `tests/test_ethics_engine.py` |
 | Unit Tests (Safety) | ✅ COMPLETED | `tests/test_safety_monitor.py` |
+| Unit Tests (Resource) | ✅ COMPLETED | `tests/test_resource_allocator.py` |
 | Documentation | ✅ COMPLETED | `README.md` |
-| Resource Allocator | ⏳ PENDING | `resource_allocator.py` |
 | Control API | ⏳ PENDING | `api.py` |
+| Audit Logger | ⏳ PENDING | `audit_logger.py` |
 | Docker Container | ⏳ PENDING | `Dockerfile` |
