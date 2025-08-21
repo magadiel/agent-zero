@@ -1,0 +1,38 @@
+{
+  "gate_id": "QG-20250821191654",
+  "gate_name": "Release Quality Gate",
+  "status": "PASS",
+  "assessed_at": "2025-08-21T19:16:54.832067",
+  "assessed_by": "release_manager",
+  "target_type": "TestRelease",
+  "target_id": "RELEASE-2.0.0",
+  "target_name": "Version 2.0.0 Release",
+  "issues": [],
+  "metrics": {
+    "total_checks": 20,
+    "passed_checks": 20,
+    "failed_checks": 0,
+    "skipped_checks": 0,
+    "coverage_percentage": 100.0,
+    "complexity_score": 0.0,
+    "maintainability_index": 0.0,
+    "security_score": 100,
+    "performance_score": 100,
+    "documentation_completeness": 0.0,
+    "test_coverage": 0.0,
+    "code_duplication": 0.0,
+    "technical_debt_hours": 0.0,
+    "compliance_score": 0.0,
+    "custom_metrics": {}
+  },
+  "status_reason": "All quality criteria met",
+  "recommendations": [
+    "Improve overall quality score from 50.0 to at least 85.0",
+    "Increase test coverage from 0.0% to at least 85.0%"
+  ],
+  "passed_criteria": [],
+  "failed_criteria": [],
+  "waived_criteria": [],
+  "notes": "",
+  "attachments": []
+}
