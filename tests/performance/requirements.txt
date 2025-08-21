@@ -1,0 +1,17 @@
+# Performance Testing Requirements
+# Install with: pip install -r tests/performance/requirements.txt
+
+# System monitoring
+psutil>=5.9.0
+
+# Core dependencies (should already be installed)
+asyncio
+dataclasses
+statistics
+json
+pathlib
+
+# Optional for enhanced features
+numpy>=1.21.0  # For advanced statistics
+matplotlib>=3.5.0  # For performance graphs (optional)
+pandas>=1.3.0  # For data analysis (optional)
