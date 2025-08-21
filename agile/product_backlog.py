@@ -28,6 +28,7 @@ class StoryStatus(Enum):
     IN_REVIEW = "in_review"
     DONE = "done"
     ACCEPTED = "accepted"
+    BLOCKED = "blocked"
     CANCELLED = "cancelled"
 
 
