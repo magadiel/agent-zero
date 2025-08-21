@@ -6,7 +6,7 @@ nest_asyncio.apply()
 from collections import OrderedDict
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
-from typing import Any, Awaitable, Coroutine, Dict
+from typing import Any, Awaitable, Coroutine, Dict, Optional
 from enum import Enum
 import uuid
 import models
@@ -25,6 +25,7 @@ from python.helpers.defer import DeferredTask
 from typing import Callable
 from python.helpers.localization import Localization
 from python.helpers.extension import call_extensions
+from python.helpers.bmad_agent import enhance_agent_with_bmad
 
 class AgentContextType(Enum):
     USER = "user"
@@ -292,6 +293,25 @@ class Agent:
         self.intervention: UserMessage | None = None
         self.data = {}  # free data object all the tools can use
 
+        # BMAD Enhancement - Try to enhance agent with BMAD capabilities if profile is specified
+        self.bmad_enhanced = False
+        if self.config.profile:
+            try:
+                self.bmad_enhanced = enhance_agent_with_bmad(self)
+                if self.bmad_enhanced:
+                    try:
+                        PrintStyle(font_color="cyan").print(
+                            f"Agent {self.agent_name} enhanced with BMAD profile: {self.config.profile}"
+                        )
+                    except:
+                        print(f"Agent {self.agent_name} enhanced with BMAD profile: {self.config.profile}")
+            except Exception as e:
+                try:
+                    PrintStyle(font_color="yellow").print(
+                        f"Could not enhance agent with BMAD: {e}"
+                    )
+                except:
+                    print(f"Could not enhance agent with BMAD: {e}")
 
         asyncio.run(self.call_extensions("agent_init"))
 
@@ -795,3 +815,77 @@ class Agent:
 
     async def call_extensions(self, extension_point: str, **kwargs) -> Any:
         return await call_extensions(extension_point=extension_point, agent=self, **kwargs)
+    
+    # BMAD Integration Methods
+    async def activate_bmad_profile(self) -> bool:
+        """
+        Activate BMAD profile if the agent is BMAD-enhanced
+        
+        Returns True if activation successful, False otherwise
+        """
+        if not self.bmad_enhanced:
+            return False
+            
+        if hasattr(self, 'activate_bmad'):
+            success = await self.activate_bmad()
+            if success:
+                self.context.log.log(
+                    type="info",
+                    content=f"BMAD profile activated for {self.agent_name}"
+                )
+            return success
+        return False
+    
+    async def execute_bmad_command_wrapper(self, command_name: str, **kwargs) -> Any:
+        """
+        Execute a BMAD command if the agent is BMAD-enhanced
+        
+        Args:
+            command_name: Name of the BMAD command to execute
+            **kwargs: Arguments to pass to the command
+            
+        Returns:
+            Command execution result
+            
+        Raises:
+            ValueError: If agent is not BMAD-enhanced or command not found
+        """
+        if not self.bmad_enhanced:
+            raise ValueError("Agent is not BMAD-enhanced")
+            
+        if hasattr(self, 'execute_bmad_command'):
+            return await self.execute_bmad_command(command_name, **kwargs)
+        else:
+            raise ValueError("BMAD command execution not available")
+    
+    def get_bmad_persona(self) -> Optional[Any]:
+        """
+        Get the BMAD persona if the agent is BMAD-enhanced
+        
+        Returns:
+            Persona object or None
+        """
+        if self.bmad_enhanced and hasattr(self, 'persona'):
+            return self.persona
+        return None
+    
+    async def load_bmad_dependencies(self, dep_type: str) -> Dict[str, Any]:
+        """
+        Load BMAD dependencies of a specific type
+        
+        Args:
+            dep_type: Type of dependencies to load (tasks, templates, checklists, data, workflows)
+            
+        Returns:
+            Dictionary of loaded dependencies
+        """
+        if not self.bmad_enhanced:
+            return {}
+            
+        if hasattr(self, 'load_bmad_dependency'):
+            from python.helpers.bmad_agent import DependencyType
+            # Convert string to enum
+            for dt in DependencyType:
+                if dt.value == dep_type:
+                    return await self.load_bmad_dependency(dt)
+        return {}
