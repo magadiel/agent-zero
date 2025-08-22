@@ -1,0 +1,258 @@
+name: "E-commerce Specialization"
+version: "1.0.0"
+description: "E-commerce industry specialization focused on customer experience and digital commerce operations"
+
+# Specialization metadata
+metadata:
+  industry: "E-commerce/Retail"
+  business_model:
+    - "B2C (Business to Consumer)"
+    - "B2B (Business to Business)"
+    - "D2C (Direct to Consumer)"
+    - "Marketplace"
+    - "Subscription Commerce"
+  focus_areas:
+    - "Customer Experience"
+    - "Order Fulfillment"
+    - "Digital Marketing"
+    - "Inventory Management"
+    - "Customer Service"
+    - "Conversion Optimization"
+
+# Customer-centric ethics constraints
+ethics:
+  customer_experience_constraints:
+    - constraint: "customer_privacy_protection"
+      description: "Protect customer personal and payment information"
+      severity: "critical"
+      validation: "verify_data_protection"
+    
+    - constraint: "transparent_pricing"
+      description: "Maintain transparent and honest pricing practices"
+      severity: "high"
+      validation: "check_pricing_transparency"
+    
+    - constraint: "fair_advertising"
+      description: "Ensure truthful and non-deceptive advertising"
+      severity: "high"
+      validation: "verify_advertising_claims"
+    
+    - constraint: "customer_consent"
+      description: "Obtain proper consent for data collection and marketing"
+      severity: "high"
+      validation: "check_consent_management"
+    
+    - constraint: "accessibility_compliance"
+      description: "Ensure digital accessibility for all customers"
+      severity: "medium"
+      validation: "verify_accessibility_standards"
+    
+    - constraint: "sustainable_practices"
+      description: "Promote environmentally responsible commerce"
+      severity: "medium"
+      validation: "check_sustainability_measures"
+
+# Performance thresholds for e-commerce operations
+safety:
+  commerce_thresholds:
+    website_performance:
+      page_load_time_max_ms: 3000      # 3 seconds max load time
+      uptime_requirement: 0.999        # 99.9% uptime
+      transaction_success_rate: 0.995  # 99.5% success rate
+      search_response_time_ms: 500     # 500ms search response
+    
+    customer_service:
+      response_time_target_hours: 4    # 4 hour initial response
+      resolution_time_target_hours: 24 # 24 hour resolution target
+      customer_satisfaction_min: 4.0   # 4.0/5.0 minimum rating
+      escalation_threshold_hours: 8    # 8 hour escalation trigger
+    
+    order_fulfillment:
+      processing_time_max_hours: 24    # 24 hour processing time
+      shipping_accuracy_min: 0.98     # 98% shipping accuracy
+      inventory_accuracy_min: 0.95    # 95% inventory accuracy
+      return_processing_days: 5       # 5 day return processing
+
+# Resource allocation for e-commerce workloads
+resource_allocation:
+  frontend_systems:
+    cpu_cores: 8
+    memory_gb: 32
+    storage_gb: 500
+    cdn_enabled: true
+    auto_scaling: true
+    priority: "critical"
+  
+  order_processing:
+    cpu_cores: 12
+    memory_gb: 48
+    storage_gb: 1000
+    queue_enabled: true
+    priority: "high"
+  
+  analytics_platform:
+    cpu_cores: 16
+    memory_gb: 64
+    storage_gb: 2000
+    real_time_processing: true
+    priority: "medium"
+  
+  customer_service:
+    cpu_cores: 4
+    memory_gb: 16
+    storage_gb: 200
+    chat_integration: true
+    priority: "high"
+
+# Customer experience optimization
+customer_experience:
+  personalization:
+    recommendation_engine: true
+    behavioral_targeting: true
+    dynamic_content: true
+    a_b_testing: true
+  
+  conversion_optimization:
+    abandoned_cart_recovery: true
+    exit_intent_detection: true
+    social_proof_integration: true
+    urgency_optimization: true
+  
+  customer_support:
+    live_chat_enabled: true
+    chatbot_integration: true
+    video_support: true
+    multilingual_support: true
+
+# Audit requirements for e-commerce
+audit:
+  retention_periods:
+    customer_data: "7_years"          # Customer relationship retention
+    transaction_records: "7_years"    # Financial record keeping
+    marketing_data: "2_years"         # Marketing campaign data
+    support_interactions: "3_years"   # Customer service records
+    website_analytics: "3_years"      # Performance and behavior data
+  
+  required_fields:
+    - "timestamp"
+    - "customer_id"
+    - "session_id"
+    - "action_type"
+    - "product_data"
+    - "transaction_amount"
+    - "payment_method"
+    - "shipping_address"
+    - "marketing_consent"
+    - "privacy_consent"
+
+# Marketing and sales optimization
+marketing:
+  customer_acquisition:
+    - "search_engine_optimization"
+    - "pay_per_click_advertising"
+    - "social_media_marketing"
+    - "email_marketing"
+    - "influencer_partnerships"
+    - "affiliate_programs"
+  
+  customer_retention:
+    - "loyalty_programs"
+    - "email_automation"
+    - "retargeting_campaigns"
+    - "personalized_offers"
+    - "customer_feedback_loops"
+    - "community_building"
+  
+  conversion_tactics:
+    - "product_recommendations"
+    - "cross_selling"
+    - "upselling"
+    - "limited_time_offers"
+    - "social_proof"
+    - "trust_signals"
+
+# Integration settings
+integrations:
+  ecommerce_platforms:
+    - "shopify"
+    - "magento"
+    - "woocommerce"
+    - "bigcommerce"
+    - "salesforce_commerce"
+    - "custom_platforms"
+  
+  payment_processors:
+    - "stripe"
+    - "paypal"
+    - "square"
+    - "amazon_pay"
+    - "apple_pay"
+    - "google_pay"
+  
+  shipping_providers:
+    - "fedex"
+    - "ups"
+    - "dhl"
+    - "usps"
+    - "amazon_logistics"
+    - "local_couriers"
+  
+  marketing_tools:
+    - "google_analytics"
+    - "facebook_pixel"
+    - "mailchimp"
+    - "klaviyo"
+    - "hubspot"
+    - "salesforce_marketing"
+  
+  support_systems:
+    - "zendesk"
+    - "intercom"
+    - "freshdesk"
+    - "helpscout"
+    - "livechat"
+    - "custom_support"
+
+# Business intelligence and analytics
+analytics:
+  key_metrics:
+    - "conversion_rate"
+    - "average_order_value"
+    - "customer_lifetime_value"
+    - "cart_abandonment_rate"
+    - "return_on_ad_spend"
+    - "customer_acquisition_cost"
+  
+  reporting_frequency:
+    real_time: ["sales", "traffic", "inventory"]
+    daily: ["orders", "revenue", "customer_service"]
+    weekly: ["marketing_performance", "inventory_turnover"]
+    monthly: ["customer_retention", "profitability", "growth"]
+  
+  data_sources:
+    - "website_analytics"
+    - "transaction_data"
+    - "customer_feedback"
+    - "social_media_metrics"
+    - "email_campaign_data"
+    - "advertising_performance"
+
+# Security and compliance
+security:
+  payment_security:
+    pci_compliance: "required"
+    ssl_encryption: "tls_1_3"
+    fraud_detection: "enabled"
+    secure_tokenization: "enabled"
+  
+  data_protection:
+    gdpr_compliance: "required"
+    ccpa_compliance: "required"
+    data_encryption: "aes_256"
+    access_controls: "role_based"
+  
+  fraud_prevention:
+    risk_scoring: "enabled"
+    velocity_checking: "enabled"
+    device_fingerprinting: "enabled"
+    machine_learning_detection: "enabled"

@@ -1,0 +1,201 @@
+name: "Healthcare Specialization"
+version: "1.0.0"
+description: "Healthcare industry specialization with HIPAA compliance and clinical workflows"
+
+# Specialization metadata
+metadata:
+  industry: "Healthcare"
+  compliance_frameworks:
+    - "HIPAA"
+    - "HITECH"
+    - "FDA 21 CFR Part 11"
+    - "GCP (Good Clinical Practice)"
+    - "ICH Guidelines"
+    - "Joint Commission Standards"
+    - "State Medical Board Requirements"
+  data_types:
+    - "Protected Health Information (PHI)"
+    - "Electronic Health Records (EHR)"
+    - "Clinical Trial Data"
+    - "Medical Images (DICOM)"
+    - "Laboratory Results"
+    - "Prescription Data"
+
+# Enhanced ethics constraints for healthcare
+ethics:
+  healthcare_constraints:
+    - constraint: "patient_safety_first"
+      description: "Patient safety and wellbeing is the highest priority"
+      severity: "critical"
+      validation: "ensure_patient_safety"
+    
+    - constraint: "privacy_protection"
+      description: "Protect patient privacy and confidentiality of medical information"
+      severity: "critical"
+      validation: "verify_hipaa_compliance"
+    
+    - constraint: "informed_consent"
+      description: "Ensure proper informed consent for data use and treatment"
+      severity: "critical"
+      validation: "check_consent_status"
+    
+    - constraint: "clinical_accuracy"
+      description: "Maintain clinical accuracy and evidence-based recommendations"
+      severity: "critical"
+      validation: "verify_clinical_evidence"
+    
+    - constraint: "non_discrimination"
+      description: "Provide equitable care regardless of patient characteristics"
+      severity: "high"
+      validation: "check_bias_prevention"
+    
+    - constraint: "professional_boundaries"
+      description: "Maintain appropriate professional boundaries and scope"
+      severity: "high"
+      validation: "verify_professional_scope"
+
+# Enhanced safety thresholds for healthcare operations
+safety:
+  clinical_thresholds:
+    patient_safety:
+      medication_interaction_check: true
+      allergy_screening_required: true
+      critical_value_alert_threshold: "immediate"
+      fall_risk_assessment_required: true
+    
+    data_protection:
+      phi_access_logging: "mandatory"
+      minimum_necessary_rule: "enforced"
+      encryption_required: "aes_256"
+      audit_trail_immutable: true
+    
+    system_reliability:
+      uptime_requirement: 0.99999      # 99.999% uptime (5 minutes downtime/year)
+      response_time_max_ms: 200        # 200ms max for clinical systems
+      backup_frequency_hours: 1        # Hourly backups required
+      disaster_recovery_rto_hours: 4   # 4 hour recovery time objective
+
+# Resource allocation for healthcare workloads
+resource_allocation:
+  clinical_systems:
+    cpu_cores: 12
+    memory_gb: 64
+    storage_gb: 2000
+    backup_storage_gb: 4000
+    network_bandwidth_mbps: 1000
+    priority: "critical"
+    redundancy: "active_active"
+  
+  research_analytics:
+    cpu_cores: 16
+    memory_gb: 128
+    storage_gb: 5000
+    gpu_enabled: true
+    priority: "high"
+    data_lake_access: true
+  
+  administrative_systems:
+    cpu_cores: 4
+    memory_gb: 16
+    storage_gb: 500
+    priority: "medium"
+
+# HIPAA compliance requirements
+hipaa_compliance:
+  administrative_safeguards:
+    - "security_officer_designated"
+    - "workforce_training_required"
+    - "access_management_procedures"
+    - "incident_response_procedures"
+    - "business_associate_agreements"
+  
+  physical_safeguards:
+    - "facility_access_controls"
+    - "workstation_security"
+    - "device_media_controls"
+    - "equipment_disposal_procedures"
+  
+  technical_safeguards:
+    - "access_control_unique_ids"
+    - "audit_controls_enabled"
+    - "data_integrity_controls"
+    - "transmission_security_encryption"
+    - "authentication_multi_factor"
+
+# Audit requirements
+audit:
+  retention_periods:
+    patient_records: "indefinite"         # Per state requirements
+    audit_logs: "6_years"                 # HIPAA requirement
+    clinical_trial_data: "15_years"       # FDA requirement
+    quality_metrics: "3_years"
+    training_records: "3_years"
+  
+  required_fields:
+    - "timestamp"
+    - "user_id"
+    - "patient_id_hash"
+    - "action_type"
+    - "data_accessed"
+    - "purpose_of_use"
+    - "consent_status"
+    - "phi_minimization_applied"
+    - "security_incident_flag"
+
+# Clinical decision support
+clinical_support:
+  evidence_sources:
+    - "pubmed_literature"
+    - "clinical_guidelines"
+    - "drug_interaction_databases"
+    - "medical_calculators"
+    - "diagnostic_criteria"
+  
+  decision_aids:
+    - "differential_diagnosis"
+    - "treatment_recommendations"
+    - "medication_dosing"
+    - "risk_stratification"
+    - "screening_reminders"
+
+# Integration settings
+integrations:
+  healthcare_systems:
+    - "electronic_health_records"
+    - "hospital_information_systems"
+    - "laboratory_information_systems"
+    - "pharmacy_systems"
+    - "medical_imaging_systems"
+    - "telemedicine_platforms"
+  
+  external_services:
+    - "drug_databases"
+    - "medical_literature_apis"
+    - "clinical_trial_registries"
+    - "public_health_systems"
+    - "insurance_verification"
+  
+  research_platforms:
+    - "clinical_data_repositories"
+    - "biobank_systems"
+    - "genomic_databases"
+    - "clinical_trial_management"
+
+# Data security configurations
+data_security:
+  encryption:
+    at_rest: "AES-256"
+    in_transit: "TLS 1.3"
+    key_management: "hardware_security_module"
+  
+  access_controls:
+    authentication: "multi_factor_required"
+    authorization: "role_based_minimum_necessary"
+    session_timeout_minutes: 15
+    concurrent_session_limit: 1
+  
+  monitoring:
+    real_time_alerts: true
+    anomaly_detection: true
+    breach_detection: true
+    compliance_monitoring: "continuous"

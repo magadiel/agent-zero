@@ -1,0 +1,251 @@
+name: "KYC Customer Onboarding"
+version: "1.0.0"
+description: "Know Your Customer compliance workflow for financial services customer onboarding"
+
+metadata:
+  workflow_type: "fintech_compliance"
+  regulatory_framework: "KYC/AML"
+  risk_level: "high"
+  estimated_duration: "2-5 business days"
+  automation_level: "semi_automated"
+
+# Workflow sequence
+sequence:
+  - step: "initial_customer_screening"
+    agent: "compliance_officer"
+    description: "Initial customer screening and sanctions check"
+    inputs:
+      required:
+        - "customer_application"
+        - "identification_documents"
+        - "business_information"
+    outputs:
+      - "screening_results"
+      - "sanctions_check_report"
+    quality_gates:
+      - "sanctions_screening_clear"
+    parallel: false
+    timeout_hours: 24
+  
+  - step: "identity_verification"
+    agent: "compliance_officer"
+    description: "Verify customer identity and documentation"
+    inputs:
+      required:
+        - "screening_results"
+        - "identification_documents"
+        - "proof_of_address"
+    outputs:
+      - "identity_verification_report"
+      - "document_authenticity_check"
+    quality_gates:
+      - "identity_verified"
+      - "documents_authentic"
+    parallel: false
+    timeout_hours: 48
+  
+  - step: "beneficial_ownership_analysis"
+    agent: "compliance_officer"
+    description: "Identify and verify beneficial owners"
+    inputs:
+      required:
+        - "business_information"
+        - "ownership_structure"
+        - "corporate_documents"
+    outputs:
+      - "beneficial_ownership_report"
+      - "ownership_verification"
+    quality_gates:
+      - "beneficial_owners_identified"
+      - "ownership_structure_clear"
+    parallel: false
+    timeout_hours: 72
+    conditional:
+      condition: "customer_type == 'business'"
+  
+  - step: "risk_assessment"
+    agent: "risk_analyst"
+    description: "Assess customer risk profile"
+    inputs:
+      required:
+        - "identity_verification_report"
+        - "business_information"
+        - "transaction_expectations"
+        - "geographic_exposure"
+    outputs:
+      - "customer_risk_assessment"
+      - "risk_score"
+      - "risk_category"
+    quality_gates:
+      - "risk_assessment_complete"
+    parallel: false
+    timeout_hours: 24
+  
+  - step: "enhanced_due_diligence"
+    agent: "compliance_officer"
+    description: "Enhanced due diligence for high-risk customers"
+    inputs:
+      required:
+        - "customer_risk_assessment"
+        - "source_of_funds"
+        - "business_purpose"
+    outputs:
+      - "edd_report"
+      - "source_of_funds_verification"
+    quality_gates:
+      - "edd_satisfactory"
+    parallel: false
+    timeout_hours: 120
+    conditional:
+      condition: "risk_score > 'medium'"
+  
+  - step: "final_approval_review"
+    agent: "compliance_officer"
+    description: "Final compliance review and approval decision"
+    inputs:
+      required:
+        - "identity_verification_report"
+        - "beneficial_ownership_report"
+        - "customer_risk_assessment"
+        - "edd_report"
+    outputs:
+      - "approval_decision"
+      - "compliance_summary"
+      - "monitoring_requirements"
+    quality_gates:
+      - "compliance_approved"
+    parallel: false
+    timeout_hours: 24
+  
+  - step: "account_setup"
+    agent: "financial_product_manager"
+    description: "Set up customer account and monitoring"
+    inputs:
+      required:
+        - "approval_decision"
+        - "customer_risk_assessment"
+        - "monitoring_requirements"
+    outputs:
+      - "account_configuration"
+      - "monitoring_setup"
+      - "welcome_package"
+    quality_gates:
+      - "account_activated"
+    parallel: false
+    timeout_hours: 24
+    conditional:
+      condition: "approval_decision == 'approved'"
+  
+  - step: "ongoing_monitoring_setup"
+    agent: "compliance_officer"
+    description: "Configure ongoing transaction monitoring"
+    inputs:
+      required:
+        - "customer_risk_assessment"
+        - "account_configuration"
+        - "expected_activity"
+    outputs:
+      - "monitoring_rules"
+      - "alert_thresholds"
+      - "review_schedule"
+    quality_gates:
+      - "monitoring_configured"
+    parallel: true
+    timeout_hours: 12
+  
+  - step: "documentation_archival"
+    agent: "compliance_officer"
+    description: "Archive KYC documentation and records"
+    inputs:
+      required:
+        - "all_kyc_documents"
+        - "compliance_summary"
+        - "approval_decision"
+    outputs:
+      - "archived_records"
+      - "audit_trail"
+      - "retention_schedule"
+    quality_gates:
+      - "documents_archived"
+    parallel: true
+    timeout_hours: 12
+
+# Quality gates configuration
+quality_gates:
+  sanctions_screening_clear:
+    type: "compliance_check"
+    criteria:
+      - "no_sanctions_matches"
+      - "no_pep_concerns"
+      - "no_adverse_media"
+    severity: "blocking"
+  
+  identity_verified:
+    type: "identity_check"
+    criteria:
+      - "documents_authentic"
+      - "identity_confirmed"
+      - "address_verified"
+    severity: "blocking"
+  
+  beneficial_owners_identified:
+    type: "ownership_check"
+    criteria:
+      - "all_owners_25_percent_identified"
+      - "ultimate_beneficial_owners_verified"
+      - "control_structure_understood"
+    severity: "blocking"
+  
+  risk_assessment_complete:
+    type: "risk_evaluation"
+    criteria:
+      - "risk_factors_evaluated"
+      - "risk_score_calculated"
+      - "mitigation_measures_defined"
+    severity: "blocking"
+  
+  edd_satisfactory:
+    type: "enhanced_diligence"
+    criteria:
+      - "source_of_funds_verified"
+      - "business_purpose_legitimate"
+      - "additional_controls_implemented"
+    severity: "blocking"
+
+# Escalation procedures
+escalations:
+  - trigger: "sanctions_match_found"
+    action: "immediate_escalation"
+    recipients: ["compliance_manager", "legal_counsel"]
+    timeframe: "immediate"
+  
+  - trigger: "high_risk_customer"
+    action: "senior_review"
+    recipients: ["senior_compliance_officer", "risk_manager"]
+    timeframe: "24_hours"
+  
+  - trigger: "incomplete_documentation"
+    action: "customer_followup"
+    recipients: ["customer", "relationship_manager"]
+    timeframe: "5_business_days"
+  
+  - trigger: "approval_timeout"
+    action: "management_review"
+    recipients: ["compliance_manager", "business_manager"]
+    timeframe: "immediate"
+
+# Regulatory requirements
+regulatory_requirements:
+  documentation_retention: "5_years"
+  periodic_review: "annual"
+  suspicious_activity_monitoring: "continuous"
+  regulatory_reporting: "as_required"
+  customer_notification: "approval_decision"
+
+# Performance metrics
+metrics:
+  processing_time_target: "3_business_days"
+  false_positive_rate_target: "<5%"
+  customer_satisfaction_target: ">4.0/5.0"
+  regulatory_compliance_target: "100%"
+  automation_rate_target: ">70%"
